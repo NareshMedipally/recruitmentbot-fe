@@ -1,0 +1,107 @@
+<div class="row">
+  <div class="col-12">
+    <h5 style="color:#2e3192;">MANAGE USERS</h5>
+    <nb-card>
+      <nb-card-body>
+        <div class="row">
+          <div class="col-md-12 text-right">
+            <label class="search-label" for="search">Search:&nbsp;&nbsp;</label>
+            <input [(ngModel)]="searchTerm" class="search-input" (input)="Search()">
+          </div>
+         </div><br>
+        <div class="row">
+          <table class="table" style="background-color: white;width: 100%;">
+            <thead>
+              <tr>
+                <th>SNO</th>
+                <th>Name</th>
+                <th>Company Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Action</th>
+                <th>Bot</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="Role_id == '1'">
+              <tr *ngFor="let data of Companies | paginate: { itemsPerPage: 10, currentPage: Page }; let i = index">
+                <td>{{i+1}}</td>
+                <td>{{data.first_name}}</td>
+                <td>{{data.company_name}}</td>
+                <td>{{data.email_id}}</td>
+                <td>{{data.role_type}}</td>
+                <td>
+                  <a routerLink="/pages/view-user/{{data.correl_id}}"><i class="fa fa-eye" aria-hidden="true" style="margin-right: 5px; color: #212529"></i></a>
+                  <a routerLink="/pages/update-user/{{data.correl_id}}"><i class="fa fa-pencil" aria-hidden="true" style="margin-right:5px; color: #212529"></i></a>
+                  <a><i class="fa fa-trash" aria-hidden="true" (click)="openDelete(data)" style="color: #212529"></i></a>
+                </td>
+                <td>
+                  <label class="switch" *ngIf="(data.role_id == '1') || (data.role_id == '2')">
+                    <input type="checkbox" disabled>
+                    <span class="slider round"></span>
+                  </label>
+                  <label class="switch" *ngIf="(data.role_id == '3') || (data.role_id == '4')">
+                    <input type="checkbox" checked>
+                    <span class="slider round"></span>
+                  </label>
+                </td>
+              </tr>
+            </tbody>
+            <tbody *ngIf="Role_id == '2'">
+              <tr *ngFor="let data of adminType | paginate: { itemsPerPage: 10, currentPage: Page }; let i = index">
+                <td>{{i+1}}</td>
+                <td>{{data.first_name}}</td>
+                <td>{{data.company_name}}</td>
+                <td>{{data.email_id}}</td>
+                <td>{{data.role_type}}</td>
+                <td>
+                  <a routerLink="/pages/view-user/{{data.correl_id}}"><i class="fa fa-eye" aria-hidden="true" style="margin-right: 5px; color: #212529"></i></a>
+                  <a routerLink="/pages/update-user/{{data.correl_id}}"><i class="fa fa-pencil" aria-hidden="true" style="margin-right:5px; color: #212529"></i></a>
+                  <a><i class="fa fa-trash" aria-hidden="true" (click)="openDelete(data)" style="color: #212529"></i></a>
+                </td>
+                <td>
+                  <label class="switch" *ngIf="(data.role_id == '1') || (data.role_id == '2')">
+                    <input type="checkbox" disabled>
+                    <span class="slider round"></span>
+                  </label>
+                  <label class="switch" *ngIf="(data.role_id == '3') || (data.role_id == '4')">
+                    <input type="checkbox" checked>
+                    <span class="slider round"></span>
+                  </label>
+                </td>
+              </tr>
+            </tbody>
+            <tbody *ngIf="Role_id == '3'">
+              <tr *ngFor="let data of recruiterType | paginate: { itemsPerPage: 10, currentPage: Page }; let i = index">
+                <td>{{i+1}}</td>
+                <td>{{data.first_name}}</td>
+                <td>{{data.company_name}}</td>
+                <td>{{data.email_id}}</td>
+                <td>{{data.role_type}}</td>
+                <td>
+                  <a routerLink="/pages/view-user/{{data.correl_id}}"><i class="fa fa-eye" aria-hidden="true" style="margin-right: 5px; color: #212529"></i></a>
+                  <a routerLink="/pages/update-user/{{data.correl_id}}"><i class="fa fa-pencil" aria-hidden="true" style="margin-right:5px; color: #212529"></i></a>
+                  <a><i class="fa fa-trash" aria-hidden="true" (click)="openDelete(data)" style="color: #212529"></i></a>
+                </td>
+                <td>
+                  <label class="switch" *ngIf="(data.role_id == '1') || (data.role_id == '2')">
+                    <input type="checkbox" disabled>
+                    <span class="slider round"></span>
+                  </label>
+                  <label class="switch" *ngIf="(data.role_id == '3') || (data.role_id == '4')">
+                    <input type="checkbox" checked>
+                    <span class="slider round"></span>
+                  </label>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="row">
+          <div class="col-md-12 mt-2 text-right">
+            <pagination-controls (pageChange)="Page=$event"></pagination-controls>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

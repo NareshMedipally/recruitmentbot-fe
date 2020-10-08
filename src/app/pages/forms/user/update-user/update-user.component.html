@@ -1,0 +1,200 @@
+<nb-card>
+  <nb-card-header>Update User</nb-card-header>
+  <nb-card-body>
+    <div *ngIf="dataType == 'Super Admin'" class="" style=" background-color: white; border: 1px white;">
+      <form #form="ngForm" (ngSubmit)="updateCompany('Super Admin')">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group border-bottom border-primary">
+              <label for="" style="font-weight: bold;">General Info</label>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="exampleInputEmail1" class="label">First name</label>
+              <input type="text" class="form-control" fullWidth id="first-name" placeholder="First Name" name="first_name" [(ngModel)]="formData.first_name" #first_name="ngModel">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="exampleInputEmail1" class="label">Last name</label>
+              <input type="text" class="form-control" fullWidth id="last-name" placeholder="Last Name" name="last_name" [(ngModel)]="formData.last_name" #last_name="ngModel">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="exampleInputEmail1" class="label">Email</label>
+              <input type="email" class="form-control" fullWidth id="email" placeholder="Email" name="email_id" [(ngModel)]="formData.email_id" #email_id="ngModel">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="exampleInputEmail1" class="label">Phone Number</label>
+              <input type="number" class="form-control" fullWidth id="phone" placeholder="Phone Number" name="phone" [(ngModel)]="formData.phone" #phone="ngModel">
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="exampleInputEmail1" class="label">Comments</label>
+              <textarea name="" id="" class="form-control" placeholder="Comments" name="comments" [(ngModel)]="formData.comments" #comments="ngModel"></textarea>
+            </div>
+          </div>
+          <div class="col-md-12 text-center">
+            <button type="submit" class="btn btn-primary" style="margin-right: 5px;">Update</button>
+            <button class="btn btn-danger" routerLink="/pages/manage-user">cancel</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div *ngIf="dataType == 'Admin'" class="" style=" background-color: white; border: 1px white;">
+      <form #form="ngForm" (ngSubmit)="updateCompany('Admin')">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group border-bottom border-primary">
+              <label for="" style="font-weight: bold;">General Info</label>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="exampleInputEmail1" class="label">First name</label>
+              <input type="text" class="form-control" fullWidth id="first-name" placeholder="First Name" name="first_name" [(ngModel)]="formData.first_name" #first_name="ngModel">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="exampleInputEmail1" class="label">Last name</label>
+              <input type="text" class="form-control" fullWidth id="last-name" placeholder="Last Name" name="last_name" [(ngModel)]="formData.last_name" #last_name="ngModel">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="exampleInputEmail1" class="label">Company name</label>
+              <input type="text" class="form-control" fullWidth id="company" placeholder="" name="company_name" [(ngModel)]="formData.company_name" #company_name="ngModel">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="exampleInputEmail1" class="label">Expiry Date</label>
+              <input type="text" class="form-control" fullWidth id="expiry-date-1" placeholder="" name="expiry_date" [disabled]="dateVisible" [(ngModel)]="formData.expiry_date" #expiry_date="ngModel" bsDatepicker placement="bottom-left" [bsValue]="formData.expiry_date" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="exampleInputEmail1" class="label">Email</label>
+              <input type="email" class="form-control" fullWidth id="email" placeholder="Email" name="email_id" [(ngModel)]="formData.email_id" #email_id="ngModel">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="exampleInputEmail1" class="label">Phone Number</label>
+              <input type="number" class="form-control" fullWidth id="phone" placeholder="Phone Number" name="phone" [(ngModel)]="formData.phone" #phone="ngModel">
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="exampleInputEmail1" class="label">Comments</label>
+              <textarea name="" id="" class="form-control" placeholder="Comments" name="comments" [(ngModel)]="formData.comments" #comments="ngModel"></textarea>
+            </div>
+          </div>
+          <div class="col-md-12 text-center">
+            <button type="submit" class="btn btn-primary" style="margin-right: 5px;">Update</button>
+            <button class="btn btn-danger" routerLink="/pages/manage-user">cancel</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div *ngIf="dataType == 'Recruiter'" class="" style=" background-color: white; border: 1px white;">
+      <form (ngSubmit)="updateCompany('Recruiter')">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group border-bottom border-primary">
+              <label for="" style="font-weight: bold;">General Info</label>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="exampleInputEmail1" class="label">First name</label>
+              <input type="text" class="form-control" fullWidth id="first-name-3" placeholder="First Name" name="first_name" [(ngModel)]="formData.first_name" #first_name="ngModel">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="exampleInputEmail1" class="label">Last name</label>
+              <input type="text" class="form-control" fullWidth id="last-name-3" placeholder="Last Name" name="last_name" [(ngModel)]="formData.last_name" #last_name="ngModel">
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group border-bottom border-primary">
+              <label for="" style="font-weight: bold;">Contact Info</label>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="exampleInputEmail1" class="label">Email</label>
+              <input type="email" class="form-control" fullWidth id="email" placeholder="Email" name="email_id" [(ngModel)]="formData.email_id" #email_id="ngModel">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="exampleInputEmail1" class="label">Phone Number</label>
+              <input type="number" class="form-control" fullWidth id="phone" placeholder="Phone Number" name="phone" [(ngModel)]="formData.phone" #phone="ngModel">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="exampleInputEmail1" class="label">Primary Email Address</label>
+              <input type="email" class="form-control" fullWidth id="pemail" name="primary_email_id" [(ngModel)]="formData.primary_email_id" #primary_email_id="ngModel">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="exampleInputEmail1" class="label">Generic Email Address</label>
+              <input type="email" class="form-control" fullWidth id="gemail" name="generic_email_id" [(ngModel)]="formData.generic_email_id" #generic_email_id="ngModel">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="exampleInputEmail1" class="label">Personal Email Address</label>
+              <input type="email" class="form-control" fullWidth id="personal-email" name="personal_email_id" [(ngModel)]="formData.personal_email_id" #personal_email_id="ngModel">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="exampleInputEmail1" class="label">CC Email Address</label>
+              <input type="email" class="form-control" fullWidth id="cc-email" name="cc_email_id" [(ngModel)]="formData.cc_email_id" #cc_email_id="ngModel">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="exampleInputEmail1" class="label">BCC Email Address</label>
+              <input type="email" class="form-control" fullWidth id="bcc-email" name="bcc_email_id" [(ngModel)]="formData.bcc_email_id" #bcc_email_id="ngModel">
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group border-bottom border-primary">
+              <label for="" style="font-weight: bold;">Other Information</label>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="exampleInputEmail1" class="label">Expiry Date</label>
+              <input type="text" class="form-control" fullWidth id="expiry-date" [disabled]="dateVisible" name="expiry_date" [(ngModel)]="formData.expiry_date" #expiry_date="ngModel" bsDatepicker placement="bottom-left" [bsValue]="formData.expiry_date" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}">
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="exampleInputEmail1" class="label">Comments</label>
+              <textarea name="" id="" class="form-control" placeholder="Comments" name="comments" [(ngModel)]="formData.comments" #comments="ngModel"></textarea>
+            </div>
+          </div>
+          <div class="col-md-12 text-center">
+            <button type="submit" class="btn btn-primary" style="margin-right: 5px;">Update</button>
+            <button class="btn btn-danger" routerLink="/pages/manage-user">cancel</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </nb-card-body>
+</nb-card>

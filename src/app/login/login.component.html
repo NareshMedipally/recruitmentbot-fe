@@ -1,0 +1,61 @@
+<div class="container-fluid p-md-5 p-sm-5" style="background-color: #edf1f7;">
+  <div class="row">
+    <div class="card w-100 h-100">
+      <!-- <div class="card-header" style="background-color: white;">
+        <i class="fa fa-arrow-left text-primary"></i>
+      </div> -->
+      <div class="card-body">
+        <form #form="ngForm" (ngSubmit)="LoginForm(form)">
+          <div style="padding: 20px;">
+            <div class="row">
+              <div class="col-md-6 mx-auto text-center">
+                <h1 class="title">Login</h1>
+                <img src="assets/images/bluespace.png" height="60px">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 mx-auto mt-4">
+                <div class="form-group">
+                  <label for="exampleInputEmail1" class="label-title">Email Address</label>
+                  <input type="text" class="form-control"  fullWidth placeholder="Email Address" [(ngModel)]="loginInfo.email_id" #email_id="ngModel" name="email_id" email required>
+                  <ng-container *ngIf="email_id.invalid && email_id.touched">
+                    <p class="error-message text-danger" *ngIf="email_id.errors?.required">
+                      Email is required!
+                    </p>
+                    <p class="error-message text-danger" *ngIf="email_id.errors?.email">
+                      Email should be the real one!
+                    </p>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 mx-auto">
+                <div class="form-group">
+                  <label for="exampleInputEmail1" class="label-title">Password</label>
+                  <input type="password" class="form-control"  fullWidth placeholder="Password" [(ngModel)]="loginInfo.password" #password="ngModel" name="password" required>
+                  <ng-container *ngIf="password.invalid && password.touched ">
+                    <p class="error-message text-danger" *ngIf="password.errors?.required">
+                      Password is required!
+                    </p>
+                  </ng-container>
+                  <div class="text-right">
+                    <a routerLink="/forgot-pwd" class="forgot-password">Forgot Password?</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6 mx-auto">
+                <div class="form-group">
+                  <button class="btn btn-primary btn-block" style="color:white;" [disabled]="!form.valid || form.pristine || form.invalid" type="submit">Login</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+

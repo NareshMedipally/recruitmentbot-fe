@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-12">
+    <h5 style="color:#2e3192;">Tags</h5>
+    <nb-card>
+      <nb-card-body>
+        <div class="row">
+          <div class="col-md-12 text-right">
+            <label class="search-label" for="search">Search:&nbsp;&nbsp;</label>
+            <input id="search" class="search-input">
+          </div>
+         </div><br>
+        <div class="row">
+          <table class="table" style="background-color: white;width: 100%;">
+            <thead>
+              <tr>
+                <th>SNO</th>
+                <th>Name</th>
+                <th>Tag type</th>
+                <th>Comments</th>
+                <th class="text-center">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of data | paginate: { itemsPerPage: 10, currentPage: Page }; let i = index">
+                <td>{{i+1}}</td>
+                <td>{{item.tag_name}}</td>
+                <td>{{item.tag_type}}</td>
+                <td>{{item.tag_desc}}</td>
+                <td class="text-center">
+                  <a routerLink="/pages/update-tags/{{item.tag_id}}"><i class="fa fa-pencil" aria-hidden="true" style="margin-right:5px;font-size:18px; color: #212529"></i></a>
+                  <a (click)="openDelete()"><i class="fa fa-trash" aria-hidden="true"  style="font-size:18px;color: #212529"></i></a>
+                  </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="row">
+          <div class="col-md-12 mt-2 text-right">
+            <pagination-controls (pageChange)="Page=$event"></pagination-controls>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
