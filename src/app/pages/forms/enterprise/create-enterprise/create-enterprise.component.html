@@ -1,0 +1,163 @@
+<div class="row">
+  <div class="col-md-12">
+    <h5 style="color:#2e3192;">CREATE ENTERPRISE</h5>
+    <nb-card>
+      <nb-card-body>
+        <form #f="ngForm" (ngSubmit)="Save()">
+          <div class="row">
+            <div class="col-md-8">
+              <div class="row ">
+                <div class="col-12">
+                  <div class="form-group border-bottom border-primary">
+                    <label for="" style="font-weight: bold;">General Info</label>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="inputFirstName" class="label">Company Name <span style="color: red">*</span></label>
+                    <input type="text" class="form-control" fullWidth  placeholder="" name="company_name" [(ngModel)]="entData.company_name" #company_name="ngModel">
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="inputLastName" class="label">Website Name</label>
+                    <input type="text" class="form-control" fullWidth placeholder="" name="website_url" [(ngModel)]="entData.website_url" #website_url="ngModel">
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="inputFirstName" class="label">LinkedIn Profile</label>
+                    <input type="text" class="form-control" fullWidth  placeholder="" name="linkedIn_url" [(ngModel)]="entData.linkedIn_url" #linkedIn_url="ngModel">
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="inputLastName" class="label">Tax ID</label>
+                    <input type="text" class="form-control" fullWidth id="inputLastName" placeholder="" name="tax_id" [(ngModel)]="entData.tax_id" #tax_id="ngModel">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="row">
+                <div class="col-12">
+                  <div class="form-group border-bottom border-primary">
+                    <label for="" style="font-weight: bold; color:black">Company Logo</label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-12 text-center">
+                    <figure class="figure">
+                      <img style="max-width:70px;max-height: 70px;" [src]="entData.company_logo" class="figure-img img-fluid rounded" alt="">
+                    </figure>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12 text-center" id="uploadImg">
+                      <div class="file btn btn-md text-center" style="background:#f2f2f2;border: 1px grey !important;">
+                        <span>Select logo</span>
+                        <input type="file" class="upload" (change)="onFileChange($event)" accept="image/*">
+                      </div><br>
+                      <span style="font-size: xx-small; color: red;">
+                        Logo max size is 500KB
+                      </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row ">
+            <div class="col-12">
+              <div class="form-group border-bottom border-primary">
+                <label for="" style="font-weight: bold;">Contact Info</label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="inputEmail" class="label">Email <span style="color: red">*</span></label>
+                <input type="email" class="form-control" fullWidth placeholder="" name="email_id" [(ngModel)]="entData.email_id" #email_id="ngModel">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="inputWebsite" class="label">Phone Number <span style="color: red">*</span></label>
+                <input type="text" class="form-control" fullWidth placeholder="" name="phone" [(ngModel)]="entData.phone" #phone="ngModel">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="inputEmail" class="label">Address Line 1</label>
+                <input type="email" class="form-control" fullWidth placeholder="" name="address_line_1" [(ngModel)]="entData.address_line_1" #address_line_1="ngModel">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="inputWebsite" class="label">Address Line 2</label>
+                <input type="text" class="form-control" fullWidth placeholder="" name="address_line_2" [(ngModel)]="entData.address_line_2" #address_line_2="ngModel">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="inputEmail" class="label">City <span style="color: red">*</span></label>
+                <input type="email" class="form-control" fullWidth placeholder="" name="city" [(ngModel)]="entData.city" #city="ngModel">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="inputWebsite" class="label">Zipcode</label>
+                <input type="text" class="form-control" fullWidth placeholder="" name="zipcode" [(ngModel)]="entData.zipcode" #zipcode="ngModel">
+              </div>
+            </div>
+          </div>
+          <div class="row ">
+            <div class="col-12">
+              <div class="form-group border-bottom border-primary">
+              <label for="" style="font-weight: bold; color:black">Other Information</label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="inputEmail" class="label">Valid From</label>
+                <input  type="text" class="form-control" fullWidth name="valid_from" [(ngModel)]="entData.valid_from" #valid_from="ngModel" bsDatepicker placement="bottom-left" [bsValue]="entData.valid_from" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="inputWebsite" class="label">Valid To</label>
+                <input  type="text" class="form-control" fullWidth name="valid_to" [(ngModel)]="entData.valid_to" #valid_to="ngModel" bsDatepicker placement="bottom-left" [bsValue]="entData.valid_to" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label for="inputEmail" class="label">Comments</label>
+                <textarea rows=4 class="form-control" fullWidth id="inputEmail" placeholder="Enter Comments" name="comments" [(ngModel)]="entData.comments" #comments="ngModel"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12 text-center">
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary" style="margin-right: 10px;">SAVE</button>
+                <button class="btn btn-danger">CANCEL</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
