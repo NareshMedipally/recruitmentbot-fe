@@ -325,7 +325,7 @@ export class CreateUserComponent implements OnInit {
     this.authService.createConsultant(formData).subscribe((res)=>{
       console.log(res);
       if(res.body.status == 'success'){
-        swal.fire('','User created successfully!','success')
+        this.router.navigate(['/pages/manage-user']);
       }else if(res.body.status == 'Failed'){
         swal.fire('','User Already Exists!','error')
       }
