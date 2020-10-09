@@ -30,8 +30,10 @@ export class CreateUserComponent implements OnInit {
   Role_id:any;
   visaDisable = true;
   drivDisable = true;
+  data: any[] = [];
 
   AccessToken:string = "";
+  fileToUpload;
 
   selectedCars = [3];
     cars = [
@@ -74,25 +76,25 @@ export class CreateUserComponent implements OnInit {
     "addressline2" : "",
     "zipcode" : "",
     "city" : "",
-    "total_exp" : "",
-    "usa_exp" : "",
+    "total_experience" : "",
+    "usa_experience" : "",
     "marketing_phone" : "",
-    "marketing_email" : "",
+    "marketing_email_id" : "",
     "looking_for_job" : "",
     "subject_tag" : "",
     "non_sub_tag" : "",
-    "linkedin_profile" : "",
+    "linkedIn_url" : "",
     "tags" : "",
-    "resume" : "",
-    "certification" : "",
-    "email_temp" : "",
-    "driving_copy" : "",
-    "driving_from" : "",
-    "driving_to" : "",
+    "resume_loc" : "",
+    "certificate_loc" : "",
+    "email_template" : "",
+    "DL_copy" : "",
+    "DL_valid_from" : "",
+    "DL_valid_to" : "",
     "visa_status": "",
-    "visa_copy": "",
-    "valid_from": "",
-    "valid_to": "",
+    "visa_copy_loc": "",
+    "visa_valid_from": "",
+    "visa_valid_to": "",
   }
 
   constructor(private modalService: BsModalService, private datapipe:DatePipe, private http: HttpClient, private router: Router, private globals:ServicesService, private authService: AuthService) {
@@ -104,6 +106,7 @@ export class CreateUserComponent implements OnInit {
   ngOnInit(): void {
     this.getCompanies();
     this.getRoles();
+    this.gettags();
   }
 
   getCompanies() {
@@ -261,8 +264,72 @@ export class CreateUserComponent implements OnInit {
     })
   }
 
+  onFileChange(event){
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.fileToUpload = file;
+      this.conData.resume_loc = this.fileToUpload;
+    }
+  }
+
+  gettags(){
+    this.globals.showLoading('');
+    this.authService.getTags(this.globals.company).subscribe((result)=>{
+      console.log(result.body.fields);
+      this.data = result.body.fields;
+      this.globals.hideLoading('');
+    },err=>{
+      swal.fire('','Something went wrong!','error')
+    })
+  }
+
   saveCon(){
-    console.log(this.conData)
+    const formData = new FormData();
+    formData.append("first_name", this.conData.first_name);
+    formData.append("last_name", this.conData.last_name);
+    formData.append("company_name", this.companyname);
+    formData.append("created_user", this.globals.email);
+    formData.append("email_id", this.conData.email_id);
+    formData.append("phone", this.conData.phone);
+    formData.append("dob", this.conData.dob ? this.datapipe.transform(this.conData.dob, 'yyyy-MM-dd') : "");
+    formData.append("comments", this.conData.comments);
+    formData.append("role_type", localStorage.getItem('role'));
+    formData.append("role_id", localStorage.getItem('role'));
+    formData.append("expiry_date", this.conData.expiry_date ? this.datapipe.transform(this.conData.expiry_date, 'yyyy-MM-dd') : "");
+    formData.append("education", this.conData.education);
+    formData.append("rate", this.conData.rate);
+    formData.append("relocation", this.conData.relocation);
+    formData.append("addressline1", this.conData.addressline1);
+    formData.append("addressline2", this.conData.addressline2);
+    formData.append("zipcode", this.conData.zipcode);
+    formData.append("city", this.conData.city);
+    formData.append("total_experience", this.conData.total_experience);
+    formData.append("usa_experience", this.conData.usa_experience);
+    formData.append("marketing_phone", this.conData.marketing_phone);
+    formData.append("marketing_email_id", this.conData.marketing_email_id);
+    formData.append("looking_for_job", this.conData.looking_for_job);
+    formData.append("subject_tag", this.conData.subject_tag);
+    formData.append("non_sub_tag", this.conData.non_sub_tag);
+    formData.append("linkedIn_url", this.conData.linkedIn_url);
+    formData.append("tags", this.conData.tags);
+    formData.append("resume_loc", this.conData.resume_loc);
+    formData.append("certificate_loc", this.conData.certificate_loc);
+    formData.append("email_template", this.conData.email_template);
+    formData.append("DL_copy", this.conData.DL_copy);
+    formData.append("DL_valid_from", this.conData.DL_valid_from ? this.datapipe.transform(this.conData.DL_valid_from, 'yyyy-MM-dd') : "");
+    formData.append("DL_valid_to", this.conData.DL_valid_to ? this.datapipe.transform(this.conData.DL_valid_to, 'yyyy-MM-dd') : "");
+    formData.append("visa_status", this.conData.visa_status);
+    formData.append("visa_copy_loc", this.conData.visa_copy_loc);
+    formData.append("visa_valid_from", this.conData.visa_valid_from ? this.datapipe.transform(this.conData.visa_valid_from, 'yyyy-MM-dd') : "");
+    formData.append("visa_valid_to", this.conData.visa_valid_to ? this.datapipe.transform(this.conData.visa_valid_to, 'yyyy-MM-dd') : "");
+    this.authService.createConsultant(formData).subscribe((res)=>{
+      console.log(res);
+      if(res.body.status == 'success'){
+        swal.fire('','User created successfully!','success')
+      }else if(res.body.status == 'Failed'){
+        swal.fire('','User Already Exists!','error')
+      }
+    })
   }
 
 }

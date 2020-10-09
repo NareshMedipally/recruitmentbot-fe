@@ -46,6 +46,13 @@ export class AuthService {
     return this.http.post<any>(url,objUser, { headers: headersForAPI, observe: 'response' });
   }
 
+  createConsultant(objUser): Observable<HttpResponse<any>> {
+    var headersForAPI = new HttpHeaders({ 'Access-Control-Allow-Origin':'*', 'Authorization': 'Bearer ' + this.AccessToken });
+    headersForAPI.append("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
+    let url =  this.baseUrl + '/createuser';
+    return this.http.post<any>(url,objUser, { headers: headersForAPI, observe: 'response' });
+  }
+
   getCompanies(id){
     this.getToken();
     if(this.AccessToken) {
@@ -133,10 +140,36 @@ export class AuthService {
   }
 
   createCompany(objUser: any): Observable<HttpResponse<any>>{
-    var headersForAPI = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*', 'Authorization': 'Bearer ' + this.AccessToken });
+    var headersForAPI = new HttpHeaders({ 'Access-Control-Allow-Origin':'*', 'Authorization': 'Bearer ' + this.AccessToken });
     headersForAPI.append("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
-    let url =  this.baseUrl + '/createnewenterprise';
+    let url =  this.baseUrl + '/createEnterprise';
     console.log(url);
     return this.http.post<any>(url, objUser, { headers: headersForAPI, observe: 'response' });
+  }
+
+  getEntCompanies(): Observable<HttpResponse<any>>{
+    var headersForAPI = new HttpHeaders({ 'Access-Control-Allow-Origin':'*', 'Authorization': 'Bearer ' + this.AccessToken });
+    headersForAPI.append("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
+    let url =  this.baseUrl + '/getEnterprise';
+    console.log(url);
+    return this.http.get<any>(url, { headers: headersForAPI, observe: 'response' });
+  }
+
+  getEntCompany(id): Observable<HttpResponse<any>>{
+    var headersForAPI = new HttpHeaders({ 'Access-Control-Allow-Origin':'*', 'Authorization': 'Bearer ' + this.AccessToken });
+    headersForAPI.append("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
+    let url =  this.baseUrl + '/getEnterprise/{correl_id}';
+    url = url.replace('{correl_id}', id);
+    console.log(url);
+    return this.http.get<any>(url, { headers: headersForAPI, observe: 'response' });
+  }
+
+  delEntCompany(id){
+    var headersForAPI = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*', 'Authorization': 'Bearer ' + this.AccessToken });
+    headersForAPI.append("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
+    let url =  this.baseUrl + '/deleteEnterprise/{correl_id}';
+    url = url.replace('{correl_id}', id);
+    console.log(url);
+    return this.http.delete<any>(url, { headers: headersForAPI, observe: 'response' });
   }
 }

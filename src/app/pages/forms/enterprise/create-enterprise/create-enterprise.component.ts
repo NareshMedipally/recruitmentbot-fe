@@ -50,7 +50,7 @@ export class CreateEnterpriseComponent implements OnInit {
     const formData = new FormData();
     formData.append("company_name", this.entData.company_name);
     formData.append("website_url", this.entData.website_url);
-    formData.append("file", this.fileToUpload);
+    formData.append("company_logo", this.fileToUpload);
     formData.append("email_id", this.entData.email_id);
     formData.append("linkedIn_url", this.entData.linkedIn_url);
     formData.append("phone", this.entData.phone);
@@ -62,10 +62,14 @@ export class CreateEnterpriseComponent implements OnInit {
     formData.append("valid_from", this.entData.valid_from ? this.datapipe.transform(this.entData.valid_from, 'yyyy-MM-dd') : "");
     formData.append("valid_to", this.entData.valid_to ? this.datapipe.transform(this.entData.valid_to, 'yyyy-MM-dd') : "");
     formData.append("comments", this.entData.comments);
-    this.authService.createCompany( formData)
+    this.authService.createCompany(formData)
       .subscribe(event => {
         console.log("event",event)
       });
+    // return this.http.post('http://localhost:8080/createEnterprise', formData)
+    //   .subscribe(event => {
+    //     console.log("event",event)
+    //   });
   }
 
 }

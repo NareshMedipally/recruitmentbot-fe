@@ -6,7 +6,7 @@
         <div class="row">
           <div class="col-md-12 text-right">
             <label class="search-label" for="search">Search:&nbsp;&nbsp;</label>
-            <input id="search" class="search-input">
+            <input [(ngModel)]="searchTerm" class="search-input" (input)="Search()">
           </div>
          </div><br>
         <div class="row">
@@ -23,13 +23,13 @@
             <tbody>
               <tr *ngFor="let item of data | paginate: { itemsPerPage: 10, currentPage: Page }; let i = index">
                 <td>{{i+1}}</td>
-                <td>{{item.company}}</td>
-                <td>{{item.website}}</td>
+                <td>{{item.company_name}}</td>
+                <td>{{item.website_url}}</td>
                 <td>{{item.phone}}</td>
                 <td>
-                  <a routerLink="/pages/view-enterprise"><i class="fa fa-eye" aria-hidden="true" style="margin-right: 5px; color: #212529"></i></a>
+                  <a routerLink="/pages/view-enterprise/{{item.correl_id}}"><i class="fa fa-eye" aria-hidden="true" style="margin-right: 5px; color: #212529"></i></a>
                   <i class="fa fa-pencil" aria-hidden="true" style="margin-right:5px;font-size:18px; color: #212529"></i>
-                  <i class="fa fa-trash" aria-hidden="true"  style="font-size:18px;color: #212529"></i>
+                  <a (click)="openDelete(item)"><i class="fa fa-trash" aria-hidden="true"  style="font-size:18px;color: #212529"></i></a>
                   </td>
               </tr>
             </tbody>

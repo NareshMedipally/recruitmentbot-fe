@@ -51,7 +51,7 @@ const routes: Routes = [{
       component: CreateEnterpriseComponent,
     },
     {
-      path: 'view-enterprise',
+      path: 'view-enterprise/:id',
       component: ViewEnterpriseComponent,
     },
     {

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { SmartTableData } from 'app/@core/data/smart-table';
+import { AuthService } from 'app/auth.service';
+import { ServicesService } from 'app/services.service';
 import { LocalDataSource } from 'ng2-smart-table';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'ngx-enterprise',
@@ -16,7 +19,7 @@ export class EnterpriseComponent implements OnInit {
 
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(private service: SmartTableData) {
+  constructor(private service: SmartTableData, private authService: AuthService, private globals: ServicesService) {
     const data = this.service.getData();
     this.source.load(data);
   }
@@ -33,17 +36,50 @@ export class EnterpriseComponent implements OnInit {
   }
 
   getData(){
-    this.data = [
-      {"id":0,"company":"Amazon","website":"amazon.com","phone":"9848022338"},
-      {"id":1,"company":"Infosys","website":"infosys.com","phone":"9848022338"},
-      {"id":2,"company":"Wipro","website":"wipro.com","phone":"9848022338"},
-      {"id":3,"company":"Cognizant","website":"cgnant.com","phone":"9848022338"},
-      {"id":4,"company":"Bluespace","website":"bluespace.com","phone":"9848022338"},
-      {"id":5,"company":"IBM","website":"ibm.com","phone":"9848022338"},
-      {"id":6,"company":"Google","website":"google.com","phone":"9848022338"},
-      {"id":7,"company":"Facebook","website":"facebook.com","phone":"9848022338"},
-      {"id":8,"company":"Flipkart","website":"flipkart.com","phone":"9848022338"},
-      {"id":9,"company":"SnapIt","website":"snapit.com","phone":"9848022338"},
-    ]
+    this.globals.showLoading('');
+    this.authService.getEntCompanies().subscribe((result)=>{
+      console.log(result.body.fields);
+      this.data = result.body.fields;
+      this.globals.hideLoading('');
+    },err => {
+      console.log(err);
+    })
+  }
+
+  Search(){
+    if(this.searchTerm != ""){
+      this.data = this.data.filter(res=>{
+        return res.company_name.toLocaleLowerCase().match(this.searchTerm.toLocaleLowerCase());
+      });
+    }else if(this.searchTerm == "") {
+      this.getData();
+    }
+  }
+
+  openDelete(data){
+    console.log(data)
+    swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.authService.delEntCompany(data.correl_id).subscribe((result)=>{
+          console.log(result);
+          swal.fire(
+            'Deleted!',
+            'Your file has been deleted.',
+            'success'
+          )
+          this.getData();
+        },err => {
+          console.log(err)
+        })
+      }
+    })
   }
 }

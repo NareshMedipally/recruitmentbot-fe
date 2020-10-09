@@ -16,25 +16,25 @@
               <div class="col-sm-6">
                 <div class="form-group">
                   <label for="inputFirstName" class="label">Company Name <span style="color: red">*</span></label>
-                  <input type="text" class="form-control" fullWidth  placeholder="Infosys" disabled>
+                  <input type="text" class="form-control" fullWidth  [(ngModel)]="company.company_name" disabled>
                 </div>
               </div>
               <div class="col-sm-6">
                 <div class="form-group">
                   <label for="inputLastName" class="label">Website Name</label>
-                  <input type="text" class="form-control" fullWidth placeholder="www.infosys.com" disabled>
+                  <input type="text" class="form-control" fullWidth [(ngModel)]="company.website_url" disabled>
                 </div>
               </div>
               <div class="col-sm-6">
                 <div class="form-group">
                   <label for="inputFirstName" class="label">LinkedIn Profile</label>
-                  <input type="text" class="form-control" fullWidth  placeholder="https://www.linkedin.com/company/infosys" disabled>
+                  <input type="text" class="form-control" fullWidth [(ngModel)]="company.linkedIn_url" disabled>
                 </div>
               </div>
               <div class="col-sm-6">
                 <div class="form-group">
                   <label for="inputLastName" class="label">Tax ID</label>
-                  <input type="text" class="form-control" fullWidth id="inputLastName" placeholder="123-4569-89" disabled>
+                  <input type="text" class="form-control" fullWidth [(ngModel)]="company.tax_id" disabled>
                 </div>
               </div>
             </div>
@@ -51,22 +51,10 @@
               <div class="row">
                 <div class="col-12 text-center">
                   <figure class="figure">
-                    <img style="max-width:170px;max-height: 150px;" src="https://res-1.cloudinary.com/crunchbase-production/image/upload/c_lpad,f_auto,q_auto:eco/v1415386231/utypaslbyxwfuwhfdzxd.png" class="figure-img img-fluid rounded" alt=""
-                    name="company_logo">
+                    <img style="max-width:170px;max-height: 150px;" [src]="company.company_logo" class="figure-img img-fluid rounded" alt="">
                   </figure>
                 </div>
               </div>
-              <!-- <div class="row">
-                <div class="col-12 text-center" id="uploadImg">
-                    <div class="file btn btn-md text-center" style="background:#f2f2f2;border: 1px grey !important;">
-                      <span>Select logo</span>
-                      <input type="file" class="upload">
-                    </div><br>
-                    <span style="font-size: xx-small; color: red;">
-                      Logo max size is 500KB
-                    </span>
-                </div>
-              </div> -->
             </div>
           </div>
         </div>
@@ -81,13 +69,13 @@
           <div class="col-sm-6">
             <div class="form-group">
               <label for="inputEmail" class="label">Email <span style="color: red">*</span></label>
-              <input type="email" class="form-control" fullWidth placeholder="infosysofficial@gmail.com" disabled>
+              <input type="email" class="form-control" fullWidth [(ngModel)]="company.email_id" disabled>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="form-group">
               <label for="inputWebsite" class="label">Phone Number <span style="color: red">*</span></label>
-              <input type="text" class="form-control" fullWidth placeholder="0891 257311" disabled>
+              <input type="text" class="form-control" fullWidth [(ngModel)]="company.phone" disabled>
             </div>
           </div>
         </div>
@@ -95,13 +83,13 @@
           <div class="col-sm-6">
             <div class="form-group">
               <label for="inputEmail" class="label">Address Line 1</label>
-              <input type="email" class="form-control" fullWidth placeholder="No.44 & 97/A, Infosys Avenue," disabled>
+              <input type="email" class="form-control" fullWidth [(ngModel)]="company.address_line_1" disabled>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="form-group">
               <label for="inputWebsite" class="label">Address Line 2</label>
-              <input type="text" class="form-control" fullWidth placeholder=" Electronic City" disabled>
+              <input type="text" class="form-control" fullWidth [(ngModel)]="company.address_line_2" disabled>
             </div>
           </div>
         </div>
@@ -109,13 +97,13 @@
           <div class="col-sm-6">
             <div class="form-group">
               <label for="inputEmail" class="label">City <span style="color: red">*</span></label>
-              <input type="email" class="form-control" fullWidth placeholder="Bangalore" disabled>
+              <input type="email" class="form-control" fullWidth [(ngModel)]="company.city" disabled>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="form-group">
               <label for="inputWebsite" class="label">Zipcode</label>
-              <input type="text" class="form-control" fullWidth placeholder="560100" disabled>
+              <input type="text" class="form-control" fullWidth [(ngModel)]="company.zipcode" disabled>
             </div>
           </div>
         </div>
@@ -130,14 +118,13 @@
           <div class="col-sm-6">
             <div class="form-group">
               <label for="inputEmail" class="label">Valid From</label>
-              <input  type="text" class="form-control"   fullWidth placeholder="25/09/2017" disabled>
-                <!-- <nb-rangepicker #rangepicker></nb-rangepicker> -->
+              <input  type="text" class="form-control" fullWidth name="valid_from" [(ngModel)]="company.valid_from" #valid_from="ngModel"  disabled>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="form-group">
               <label for="inputWebsite" class="label">Valid To</label>
-              <input  type="text" class="form-control"   fullWidth placeholder="25/09/2021" disabled>
+              <input  type="text" class="form-control" fullWidth name="valid_to" [(ngModel)]="company.valid_to" #valid_to="ngModel" disabled>
             </div>
           </div>
         </div>
@@ -145,7 +132,7 @@
           <div class="col-sm-12">
             <div class="form-group">
               <label for="inputEmail" class="label">Comments</label>
-              <textarea rows=4 class="form-control" fullWidth  placeholder="Comments of Infosys Company" disabled></textarea>
+              <textarea rows=4 class="form-control" fullWidth [(ngModel)]="company.comments" disabled></textarea>
             </div>
           </div>
         </div>
