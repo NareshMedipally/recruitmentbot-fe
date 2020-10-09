@@ -1,6 +1,8 @@
 import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'app/auth.service';
+import { ServicesService } from 'app/services.service';
 
 @Component({
   selector: 'ngx-create-enterprise',
@@ -27,7 +29,7 @@ export class CreateEnterpriseComponent implements OnInit {
     "comments": ""
   }
 
-  constructor(private http: HttpClient, private datapipe:DatePipe) { }
+  constructor(private http: HttpClient, private datapipe:DatePipe, private authService: AuthService, private globals: ServicesService) { }
 
   ngOnInit(): void {
   }
@@ -60,7 +62,7 @@ export class CreateEnterpriseComponent implements OnInit {
     formData.append("valid_from", this.entData.valid_from ? this.datapipe.transform(this.entData.valid_from, 'yyyy-MM-dd') : "");
     formData.append("valid_to", this.entData.valid_to ? this.datapipe.transform(this.entData.valid_to, 'yyyy-MM-dd') : "");
     formData.append("comments", this.entData.comments);
-    return this.http.post('http://localhost:8080/createnewenterprise', formData)
+    this.authService.createCompany( formData)
       .subscribe(event => {
         console.log("event",event)
       });

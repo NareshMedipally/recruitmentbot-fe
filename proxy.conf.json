@@ -1,6 +1,6 @@
 {
   "/api": {
-     "target": "https://recruitment-bot-demo.herokuapp.com",
+     "target": "http://ec2-3-232-186-142.compute-1.amazonaws.com:5000",
      "secure": false,
      "changeOrigin": true,
      "logLevel": "info"

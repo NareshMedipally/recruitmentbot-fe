@@ -14,8 +14,7 @@ export class AuthService {
     this.getToken()
   }
 
-  private loginAPI = "https://recruitment-bot-demo.herokuapp.com/user";
-  private getEnterpriseAPI = "https://recruitment-bot-demo.herokuapp.com/getuser";
+  private baseUrl: string = 'http://ec2-3-232-186-142.compute-1.amazonaws.com:5000';
 
   getToken() {
     this.AccessToken = localStorage.getItem('token')
@@ -27,13 +26,15 @@ export class AuthService {
   login(objUser: any): Observable<HttpResponse<any>> {
     var headersForAPI = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*' });
     headersForAPI.append("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
-    return this.http.post<any>(this.loginAPI, objUser, {headers: headersForAPI, observe: 'response'})
+    let url = this.baseUrl + '/user';
+    console.log(url);
+    return this.http.post<any>(url, objUser, {headers: headersForAPI, observe: 'response'})
   }
 
   changePwd(id,objUser): Observable<HttpResponse<any>> {
     var headersForAPI = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*', 'Authorization': 'Bearer ' + this.AccessToken });
     headersForAPI.append("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
-    let url =  'https://recruitment-bot-demo.herokuapp.com/user/changePassword/{correl_id}';
+    let url =  this.baseUrl + '/user/changePassword/{correl_id}';
     url = url.replace('{correl_id}', id);
     return this.http.put<any>(url,objUser, { headers: headersForAPI, observe: 'response' });
   }
@@ -41,7 +42,7 @@ export class AuthService {
   createUser(objUser): Observable<HttpResponse<any>> {
     var headersForAPI = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*', 'Authorization': 'Bearer ' + this.AccessToken });
     headersForAPI.append("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
-    let url =  'https://recruitment-bot-demo.herokuapp.com/createuser';
+    let url =  this.baseUrl + '/createuser';
     return this.http.post<any>(url,objUser, { headers: headersForAPI, observe: 'response' });
   }
 
@@ -50,7 +51,7 @@ export class AuthService {
     if(this.AccessToken) {
       var headersForAPI = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*', 'Authorization': 'Bearer ' + this.AccessToken });
       headersForAPI.append("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
-      let url =  'https://recruitment-bot-demo.herokuapp.com/company/getuser/{company_name}';
+      let url =  this.baseUrl + '/company/getuser/{company_name}';
       url = url.replace('{company_name}', id);
       console.log(url);
       return this.http.get<any>(url, { headers: headersForAPI, observe: 'response' });
@@ -62,7 +63,7 @@ export class AuthService {
     if(this.AccessToken) {
       var headersForAPI = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*', 'Authorization': 'Bearer ' + this.AccessToken });
       headersForAPI.append("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
-      let url =  'https://recruitment-bot-demo.herokuapp.com/getuser/{correl_id}'
+      let url =  this.baseUrl + '/getuser/{correl_id}'
       url = url.replace('{correl_id}', id);
       console.log(url);
       return this.http.get<any>(url, { headers: headersForAPI, observe: 'response' });
@@ -72,7 +73,7 @@ export class AuthService {
   updateCompany(id,data){
     var headersForAPI = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*', 'Authorization': 'Bearer ' + this.AccessToken });
     headersForAPI.append("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
-    let url =  'https://recruitment-bot-demo.herokuapp.com/updateuser/{correl_id}';
+    let url =  this.baseUrl + '/updateuser/{correl_id}';
     url = url.replace('{correl_id}', id);
     console.log(url);
     return this.http.put<any>(url,data, { headers: headersForAPI, observe: 'response' });
@@ -81,7 +82,7 @@ export class AuthService {
   deleteCompany(id){
     var headersForAPI = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*', 'Authorization': 'Bearer ' + this.AccessToken });
     headersForAPI.append("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
-    let url =  'https://recruitment-bot-demo.herokuapp.com/deleteuser/{correl_id}';
+    let url =  this.baseUrl + '/deleteuser/{correl_id}';
     url = url.replace('{correl_id}', id);
     console.log(url);
     return this.http.delete<any>(url, { headers: headersForAPI, observe: 'response' });
@@ -90,7 +91,7 @@ export class AuthService {
   getTags(id){
     var headersForAPI = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*', 'Authorization': 'Bearer ' + this.AccessToken });
     headersForAPI.append("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
-    let url =  'https://recruitment-bot-demo.herokuapp.com/gettags/{company_name}';
+    let url =  this.baseUrl + '/gettags/{company_name}';
     url = url.replace('{company_name}', id);
     console.log(url);
     return this.http.get<any>(url, { headers: headersForAPI, observe: 'response' });
@@ -99,7 +100,7 @@ export class AuthService {
   postTags(objUser: any): Observable<HttpResponse<any>> {
     var headersForAPI = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*', 'Authorization': 'Bearer ' + this.AccessToken });
     headersForAPI.append("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
-    let url =  'https://recruitment-bot-demo.herokuapp.com/createtags';
+    let url =  this.baseUrl + '/createtags';
     console.log(url);
     return this.http.post<any>(url, objUser, { headers: headersForAPI, observe: 'response' });
   }
@@ -107,7 +108,7 @@ export class AuthService {
   getTag(id){
     var headersForAPI = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*', 'Authorization': 'Bearer ' + this.AccessToken });
     headersForAPI.append("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
-    let url =  'https://recruitment-bot-demo.herokuapp.com/gettag/{tag_id}';
+    let url =  this.baseUrl + '/gettag/{tag_id}';
     url = url.replace('{tag_id}', id);
     console.log(url);
     return this.http.get<any>(url, { headers: headersForAPI, observe: 'response' });
@@ -116,7 +117,7 @@ export class AuthService {
   UpdateTag(id,data){
     var headersForAPI = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*', 'Authorization': 'Bearer ' + this.AccessToken });
     headersForAPI.append("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
-    let url =  'https://recruitment-bot-demo.herokuapp.com/updatetags/{tag_id}';
+    let url =  this.baseUrl + '/updatetags/{tag_id}';
     url = url.replace('{tag_id}', id);
     console.log(url);
     return this.http.put<any>(url, data, { headers: headersForAPI, observe: 'response' });
@@ -125,9 +126,17 @@ export class AuthService {
   DeleteTag(id){
     var headersForAPI = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*', 'Authorization': 'Bearer ' + this.AccessToken });
     headersForAPI.append("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
-    let url =  'https://recruitment-bot-demo.herokuapp.com/deletetags/{tag_id}';
+    let url =  this.baseUrl + '/deletetags/{tag_id}';
     url = url.replace('{tag_id}', id);
     console.log(url);
     return this.http.delete<any>(url, { headers: headersForAPI, observe: 'response' });
+  }
+
+  createCompany(objUser: any): Observable<HttpResponse<any>>{
+    var headersForAPI = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*', 'Authorization': 'Bearer ' + this.AccessToken });
+    headersForAPI.append("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
+    let url =  this.baseUrl + '/createnewenterprise';
+    console.log(url);
+    return this.http.post<any>(url, objUser, { headers: headersForAPI, observe: 'response' });
   }
 }
