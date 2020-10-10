@@ -208,10 +208,6 @@ export const MENU_ITEMS: NbMenuItem[] = [
   //       link: '/pages/maps/gmaps',
   //     },
   //     {
-  //       title: 'Leaflet Maps',
-  //       link: '/pages/maps/leaflet',
-  //     },
-  //     {
   //       title: 'Bubble Maps',
   //       link: '/pages/maps/bubble',
   //     },

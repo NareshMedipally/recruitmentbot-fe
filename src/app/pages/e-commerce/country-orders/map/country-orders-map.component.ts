@@ -10,7 +10,7 @@ import { takeWhile } from 'rxjs/operators';
   selector: 'ngx-country-orders-map',
   styleUrls: ['./country-orders-map.component.scss'],
   template: `
-    <!-- <div leaflet [leafletOptions]="options" [leafletLayers]="layers" (leafletMapReady)="mapReady($event)"></div> -->
+
   `,
 })
 export class CountryOrdersMapComponent implements OnDestroy {
@@ -54,12 +54,6 @@ export class CountryOrdersMapComponent implements OnDestroy {
 
   // mapReady(map: L.Map) {
   //   map.addControl(L.control.zoom({position: 'bottomright'}));
-
-  //   // fix the map fully displaying, existing leaflet bag
-  //   setTimeout(() => {
-  //     map.invalidateSize();
-  //   }, 0);
-  // }
 
   // private createGeoJsonLayer(cords) {
   //   return L.geoJSON(

@@ -23,7 +23,6 @@ import { EnterpriseComponent } from './enterprise/enterprise.component';
 import { CreateEnterpriseComponent } from './enterprise/create-enterprise/create-enterprise.component';
 import { UpdateEnterpriseComponent } from './enterprise/update-enterprise/update-enterprise.component';
 import { TablesRoutingModule } from '../tables/tables-routing.module';
-import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { CreateUserComponent } from './user/create-user/create-user.component';
 import { UpdateUserComponent } from './user/update-user/update-user.component';
 import { ManageUserComponent } from './manage-user/manage-user.component';
@@ -58,7 +57,6 @@ import { UpdateTagsComponent } from './settings/tags/update-tags/update-tags.com
     NgSelectModule,
     NgxPaginationModule,
     TablesRoutingModule,
-    Ng2SmartTableModule,
     CKEditorModule,
     BsDatepickerModule
   ],

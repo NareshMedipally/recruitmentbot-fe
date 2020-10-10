@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { SmartTableData } from 'app/@core/data/smart-table';
 import { AuthService } from 'app/auth.service';
 import { ServicesService } from 'app/services.service';
-import { LocalDataSource } from 'ng2-smart-table';
 import swal from 'sweetalert2';
 
 @Component({
@@ -17,11 +16,9 @@ export class EnterpriseComponent implements OnInit {
   Page: number = 1;
   searchTerm: string;
 
-  source: LocalDataSource = new LocalDataSource();
 
   constructor(private service: SmartTableData, private authService: AuthService, private globals: ServicesService) {
     const data = this.service.getData();
-    this.source.load(data);
   }
   ngOnInit() {
     this.getData()

@@ -48,7 +48,6 @@ import { SlideOutComponent } from './slide-out/slide-out.component';
 import { CountryOrdersComponent } from './country-orders/country-orders.component';
 import { CountryOrdersMapComponent } from './country-orders/map/country-orders-map.component';
 import { CountryOrdersMapService } from './country-orders/map/country-orders-map.service';
-import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { CountryOrdersChartComponent } from './country-orders/chart/country-orders-chart.component';
 import { EarningCardComponent } from './earning-card/earning-card.component';
 import { EarningCardBackComponent } from './earning-card/back-side/earning-card-back.component';
@@ -70,7 +69,6 @@ import { EarningLiveUpdateChartComponent } from './earning-card/front-side/earni
     NbProgressBarModule,
     NgxEchartsModule,
     NgxChartsModule,
-    LeafletModule,
   ],
   declarations: [
     ECommerceComponent,
