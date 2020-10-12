@@ -25,6 +25,7 @@ export class CreateUserComponent implements OnInit {
   superadmin = false;
   modalRef: BsModalRef;
   companyname: any;
+  admincompanyname: any;
   technology= new technology()
   dataarray=[];
   Role_id:any;
@@ -97,10 +98,75 @@ export class CreateUserComponent implements OnInit {
     "visa_valid_to": "",
   }
 
+  con_generalInfo  = [
+    {
+      "first_name" : "",
+      "last_name" : "",
+      "dob": "",
+      "rate" : "",
+      "expiry_date" : ""
+  }]
+
+  con_contactInfo = [{
+    "email_id":"",
+    "phone":"",
+    "relocation":"",
+    "addressline1" : "",
+    "addressline2" : "",
+    "zipcode" : "",
+    "city" : "",
+  }]
+
+  con_technology = [
+    {
+      "total_experience" : "",
+      "usa_experience" : "",
+      "marketing_phone" : "",
+      "marketing_email_id" : "",
+      "looking_for_job" : "",
+      "subject_tag" : "",
+      "non_sub_tag" : "",
+      "linkedIn_url" : "",
+      "tags" : "",
+      "resume_loc" : "",
+      "certificate_loc" : "",
+    },
+    {
+      "total_experience" : "",
+      "usa_experience" : "",
+      "marketing_phone" : "",
+      "marketing_email_id" : "",
+      "looking_for_job" : "",
+      "subject_tag" : "",
+      "non_sub_tag" : "",
+      "linkedIn_url" : "",
+      "tags" : "",
+      "resume_loc" : "",
+      "certificate_loc" : "",
+    },
+  ]
+
+  con_otherInfo = [{
+    "email_template" : "",
+    "DL_copy" : "",
+    "DL_valid_from" : "",
+    "DL_valid_to" : "",
+    "visa_status": "",
+    "visa_copy_loc": "",
+    "visa_valid_from": "",
+    "visa_valid_to": "",
+  }]
+
   constructor(private modalService: BsModalService, private datapipe:DatePipe, private http: HttpClient, private router: Router, private globals:ServicesService, private authService: AuthService) {
     console.log(this.globals.UserRoleid);
     this.Role_id = this.globals.UserRoleid;
-    this.AccessToken = localStorage.getItem('token')
+    this.admincompanyname = this.globals.company;
+    this.AccessToken = localStorage.getItem('token');
+    if(this.globals.company == '1'){
+      this.companyname = localStorage.getItem('company');
+    }else {
+      this.companyname = this.globals.company;
+    }
   }
 
   ngOnInit(): void {

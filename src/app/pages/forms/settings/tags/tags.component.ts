@@ -61,7 +61,7 @@ export class TagsComponent implements OnInit {
             'Your file has been deleted.',
             'success'
           )
-          this.getData();
+          // this.getData();
         },err => {
           console.log(err)
         })

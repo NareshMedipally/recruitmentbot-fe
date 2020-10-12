@@ -38,13 +38,14 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('currentData', JSON.stringify(currentUser));
           localStorage.setItem('token', currentUser.token);
           localStorage.setItem('roleId', currentUser.role_id);
+          localStorage.setItem('correl_id', currentUser.correl_id);
           this.globals.UserRoleid = currentUser.role_id;
           console.log(this.globals.UserRoleid);
           if(currentUser.first_time_login == 'Y'){
             this.router.navigate(['/change-pwd']);
             this.globals.hideLoading('')
           }else {
-            this.router.navigate(['/pages']);
+            this.router.navigate(['/pages/manage-user']);
             this.globals.hideLoading('')
             console.log(this.btnSubmitStatus)
           }

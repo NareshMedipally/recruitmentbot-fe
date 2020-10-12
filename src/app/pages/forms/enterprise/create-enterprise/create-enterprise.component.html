@@ -130,13 +130,13 @@
             <div class="col-sm-6">
               <div class="form-group">
                 <label for="inputEmail" class="label">Valid From</label>
-                <input  type="text" class="form-control" fullWidth name="valid_from" [(ngModel)]="entData.valid_from" #valid_from="ngModel" bsDatepicker placement="bottom-left" [bsValue]="entData.valid_from" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}">
+                <input  type="text" class="form-control" fullWidth name="valid_from" [(ngModel)]="entData.valid_from" #valid_from="ngModel" bsDatepicker placement="bottom-left" [bsValue]="entData.valid_from" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-dark-blue'}" placeholder="dd-mm-yyyy">
               </div>
             </div>
             <div class="col-sm-6">
               <div class="form-group">
                 <label for="inputWebsite" class="label">Valid To</label>
-                <input  type="text" class="form-control" fullWidth name="valid_to" [(ngModel)]="entData.valid_to" #valid_to="ngModel" bsDatepicker placement="bottom-left" [bsValue]="entData.valid_to" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}">
+                <input  type="text" class="form-control" fullWidth name="valid_to" [(ngModel)]="entData.valid_to" #valid_to="ngModel" bsDatepicker placement="bottom-left" [bsValue]="entData.valid_to" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-dark-blue'}" placeholder="dd-mm-yyyy">
               </div>
             </div>
           </div>

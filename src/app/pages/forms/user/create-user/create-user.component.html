@@ -117,11 +117,15 @@
                   <label  class="label">Company name <span style="color: red;">*</span></label>
                   <input type="text" class="form-control" fullWidth id="company" placeholder="" name="company_name" [(ngModel)]="companyname" #company_name="ngModel">
                 </div>
+                <!-- <div class="form-group" *ngIf="Role_id == 2">
+                  <label  class="label">Company name <span style="color: red;">*</span></label>
+                  <input type="text" class="form-control" fullWidth id="company" placeholder="" name="company_name" [(ngModel)]="admincompanyname" #company_name="ngModel">
+                </div> -->
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <label  class="label">Expiry Date</label>
-                  <input type="text" class="form-control" fullWidth id="expiry-date-1" placeholder="" name="expiry_date" [(ngModel)]="formData.expiry_date" #expiry_date="ngModel" bsDatepicker placement="bottom-left" [bsValue]="formData.expiry_date" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}">
+                  <input type="text" class="form-control" fullWidth id="expiry-date-1" placeholder="dd-mm-yyyy" name="expiry_date" [(ngModel)]="formData.expiry_date" #expiry_date="ngModel" bsDatepicker placement="bottom-left" [bsValue]="formData.expiry_date" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-dark-blue'}">
                 </div>
               </div>
               <div class="col-md-12">
@@ -260,7 +264,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label  class="label">Expiry Date</label>
-                  <input type="text" class="form-control" fullWidth id="expiry-date" name="expiry_date" [(ngModel)]="formData.expiry_date" #expiry_date="ngModel" bsDatepicker placement="bottom-left" [bsValue]="formData.expiry_date" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}">
+                  <input type="text" class="form-control" fullWidth id="expiry-date" placeholder="dd-mm-yyyy" name="expiry_date" [(ngModel)]="formData.expiry_date" #expiry_date="ngModel" bsDatepicker placement="bottom-left" [bsValue]="formData.expiry_date" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-dark-blue'}">
                 </div>
               </div>
               <div class="col-md-12">
@@ -299,7 +303,7 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label  class="label">Date of Birth</label>
-                  <input type="text"  class="form-control" fullWidth name="dob" [(ngModel)]="conData.dob" #dob="ngModel" bsDatepicker placement="bottom" [bsValue]="conData.dob" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" placeholder="D-o-b">
+                  <input type="text"  class="form-control" fullWidth name="dob" [(ngModel)]="conData.dob" #dob="ngModel" bsDatepicker placement="bottom" [bsValue]="conData.dob" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-dark-blue'}" placeholder="dd-mm-yyyy">
                 </div>
               </div>
               <div class="col-md-4">
@@ -317,7 +321,7 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label  class="label">Expiry Date</label>
-                  <input type="text" class="form-control" fullWidth name="expiry_date" [(ngModel)]="conData.expiry_date" #expiry_date="ngModel" bsDatepicker placement="top" [bsValue]="conData.expiry_date" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" placeholder="Expiry Date">
+                  <input type="text" class="form-control" fullWidth name="expiry_date" [(ngModel)]="conData.expiry_date" #expiry_date="ngModel" bsDatepicker placement="top" [bsValue]="conData.expiry_date" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-dark-blue'}" placeholder="dd-mm-yyyy">
                 </div>
               </div>
               <div class="col-md-12">
@@ -340,10 +344,10 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label  class="label">Relocation</label>
-                  <select  selected="1" fullWidth class="form-control" name="relocation" [(ngModel)]="conData.relocation" #relocation="ngModel">
-                    <option value="1">Select</option>
-                    <option value="2">Yes</option>
-                    <option value="3">No</option>
+                  <select fullWidth class="form-control" name="relocation" [(ngModel)]="conData.relocation" #relocation="ngModel">
+                    <option value="">Select</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
                   </select>
                 </div>
               </div>
@@ -538,16 +542,16 @@
             </div>
             <div class="row mt-3">
               <div class="col-md-12">
-                <label  class="label">Email Template</label>
-                <div class="form-group">
-                  <ngx-tiny-mce ></ngx-tiny-mce>
+                <div class="form-group border-bottom border-primary">
+                  <label for="" style="font-weight: bold;">Other Info</label>
                 </div>
               </div>
             </div>
-            <div class="row mt-3">
+            <div class="row mt-2">
               <div class="col-md-12">
-                <div class="form-group border-bottom border-primary">
-                  <label for="" style="font-weight: bold;">Other Info</label>
+                <label  class="label" style="font-size: 24px;">Email Template</label>
+                <div class="form-group">
+                  <ngx-tiny-mce ></ngx-tiny-mce>
                 </div>
               </div>
             </div>
@@ -566,23 +570,23 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <label  class="label">Visa Status</label>
-                      <select  selected="1" fullWidth class="form-control" [disabled]= "visaDisable" name="visa_status" [(ngModel)]="conData.visa_status" #visa_status="ngModel">
-                        <option value="1">Select</option>
-                        <option value="2">Active</option>
-                        <option value="3">Inactive</option>
+                      <select fullWidth class="form-control" [disabled]= "visaDisable" name="visa_status" [(ngModel)]="conData.visa_status" #visa_status="ngModel">
+                        <option value="">Select</option>
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
                       </select>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label  class="label">Visa Valid From</label>
-                      <input type="text" class="form-control" fullWidth [disabled]= "visaDisable" name="visa_valid_from" [(ngModel)]="conData.visa_valid_from" #visa_valid_from="ngModel" bsDatepicker placement="top" [bsValue]="conData.visa_valid_from" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}">
+                      <input type="text" class="form-control" fullWidth [disabled]= "visaDisable" name="visa_valid_from" [(ngModel)]="conData.visa_valid_from" #visa_valid_from="ngModel" bsDatepicker placement="top" [bsValue]="conData.visa_valid_from" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-dark-blue'}" placeholder="dd-mm-yyyy">
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label  class="label">Visa Valid To</label>
-                      <input type="text" class="form-control" fullWidth [disabled]= "visaDisable" name="visa_valid_to" [(ngModel)]="conData.visa_valid_to" #visa_valid_to="ngModel" bsDatepicker placement="top" [bsValue]="conData.visa_valid_to" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}">
+                      <input type="text" class="form-control" fullWidth [disabled]= "visaDisable" name="visa_valid_to" [(ngModel)]="conData.visa_valid_to" #visa_valid_to="ngModel" bsDatepicker placement="top" [bsValue]="conData.visa_valid_to" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-dark-blue'}" placeholder="dd-mm-yyyy">
                     </div>
                   </div>
                 </div>
@@ -601,13 +605,13 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <label  class="label">Driving License Valid From</label>
-                      <input type="text" class="form-control"  [disabled]= "drivDisable" fullWidth name="DL_valid_from" [(ngModel)]="conData.DL_valid_from" #DL_valid_from="ngModel" bsDatepicker placement="top" [bsValue]="conData.DL_valid_from" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}">
+                      <input type="text" class="form-control"  [disabled]= "drivDisable" fullWidth name="DL_valid_from" [(ngModel)]="conData.DL_valid_from" #DL_valid_from="ngModel" bsDatepicker placement="top" [bsValue]="conData.DL_valid_from" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-dark-blue'}" placeholder="dd-mm-yyyy">
                     </div>
                   </div>
                   <div class="col-md-12">
                     <div class="form-group">
                       <label  class="label">Driving License Valid To</label>
-                      <input type="text" class="form-control" [disabled]= "drivDisable" fullWidth name="DL_valid_to" [(ngModel)]="conData.DL_valid_to" #DL_valid_to="ngModel" bsDatepicker placement="top" [bsValue]="conData.DL_valid_to" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}">
+                      <input type="text" class="form-control" [disabled]= "drivDisable" fullWidth name="DL_valid_to" [(ngModel)]="conData.DL_valid_to" #DL_valid_to="ngModel" bsDatepicker placement="top" [bsValue]="conData.DL_valid_to" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-dark-blue'}" placeholder="dd-mm-yyyy">
                     </div>
                   </div>
                 </div>

@@ -33,6 +33,7 @@ export class ViewEnterpriseComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.getEntCompany(this.route.snapshot.params.id).subscribe((result)=>{
+      console.log(result);
       this.company = {
         "company_name": result.body.fields[0].company_name,
         "website_url": result.body.fields[0].website_url,
@@ -41,12 +42,12 @@ export class ViewEnterpriseComponent implements OnInit {
         "linkedIn_url": result.body.fields[0].linkedIn_url,
         "phone": result.body.fields[0].phone,
         "tax_id": result.body.fields[0].tax_id,
-        "address_line_1": result.body.fields[0].address_line_1,
-        "address_line_2": result.body.fields[0].address_line_2,
-        "zipcode": result.body.fields[0].zipcode,
-        "city": result.body.fields[0].city,
-        "valid_from": result.body.fields[0].valid_from ? this.datapipe.transform(result.body.fields[0].valid_from, 'yyyy-MM-dd') : "",
-        "valid_to": result.body.fields[0].valid_to ? this.datapipe.transform(result.body.fields[0].valid_to, 'yyyy-MM-dd') : "",
+        "address_line_1": result.body.aresult[0].address_line_1,
+        "address_line_2": result.body.aresult[0].address_line_2,
+        "zipcode": result.body.aresult[0].zipcode,
+        "city": result.body.aresult[0].city,
+        "valid_from": result.body.fields[0].valid_from ? this.datapipe.transform(result.body.fields[0].valid_from, 'dd-MM-yyyy') : "",
+        "valid_to": result.body.fields[0].valid_to ? this.datapipe.transform(result.body.fields[0].valid_to, 'dd-MM-yyyy') : "",
         "comments": result.body.fields[0].comments
       };
       console.log(this.company);

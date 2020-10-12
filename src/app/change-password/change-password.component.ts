@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'app/auth.service';
 import { ServicesService } from 'app/services.service';
 import swal from 'sweetalert2';
@@ -16,7 +16,7 @@ export class ChangePasswordComponent implements OnInit {
     "confirmPassword" : ""
   }
 
-  constructor(private router:Router, private globals: ServicesService, private authService: AuthService) { }
+  constructor(private router:Router, private route: ActivatedRoute, private globals: ServicesService, private authService: AuthService) { }
 
   ngOnInit(): void {
   }
@@ -26,10 +26,10 @@ export class ChangePasswordComponent implements OnInit {
       "newPassword" : this.userInfo.newPassword,
       "confirmPassword" : this.userInfo.confirmPassword
     }
-    this.authService.changePwd(this.globals.correlId,data).subscribe((res)=>{
+    this.authService.changePwd(localStorage.getItem('correl_id'),data).subscribe((res)=>{
       console.log(res);
       if(res.body.status == 'Success'){
-        swal.fire('New password sent to your email!', '', 'success').then((result) => {
+        swal.fire('Password updated!', '', 'success').then((result) => {
           /* Read more about isConfirmed, isDenied below */
           if (result.isConfirmed) {
             this.router.navigate(['/login'])
@@ -39,7 +39,6 @@ export class ChangePasswordComponent implements OnInit {
     },err => {
       console.log(err);
     })
-
   }
 
 }

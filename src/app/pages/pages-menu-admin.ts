@@ -29,6 +29,20 @@ export const MENU_ITEMS_ADMIN: NbMenuItem[] = [
 
   },
   {
+    title: 'Tags',
+    icon: 'settings',
+    children:[
+      {
+        title:'Create Tags',
+        link:'/pages/tags-create',
+      },
+      {
+        title:'Manage Tags',
+        link:'/pages/tags'
+      },
+    ]
+  },
+  {
     title: 'Reports ',
     icon: 'pie-chart-outline',
     link:'/pages/reports'

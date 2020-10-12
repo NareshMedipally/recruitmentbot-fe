@@ -40,6 +40,8 @@ export class EnterpriseComponent implements OnInit {
       this.globals.hideLoading('');
     },err => {
       console.log(err);
+      this.globals.hideLoading('');
+      swal.fire('','Something went wrong!','error');
     })
   }
 
@@ -62,7 +64,7 @@ export class EnterpriseComponent implements OnInit {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonText: 'Delete'
     }).then((result) => {
       if (result.isConfirmed) {
         this.authService.delEntCompany(data.correl_id).subscribe((result)=>{
