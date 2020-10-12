@@ -38,6 +38,7 @@ emailTemplate ="";
   certificate;
   visacopy;
   drivingcopy;
+  resume;
 
   selectedCars = [3];
     cars = [
@@ -366,7 +367,7 @@ emailTemplate ="";
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       this.fileToUpload = file;
-      this.con_technology[0].resume_loc = this.fileToUpload;
+      this.resume = this.fileToUpload;
     }
   }
 
@@ -396,6 +397,7 @@ emailTemplate ="";
      formData.append("role_type", localStorage.getItem('role'));
      formData.append("role_id", localStorage.getItem('role'));
       formData.append("company_name", this.companyname);
+      formData.append("resume_loc", this.resume);
     // formData.append("first_name", this.con_generalInfo[0].first_name);
     // formData.append("last_name", this.con_generalInfo[0].last_name);
     // formData.append("company_name", this.companyname);
