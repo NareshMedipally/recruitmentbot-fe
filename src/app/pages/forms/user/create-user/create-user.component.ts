@@ -103,6 +103,7 @@ export class CreateUserComponent implements OnInit {
       "first_name" : "",
       "last_name" : "",
       "dob": "",
+      "education":"",
       "rate" : "",
       "expiry_date" : ""
   }]
