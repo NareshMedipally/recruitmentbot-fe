@@ -32,7 +32,7 @@ export class CreateUserComponent implements OnInit {
   visaDisable = true;
   drivDisable = true;
   data: any[] = [];
-
+emailTemplate ="";
   AccessToken:string = "";
   fileToUpload;
   certificate;
@@ -123,6 +123,7 @@ export class CreateUserComponent implements OnInit {
 
   con_technology = [
     {
+      "id": 1,
       "total_experience" : "",
       "usa_experience" : "",
       "marketing_phone" : "",
@@ -136,6 +137,10 @@ export class CreateUserComponent implements OnInit {
       "certificate_loc" : "",
     }
   ]
+  //con_technology  =[]
+
+
+  
 
   con_otherInfo = [{
     "email_template" : "",
@@ -151,6 +156,7 @@ export class CreateUserComponent implements OnInit {
 
   constructor(private modalService: BsModalService, private datapipe:DatePipe, private http: HttpClient, private router: Router, private globals:ServicesService, private authService: AuthService) {
     console.log(this.globals.UserRoleid);
+    this.Role_id = 1;
     this.Role_id = this.globals.UserRoleid;
     this.admincompanyname = this.globals.company;
     this.AccessToken = localStorage.getItem('token');
@@ -247,12 +253,28 @@ export class CreateUserComponent implements OnInit {
 
   /***Technology add and remove starts***/
   addForm() {
-    this.technology=new technology()
-    this.dataarray.push(this.technology);
+    // this.technology=new technology()
+    // this.dataarray.push(this.technology);
+    this.con_technology.push ( {
+      "id": this.con_technology.length+1,
+      "total_experience" : "",
+      "usa_experience" : "",
+      "marketing_phone" : "",
+      "marketing_email_id" : "",
+      "looking_for_job" : "",
+      "subject_tag" : "",
+      "non_sub_tag" : "",
+      "linkedIn_url" : "",
+      "tags" : "",
+      "resume_loc" : "",
+      "certificate_loc" : "",
+    })
+    console.log("this.con_technology",this.con_technology)
   }
 
   removeForm(index){
     this.dataarray.splice(index);
+    this.con_technology.splice(index, 1);
   }
   // /****ends here****/
 
@@ -364,52 +386,58 @@ export class CreateUserComponent implements OnInit {
     console.log(this.con_contactInfo);
     console.log(this.con_technology);
     console.log(this.con_otherInfo);
+    console.log(this.emailTemplate)
     const formData = new FormData();
-    formData.append("first_name", this.con_generalInfo[0].first_name);
-    formData.append("last_name", this.con_generalInfo[0].last_name);
-    formData.append("company_name", this.companyname);
-    formData.append("created_user", this.globals.email);
-    formData.append("email_id", this.con_contactInfo[0].email_id);
-    formData.append("phone", this.con_contactInfo[0].phone);
-    formData.append("dob", this.con_generalInfo[0].dob ? this.datapipe.transform(this.con_generalInfo[0].dob, 'yyyy-MM-dd') : "");
-    formData.append("comments", this.con_otherInfo[0].comments);
-    formData.append("role_type", localStorage.getItem('role'));
-    formData.append("role_id", localStorage.getItem('role'));
-    formData.append("expiry_date", this.con_generalInfo[0].expiry_date ? this.datapipe.transform(this.con_generalInfo[0].expiry_date, 'yyyy-MM-dd') : "");
-    formData.append("education", this.con_generalInfo[0].education);
-    formData.append("rate", this.con_generalInfo[0].rate);
-    formData.append("relocation", this.con_contactInfo[0].relocation);
-    formData.append("addressline1", this.con_contactInfo[0].addressline1);
-    formData.append("addressline2", this.con_contactInfo[0].addressline2);
-    formData.append("zipcode", this.con_contactInfo[0].zipcode);
-    formData.append("city", this.con_contactInfo[0].city);
-    formData.append("total_experience", this.con_technology[0].total_experience);
-    formData.append("usa_experience", this.con_technology[0].usa_experience);
-    formData.append("marketing_phone", this.con_technology[0].marketing_phone);
-    formData.append("marketing_email_id", this.con_technology[0].marketing_email_id);
-    formData.append("looking_for_job", this.con_technology[0].looking_for_job);
-    formData.append("subject_tag", this.con_technology[0].subject_tag);
-    formData.append("non_sub_tag", this.con_technology[0].non_sub_tag);
-    formData.append("linkedIn_url", this.con_technology[0].linkedIn_url);
-    formData.append("tags", this.con_technology[0].tags);
-    formData.append("resume_loc", this.con_technology[0].resume_loc);
-    formData.append("certificate_loc", this.con_technology[0].certificate_loc);
-    formData.append("email_template", this.con_otherInfo[0].email_template);
-    formData.append("DL_copy", this.con_otherInfo[0].DL_copy);
-    formData.append("DL_valid_from", this.con_otherInfo[0].DL_valid_from ? this.datapipe.transform(this.con_otherInfo[0].DL_valid_from, 'yyyy-MM-dd') : "");
-    formData.append("DL_valid_to", this.con_otherInfo[0].DL_valid_to ? this.datapipe.transform(this.con_otherInfo[0].DL_valid_to, 'yyyy-MM-dd') : "");
-    formData.append("visa_status", this.con_otherInfo[0].visa_status);
-    formData.append("visa_copy_loc", this.con_otherInfo[0].visa_copy_loc);
-    formData.append("visa_valid_from", this.con_otherInfo[0].visa_valid_from ? this.datapipe.transform(this.con_otherInfo[0].visa_valid_from, 'yyyy-MM-dd') : "");
-    formData.append("visa_valid_to", this.con_otherInfo[0].visa_valid_to ? this.datapipe.transform(this.con_otherInfo[0].visa_valid_to, 'yyyy-MM-dd') : "");
-    // this.authService.createConsultant(formData).subscribe((res)=>{
-    //   console.log(res);
-    //   if(res.body.status == 'success'){
-    //     swal.fire('','User Created','success')
-    //   }else if(res.body.status == 'Failed'){
-    //     swal.fire('','User Already Exists!','error')
-    //   }
-    // })
+    formData.append("generalInfo", JSON.stringify(this.con_generalInfo));
+    formData.append("contactInfo", JSON.stringify(this.con_contactInfo));
+    formData.append("technology", JSON.stringify(this.con_technology));
+    formData.append("emailTemplate", "");
+    formData.append("otherInfo",JSON.stringify(this.con_otherInfo));
+    // formData.append("first_name", this.con_generalInfo[0].first_name);
+    // formData.append("last_name", this.con_generalInfo[0].last_name);
+    // formData.append("company_name", this.companyname);
+    // formData.append("created_user", this.globals.email);
+    // formData.append("email_id", this.con_contactInfo[0].email_id);
+    // formData.append("phone", this.con_contactInfo[0].phone);
+    // formData.append("dob", this.con_generalInfo[0].dob ? this.datapipe.transform(this.con_generalInfo[0].dob, 'yyyy-MM-dd') : "");
+    // formData.append("comments", this.con_otherInfo[0].comments);
+    // formData.append("role_type", localStorage.getItem('role'));
+    // formData.append("role_id", localStorage.getItem('role'));
+    // formData.append("expiry_date", this.con_generalInfo[0].expiry_date ? this.datapipe.transform(this.con_generalInfo[0].expiry_date, 'yyyy-MM-dd') : "");
+    // formData.append("education", this.con_generalInfo[0].education);
+    // formData.append("rate", this.con_generalInfo[0].rate);
+    // formData.append("relocation", this.con_contactInfo[0].relocation);
+    // formData.append("addressline1", this.con_contactInfo[0].addressline1);
+    // formData.append("addressline2", this.con_contactInfo[0].addressline2);
+    // formData.append("zipcode", this.con_contactInfo[0].zipcode);
+    // formData.append("city", this.con_contactInfo[0].city);
+    // formData.append("total_experience", this.con_technology[0].total_experience);
+    // formData.append("usa_experience", this.con_technology[0].usa_experience);
+    // formData.append("marketing_phone", this.con_technology[0].marketing_phone);
+    // formData.append("marketing_email_id", this.con_technology[0].marketing_email_id);
+    // formData.append("looking_for_job", this.con_technology[0].looking_for_job);
+    // formData.append("subject_tag", this.con_technology[0].subject_tag);
+    // formData.append("non_sub_tag", this.con_technology[0].non_sub_tag);
+    // formData.append("linkedIn_url", this.con_technology[0].linkedIn_url);
+    // formData.append("tags", this.con_technology[0].tags);
+    // formData.append("resume_loc", this.con_technology[0].resume_loc);
+    // formData.append("certificate_loc", this.con_technology[0].certificate_loc);
+    // formData.append("email_template", this.con_otherInfo[0].email_template);
+    // formData.append("DL_copy", this.con_otherInfo[0].DL_copy);
+    // formData.append("DL_valid_from", this.con_otherInfo[0].DL_valid_from ? this.datapipe.transform(this.con_otherInfo[0].DL_valid_from, 'yyyy-MM-dd') : "");
+    // formData.append("DL_valid_to", this.con_otherInfo[0].DL_valid_to ? this.datapipe.transform(this.con_otherInfo[0].DL_valid_to, 'yyyy-MM-dd') : "");
+    // formData.append("visa_status", this.con_otherInfo[0].visa_status);
+    // formData.append("visa_copy_loc", this.con_otherInfo[0].visa_copy_loc);
+    // formData.append("visa_valid_from", this.con_otherInfo[0].visa_valid_from ? this.datapipe.transform(this.con_otherInfo[0].visa_valid_from, 'yyyy-MM-dd') : "");
+    // formData.append("visa_valid_to", this.con_otherInfo[0].visa_valid_to ? this.datapipe.transform(this.con_otherInfo[0].visa_valid_to, 'yyyy-MM-dd') : "");
+    this.authService.createConsultant(formData).subscribe((res)=>{
+      console.log(res);
+      if(res.body.status == 'success'){
+        swal.fire('','User Created','success')
+      }else if(res.body.status == 'Failed'){
+        swal.fire('','User Already Exists!','error')
+      }
+    })
   }
 
 }
