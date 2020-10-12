@@ -371,11 +371,11 @@ export class CreateUserComponent implements OnInit {
     formData.append("created_user", this.globals.email);
     formData.append("email_id", this.con_contactInfo[0].email_id);
     formData.append("phone", this.con_contactInfo[0].phone);
-    formData.append("dob", this.con_generalInfo[0].dob ? this.datapipe.transform(this.conData.dob, 'yyyy-MM-dd') : "");
+    formData.append("dob", this.con_generalInfo[0].dob ? this.datapipe.transform(this.con_generalInfo[0].dob, 'yyyy-MM-dd') : "");
     formData.append("comments", this.con_otherInfo[0].comments);
     formData.append("role_type", localStorage.getItem('role'));
     formData.append("role_id", localStorage.getItem('role'));
-    formData.append("expiry_date", this.con_generalInfo[0].expiry_date ? this.datapipe.transform(this.conData.expiry_date, 'yyyy-MM-dd') : "");
+    formData.append("expiry_date", this.con_generalInfo[0].expiry_date ? this.datapipe.transform(this.con_generalInfo[0].expiry_date, 'yyyy-MM-dd') : "");
     formData.append("education", this.con_generalInfo[0].education);
     formData.append("rate", this.con_generalInfo[0].rate);
     formData.append("relocation", this.con_contactInfo[0].relocation);
@@ -396,12 +396,12 @@ export class CreateUserComponent implements OnInit {
     formData.append("certificate_loc", this.con_technology[0].certificate_loc);
     formData.append("email_template", this.con_otherInfo[0].email_template);
     formData.append("DL_copy", this.con_otherInfo[0].DL_copy);
-    formData.append("DL_valid_from", this.con_otherInfo[0].DL_valid_from ? this.datapipe.transform(this.conData.DL_valid_from, 'yyyy-MM-dd') : "");
-    formData.append("DL_valid_to", this.con_otherInfo[0].DL_valid_to ? this.datapipe.transform(this.conData.DL_valid_to, 'yyyy-MM-dd') : "");
+    formData.append("DL_valid_from", this.con_otherInfo[0].DL_valid_from ? this.datapipe.transform(this.con_otherInfo[0].DL_valid_from, 'yyyy-MM-dd') : "");
+    formData.append("DL_valid_to", this.con_otherInfo[0].DL_valid_to ? this.datapipe.transform(this.con_otherInfo[0].DL_valid_to, 'yyyy-MM-dd') : "");
     formData.append("visa_status", this.con_otherInfo[0].visa_status);
     formData.append("visa_copy_loc", this.con_otherInfo[0].visa_copy_loc);
-    formData.append("visa_valid_from", this.con_otherInfo[0].visa_valid_from ? this.datapipe.transform(this.conData.visa_valid_from, 'yyyy-MM-dd') : "");
-    formData.append("visa_valid_to", this.con_otherInfo[0].visa_valid_to ? this.datapipe.transform(this.conData.visa_valid_to, 'yyyy-MM-dd') : "");
+    formData.append("visa_valid_from", this.con_otherInfo[0].visa_valid_from ? this.datapipe.transform(this.con_otherInfo[0].visa_valid_from, 'yyyy-MM-dd') : "");
+    formData.append("visa_valid_to", this.con_otherInfo[0].visa_valid_to ? this.datapipe.transform(this.con_otherInfo[0].visa_valid_to, 'yyyy-MM-dd') : "");
     // this.authService.createConsultant(formData).subscribe((res)=>{
     //   console.log(res);
     //   if(res.body.status == 'success'){
