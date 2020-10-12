@@ -39,6 +39,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('token', currentUser.token);
           localStorage.setItem('roleId', currentUser.role_id);
           localStorage.setItem('correl_id', currentUser.correl_id);
+          localStorage.setItem('company_Name', currentUser.company_Name);
           this.globals.UserRoleid = currentUser.role_id;
           console.log(this.globals.UserRoleid);
           if(currentUser.first_time_login == 'Y'){

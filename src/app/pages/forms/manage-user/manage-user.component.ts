@@ -34,7 +34,7 @@ export class ManageUserComponent implements OnInit {
 
   getCompanies(){
     this.globals.showLoading('');
-    this.authService.getCompanies(this.globals.company).subscribe((result)=>{
+    this.authService.getCompanies(localStorage.getItem('company_Name')).subscribe((result)=>{
       console.log(result.body.fields);
       this.Companies = result.body.fields;
       console.log(this.Companies);
