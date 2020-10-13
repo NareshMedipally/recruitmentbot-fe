@@ -94,8 +94,8 @@ emailTemplate ="";
     "certificate_loc" : "",
     "email_template" : "",
     "DL_copy" : "",
-    "DL_valid_from" : "",
-    "DL_valid_to" : "",
+    "DL_valid_from" : null,
+    "DL_valid_to" : null,
     "visa_status": "",
     "visa_copy_loc": "",
     "visa_valid_from": "",
@@ -106,10 +106,10 @@ emailTemplate ="";
     {
       "first_name" : "",
       "last_name" : "",
-      "dob": "",
+      "dob": null,
       "education":"",
       "rate" : "",
-      "expiry_date" : ""
+      "expiry_date" : null
   }]
 
   con_contactInfo = [{
@@ -146,12 +146,12 @@ emailTemplate ="";
   con_otherInfo = [{
     "email_template" : "",
     "DL_copy" : "",
-    "DL_valid_from" : "",
-    "DL_valid_to" : "",
+    "DL_valid_from" : null,
+    "DL_valid_to" : null,
     "visa_status": "",
     "visa_copy_loc": "",
-    "visa_valid_from": "",
-    "visa_valid_to": "",
+    "visa_valid_from": null,
+    "visa_valid_to": null,
     "comments":"",
   }]
 
@@ -388,6 +388,9 @@ emailTemplate ="";
     console.log(this.con_technology);
     console.log(this.con_otherInfo);
     console.log(this.emailTemplate)
+    this.con_generalInfo[0].dob = this.con_generalInfo[0].dob ? this.datapipe.transform(this.con_generalInfo[0].dob, 'yyyy-MM-dd'): null
+    this.con_generalInfo[0].expiry_date = this.con_generalInfo[0].expiry_date ? this.datapipe.transform(this.con_generalInfo[0].expiry_date, 'yyyy-MM-dd'): null
+    this.con_generalInfo[0]["created_user"] = this.globals.email;
     const formData = new FormData();
     formData.append("generalInfo", JSON.stringify(this.con_generalInfo));
     formData.append("contactInfo", JSON.stringify(this.con_contactInfo));
@@ -438,11 +441,68 @@ emailTemplate ="";
     this.authService.createConsultant(formData).subscribe((res)=>{
       console.log(res);
       if(res.body.status == 'success'){
+        this.resetForm()
         swal.fire('','User Created','success')
       }else if(res.body.status == 'Failed'){
         swal.fire('','User Already Exists!','error')
       }
     })
+  }
+
+  resetForm(){
+    this.con_generalInfo  = [
+      {
+        "first_name" : "",
+        "last_name" : "",
+        "dob": null,
+        "education":"",
+        "rate" : "",
+        "expiry_date" : null
+    }]
+  
+    this.con_contactInfo = [{
+      "email_id":"",
+      "phone":"",
+      "relocation":"",
+      "addressline1" : "",
+      "addressline2" : "",
+      "zipcode" : "",
+      "city" : "",
+    }]
+  
+    this.con_technology = [
+      {
+        "id": 1,
+        "total_experience" : "",
+        "usa_experience" : "",
+        "marketing_phone" : "",
+        "marketing_email_id" : "",
+        "looking_for_job" : "",
+        "subject_tag" : "",
+        "non_sub_tag" : "",
+        "linkedIn_url" : "",
+        "tags" : "",
+        "resume_loc" : "",
+        "certificate_loc" : "",
+      }
+    ]
+    //con_technology  =[]
+  
+  
+    
+  
+    this.con_otherInfo = [{
+      "email_template" : "",
+      "DL_copy" : "",
+      "DL_valid_from" : null,
+      "DL_valid_to" : null,
+      "visa_status": "",
+      "visa_copy_loc": "",
+      "visa_valid_from": null,
+      "visa_valid_to": null,
+      "comments":"",
+    }]
+  
   }
 
 }

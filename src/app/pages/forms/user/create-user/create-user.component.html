@@ -287,37 +287,37 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label  class="label">First name <span style="color: red;">*</span></label>
-                  <input type="text"  class="form-control" fullWidth name="first_name" [(ngModel)]="conData.first_name" #first_name="ngModel" placeholder="">
+                  <input type="text"  class="form-control" fullWidth name="first_name" [(ngModel)]="con_generalInfo[0].first_name"  placeholder="">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label  class="label">Last name</label>
-                  <input type="text" class="form-control" fullWidth name="last_name" [(ngModel)]="conData.last_name" #last_name="ngModel" placeholder="">
+                  <input type="text" class="form-control" fullWidth name="last_name" [(ngModel)]="con_generalInfo[0].last_name"  placeholder="">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label  class="label">Date of Birth</label>
-                  <input type="text"  class="form-control" fullWidth name="dob" [(ngModel)]="conData.dob" #dob="ngModel" bsDatepicker placement="bottom" [bsValue]="conData.dob" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" placeholder="D-o-b">
+                  <input type="text"  class="form-control" fullWidth name="dob" [(ngModel)]="con_generalInfo[0].dob"  bsDatepicker placement="bottom" [bsValue]="conData.dob" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" placeholder="D-o-b">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label  class="label">Education</label>
-                  <input type="text" class="form-control" fullWidth name="education" [(ngModel)]="conData.education" #education="ngModel" placeholder="">
+                  <input type="text" class="form-control" fullWidth name="education" [(ngModel)]="con_generalInfo[0].education" #education="ngModel" placeholder="">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label  class="label">Rate <span style="color: darkgreen;">$/hour</span></label>
-                  <input type="text" class="form-control" fullWidth name="rate" [(ngModel)]="conData.rate" #rate="ngModel" placeholder="">
+                  <input type="text" class="form-control" fullWidth name="rate" [(ngModel)]="con_generalInfo[0].rate" #rate="ngModel" placeholder="">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label  class="label">Expiry Date</label>
-                  <input type="text" class="form-control" fullWidth name="expiry_date" [(ngModel)]="conData.expiry_date" #expiry_date="ngModel" bsDatepicker placement="top" [bsValue]="conData.expiry_date" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" placeholder="Expiry Date">
+                  <input type="text" class="form-control" fullWidth name="expiry_date" [(ngModel)]="con_generalInfo[0].expiry_date" #expiry_date="ngModel" bsDatepicker placement="top" [bsValue]="conData.expiry_date" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" placeholder="Expiry Date">
                 </div>
               </div>
               <div class="col-md-12">
@@ -328,19 +328,19 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label  class="label">Email <span style="color: red;">*</span></label>
-                  <input type="email" class="form-control" fullWidth name="email_id" [(ngModel)]="conData.email_id" #email_id="ngModel" placeholder="">
+                  <input type="email" class="form-control" fullWidth name="email_id" [(ngModel)]="con_contactInfo[0].email_id" #email_id="ngModel" placeholder="">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label  class="label">Phone Number <span style="color: red;">*</span></label>
-                  <input type="number" class="form-control" fullWidth name="phone" [(ngModel)]="conData.phone" #phone="ngModel" placeholder="">
+                  <input type="number" class="form-control" fullWidth name="phone" [(ngModel)]="con_contactInfo[0].phone" #phone="ngModel" placeholder="">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label  class="label">Relocation</label>
-                  <select  selected="1" fullWidth class="form-control" name="relocation" [(ngModel)]="conData.relocation" #relocation="ngModel">
+                  <select  selected="1" fullWidth class="form-control" name="relocation" [(ngModel)]="con_contactInfo[0].relocation" >
                     <option value="1">Select</option>
                     <option value="2">Yes</option>
                     <option value="3">No</option>
@@ -350,25 +350,25 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label  class="label">Address Line 1</label>
-                  <input type="text" class="form-control" fullWidth name="addressline1" [(ngModel)]="conData.addressline1" #addressline1="ngModel">
+                  <input type="text" class="form-control" fullWidth name="addressline1" [(ngModel)]="con_contactInfo[0].addressline1" >
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <label  class="label">Address Line 2</label>
-                  <input type="text" class="form-control" fullWidth name="addressline2" [(ngModel)]="conData.addressline2" #addressline2="ngModel">
+                  <input type="text" class="form-control" fullWidth name="addressline2" [(ngModel)]="con_contactInfo[0].addressline2" >
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <label  class="label">Zip Code</label>
-                  <input type="text" class="form-control" fullWidth name="zipcode" [(ngModel)]="conData.zipcode" #zipcode="ngModel">
+                  <input type="text" class="form-control" fullWidth name="zipcode" [(ngModel)]="con_contactInfo[0].zipcode">
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <label  class="label">City</label>
-                  <input type="text" class="form-control" fullWidth name="city" [(ngModel)]="conData.city" #city="ngModel">
+                  <input type="text" class="form-control" fullWidth name="city" [(ngModel)]="con_contactInfo[0].city" >
                 </div>
               </div>
             </div>
@@ -435,7 +435,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label  class="label">Tags</label>
-                  <ng-select [multiple]="true" name="tags" [(ngModel)]="conData.tags" #tags="ngModel">
+                  <ng-select [multiple]="true" name="tags__{{obj.id}}" [(ngModel)]="obj.tags" >
                     <ng-option *ngFor="let tag of data" [value]="tag.tag_name" [disabled]="tag.disabled">{{tag.tag_name}}</ng-option>
                     <!-- <ng-option [value]="'custom'">Custom</ng-option> -->
                   </ng-select>
