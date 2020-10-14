@@ -12,16 +12,15 @@
               <input type="email" class="form-control" fullWidth placeholder="Name" name="tag_name" [(ngModel)]="tags.tag_name" #tag_name="ngModel">
             </div>
           </div>
-          <div class="form-group row">
+          <!-- <div class="form-group row">
             <label for="inputEmail3" class="label col-sm-3 form-control-label">Tag type</label>
             <div class="col-sm-9">
               <select class="form-control" fullWidth name="tag_type" [(ngModel)]="tags.tag_type" #tag_type="ngModel" (change)="clickType($event.target.value)">
                 <option value="">Select type</option>
                 <option *ngFor="let tag of tech" value="{{tag.value}}">{{tag.title}}</option>
               </select>
-              <!-- <input type="email" class="form-control" fullWidth placeholder="Name" name="tag_type" [(ngModel)]="tags.tag_type" #tag_type="ngModel"> -->
             </div>
-          </div>
+          </div> -->
           <div class="form-group row">
             <label for="inputPassword3" class="label col-sm-3 form-control-label">Comments</label>
             <div class="col-sm-9">

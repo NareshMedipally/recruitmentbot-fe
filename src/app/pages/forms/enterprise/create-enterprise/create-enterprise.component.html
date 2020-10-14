@@ -17,7 +17,12 @@
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label for="inputFirstName" class="label">Company Name <span style="color: red">*</span></label>
-                    <input type="text" class="form-control" fullWidth  placeholder="" name="company_name" [(ngModel)]="entData.company_name" #company_name="ngModel">
+                    <input type="text" class="form-control" fullWidth  placeholder="" name="company_name" [(ngModel)]="entData.company_name" #company_name="ngModel" required>
+                    <ng-container *ngIf="company_name.touched ">
+                      <p class="error-message text-danger" *ngIf="company_name.errors?.required">
+                        Company Name is required!
+                      </p>
+                    </ng-container>
                   </div>
                 </div>
                 <div class="col-sm-6">
@@ -81,13 +86,26 @@
             <div class="col-sm-6">
               <div class="form-group">
                 <label for="inputEmail" class="label">Email <span style="color: red">*</span></label>
-                <input type="email" class="form-control" fullWidth placeholder="" name="email_id" [(ngModel)]="entData.email_id" #email_id="ngModel">
+                <input type="email" class="form-control" fullWidth placeholder="" name="email_id" [(ngModel)]="entData.email_id" #email_id="ngModel" email required>
+                <ng-container *ngIf="email_id.touched ">
+                  <p class="error-message text-danger" *ngIf="email_id.errors?.required">
+                    Email is required!
+                  </p>
+                  <p class="error-message text-danger" *ngIf="email_id.errors?.email">
+                    Valid Email is required!
+                  </p>
+                </ng-container>
               </div>
             </div>
             <div class="col-sm-6">
               <div class="form-group">
                 <label for="inputWebsite" class="label">Phone Number <span style="color: red">*</span></label>
-                <input type="text" class="form-control" fullWidth placeholder="" name="phone" [(ngModel)]="entData.phone" #phone="ngModel">
+                <input type="text" class="form-control" fullWidth placeholder="" name="phone" [(ngModel)]="entData.phone" #phone="ngModel" required>
+                <ng-container *ngIf="phone.touched ">
+                  <p class="error-message text-danger" *ngIf="phone.errors?.required">
+                    Phone number is required!
+                  </p>
+                </ng-container>
               </div>
             </div>
           </div>
@@ -109,7 +127,12 @@
             <div class="col-sm-6">
               <div class="form-group">
                 <label for="inputEmail" class="label">City <span style="color: red">*</span></label>
-                <input type="email" class="form-control" fullWidth placeholder="" name="city" [(ngModel)]="entData.city" #city="ngModel">
+                <input type="email" class="form-control" fullWidth placeholder="" name="city" [(ngModel)]="entData.city" #city="ngModel" required>
+                <ng-container *ngIf="city.touched ">
+                  <p class="error-message text-danger" *ngIf="city.errors?.required">
+                    City required!
+                  </p>
+                </ng-container>
               </div>
             </div>
             <div class="col-sm-6">
@@ -151,8 +174,8 @@
           <div class="row">
             <div class="col-sm-12 text-center">
               <div class="form-group">
-                <button type="submit" class="btn btn-primary" style="margin-right: 10px;">SAVE</button>
-                <button class="btn btn-danger">CANCEL</button>
+                <button type="submit" class="btn btn-primary" style="margin-right: 10px;">Submit</button>
+                <button class="btn btn-danger" routerLink="/pages/enterprise-info">Cancel</button>
               </div>
             </div>
           </div>

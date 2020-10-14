@@ -22,10 +22,19 @@ export class LoginComponent implements OnInit {
     "password" : "",
   }
 
-  constructor(private router:Router,private authService:AuthService,private globals:ServicesService) { }
+  constructor(private router:Router,private authService:AuthService,private globals:ServicesService) {
+    localStorage.removeItem('currentData');
+    localStorage.removeItem('token');
+    localStorage.removeItem('roleId');
+    localStorage.removeItem('correl_id');
+    localStorage.removeItem('company_Name');
+    localStorage.removeItem('company');
+    localStorage.removeItem('role');
+    localStorage.clear();
+  }
 
   ngOnInit(): void {
-    localStorage.clear();
+
   }
 
   LoginForm(form: NgForm) {
@@ -40,6 +49,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('roleId', currentUser.role_id);
           localStorage.setItem('correl_id', currentUser.correl_id);
           localStorage.setItem('company_Name', currentUser.company_Name);
+          localStorage.setItem('email_id', currentUser.email_id);
           this.globals.UserRoleid = currentUser.role_id;
           console.log(this.globals.UserRoleid);
           if(currentUser.first_time_login == 'Y'){

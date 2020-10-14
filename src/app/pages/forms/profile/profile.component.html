@@ -9,37 +9,37 @@
           <div class="form-group row">
             <label for="inputEmail3" class="label col-sm-3 form-control-label">Company Name</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" fullWidth  placeholder="BlueSpace" disabled>
+              <input type="text" class="form-control" fullWidth name="company_name"  [(ngModel)]="profile.company_name" disabled>
             </div>
           </div>
           <div class="form-group row">
             <label for="inputEmail3" class="label col-sm-3 form-control-label">Email</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" fullWidth  placeholder="cognizant@gmail.com" disabled>
+              <input type="text" class="form-control" fullWidth name="email_id" [(ngModel)]="profile.email_id" disabled>
             </div>
           </div>
           <div class="form-group row">
             <label for="inputPassword3" class="label col-sm-3 form-control-label">First Name</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" fullWidth  placeholder="Jon">
+              <input type="text" class="form-control" fullWidth name="first_name" [(ngModel)]="profile.first_name">
             </div>
           </div>
           <div class="form-group row">
             <label for="inputPassword3" class="label col-sm-3 form-control-label">Last Name</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" fullWidth  placeholder="Smith">
+              <input type="text" class="form-control" fullWidth name="last_name" [(ngModel)]="profile.last_name">
             </div>
           </div>
           <div class="form-group row">
             <label for="inputEmail3" class="label col-sm-3 form-control-label">Phone Number</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" fullWidth  placeholder="+91 9071040111" >
+              <input type="text" class="form-control" fullWidth name="phone" [(ngModel)]="profile.phone">
             </div>
           </div>
           <div class="form-group row text-center">
             <div class="col-sm-12">
-              <button type="submit" class="btn btn-primary w-10" style="margin-right: 10px;">SUBMIT</button>
-              <button type="submit" class="btn btn-danger w-10">CANCEL</button>
+              <button type="submit" class="btn btn-primary w-10" (click)="updateRecruiter()" style="margin-right: 10px;">SUBMIT</button>
+              <button routerLink="/pages/manage-user" class="btn btn-danger w-10">CANCEL</button>
             </div>
           </div>
         </form>
@@ -53,43 +53,43 @@
           <div class="form-group row">
             <label for="inputEmail3" class="label col-sm-3 form-control-label">Company Name</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" fullWidth  placeholder="infosys" disabled>
+              <input type="text" class="form-control" fullWidth name="company_name" [(ngModel)]="profile.company_name" disabled>
             </div>
           </div>
           <div class="form-group row">
             <label for="inputEmail3" class="label col-sm-3 form-control-label">Email</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" fullWidth  placeholder="infosys@gmail.com" disabled>
+              <input type="text" class="form-control" fullWidth name="email_id" [(ngModel)]="profile.email_id" disabled>
             </div>
           </div>
           <div class="form-group row">
             <label for="inputPassword3" class="label col-sm-3 form-control-label">First Name</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" fullWidth  placeholder="Jon">
+              <input type="text" class="form-control" fullWidth name="first_name" [(ngModel)]="profile.first_name">
             </div>
           </div>
           <div class="form-group row">
             <label for="inputPassword3" class="label col-sm-3 form-control-label">Last Name</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" fullWidth  placeholder="Smith">
+              <input type="text" class="form-control" fullWidth name="last_name" [(ngModel)]="profile.last_name">
             </div>
           </div>
           <div class="form-group row">
             <label for="inputEmail3" class="label col-sm-3 form-control-label">Phone Number</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" fullWidth  placeholder="+91 9071040111" >
+              <input type="text" class="form-control" fullWidth name="phone" [(ngModel)]="profile.phone">
             </div>
           </div>
           <div class="form-group row">
             <label for="inputEmail3" class="label col-sm-3 form-control-label">Expiry date</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" fullWidth  placeholder="27/09/2023" >
+              <input type="text" class="form-control" fullWidth name="expiry_date" [(ngModel)]="profile.expiry_date" disabled>
             </div>
           </div>
           <div class="form-group row text-center">
             <div class="col-sm-12">
-              <button type="submit" class="btn btn-primary w-10" style="margin-right: 10px;">SUBMIT</button>
-              <button type="submit" class="btn btn-danger w-10">CANCEL</button>
+              <button type="submit" class="btn btn-primary w-10" (click)="updateRecruiter()" style="margin-right: 10px;">SUBMIT</button>
+              <button routerLink="/pages/manage-user" class="btn btn-danger w-10">CANCEL</button>
             </div>
           </div>
         </form>
@@ -103,73 +103,73 @@
           <div class="form-group row">
             <label for="inputEmail3" class="label col-sm-3 form-control-label">Company Name</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" fullWidth  placeholder="IBM" disabled>
+              <input type="text" class="form-control" fullWidth [(ngModel)]="profile.company_name" name="company_name" disabled>
             </div>
           </div>
           <div class="form-group row">
             <label for="inputEmail3" class="label col-sm-3 form-control-label">Email</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" fullWidth  placeholder="ibm@gmail.com" disabled>
+              <input type="text" class="form-control" fullWidth [(ngModel)]="profile.email_id" name="email_id" disabled>
             </div>
           </div>
           <div class="form-group row">
             <label for="inputPassword3" class="label col-sm-3 form-control-label">First Name</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" fullWidth  placeholder="Jon">
+              <input type="text" class="form-control" fullWidth [(ngModel)]="profile.first_name" name="first_name">
             </div>
           </div>
           <div class="form-group row">
             <label for="inputPassword3" class="label col-sm-3 form-control-label">Last Name</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" fullWidth  placeholder="Smith">
+              <input type="text" class="form-control" fullWidth [(ngModel)]="profile.last_name" name="last_name">
             </div>
           </div>
           <div class="form-group row">
             <label for="inputEmail3" class="label col-sm-3 form-control-label">Phone Number</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" fullWidth  placeholder="+91 9071040111" >
+              <input type="text" class="form-control" fullWidth [(ngModel)]="profile.phone" name="phone">
             </div>
           </div>
           <div class="form-group row">
             <label for="inputEmail3" class="label col-sm-3 form-control-label">Expiry date</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" fullWidth  placeholder="27/09/2023" >
+              <input type="text" class="form-control" fullWidth [(ngModel)]="profile.expiry_date" name="expiry_date" disabled>
             </div>
           </div>
           <div class="form-group row">
             <label for="inputEmail3" class="label col-sm-3 form-control-label">Primary Email Address</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" fullWidth  placeholder="sowramac@in.ibm.com" >
+              <input type="text" class="form-control" fullWidth [(ngModel)]="profile.primary_email_id" name="primary_email_id">
             </div>
           </div>
           <div class="form-group row">
             <label for="inputEmail3" class="label col-sm-3 form-control-label">Generic Email Address</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" fullWidth  placeholder="sowramc@in.ibm.com" >
+              <input type="text" class="form-control" fullWidth [(ngModel)]="profile.generic_email_id" name="generic_email_id">
             </div>
           </div>
           <div class="form-group row">
             <label for="inputEmail3" class="label col-sm-3 form-control-label">Personal Email Address</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" fullWidth  placeholder="mypersonal@in.ibm.com" >
+              <input type="text" class="form-control" fullWidth [(ngModel)]="profile.personal_email_id" name="personal_email_id">
             </div>
           </div>
           <div class="form-group row">
             <label for="inputEmail3" class="label col-sm-3 form-control-label">CC Email Address</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" fullWidth  placeholder="ccemail@in.ibm.com" >
+              <input type="text" class="form-control" fullWidth [(ngModel)]="profile.cc_email_id" name="cc_email_id">
             </div>
           </div>
           <div class="form-group row">
             <label for="inputEmail3" class="label col-sm-3 form-control-label">BCC Email Address</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" fullWidth  placeholder="bccemail@in.ibm.com" >
+              <input type="text" class="form-control" fullWidth [(ngModel)]="profile.bcc_email_id" name="bcc_email_id">
             </div>
           </div>
           <div class="form-group row text-center">
             <div class="col-sm-12">
-              <button type="submit" class="btn btn-primary w-10" style="margin-right: 10px;">SUBMIT</button>
-              <button type="submit" class="btn btn-danger w-10">CANCEL</button>
+              <button type="submit" class="btn btn-primary w-10" (click)="updateRecruiter()" style="margin-right: 10px;">SUBMIT</button>
+              <button routerLink="/pages/manage-user" class="btn btn-danger w-10">CANCEL</button>
             </div>
           </div>
         </form>

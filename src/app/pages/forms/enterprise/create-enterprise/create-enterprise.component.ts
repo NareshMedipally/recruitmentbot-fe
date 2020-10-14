@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'app/auth.service';
 import { ServicesService } from 'app/services.service';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'ngx-create-enterprise',
@@ -66,9 +67,14 @@ export class CreateEnterpriseComponent implements OnInit {
     this.authService.createCompany(formData)
       .subscribe(event => {
         console.log("event",event);
-        this.router.navigate(['/pages/enterprise-info']);
+        swal.fire('', 'Created Successfully!', 'success').then((result) => {
+          if (result.isConfirmed) {
+            this.router.navigate(['/pages/enterprise-info']);
+          }
+        })
       },err => {
         console.log(err);
+        swal.fire('','Something went wrong!','error')
       });
   }
 

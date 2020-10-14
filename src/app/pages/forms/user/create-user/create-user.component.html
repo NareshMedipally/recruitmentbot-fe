@@ -17,7 +17,7 @@
             <option *ngFor="let role of roles" value="{{role.value}}">{{role.role}}</option>
           </select>
         </div>
-        <div class="form-group" *ngIf="Role_id == 2">
+        <div class="form-group" *ngIf="Role_id == 2 || Role_id == 3">
           <label  class="label">Role <span style="color: red;">*</span></label>
           <select class="form-control" name="" id="" (change)="clickSelect($event.target.value)">
             <option value=''>Select Role</option>
@@ -82,7 +82,7 @@
               </div>
               <div class="col-md-12 text-center">
                 <button type="submit" class="btn btn-primary" style="margin-right: 5px;" [disabled]="!form.valid || form.pristine || form.invalid">SUBMIT</button>
-                <button class="btn btn-danger">CANCEL</button>
+                <button routerLink="/pages/manage-user" class="btn btn-danger">CANCEL</button>
               </div>
             </div>
           </form>
@@ -115,13 +115,13 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label  class="label">Company name <span style="color: red;">*</span></label>
-                  <input type="text" class="form-control" fullWidth id="company" placeholder="" name="company_name" [(ngModel)]="companyname" #company_name="ngModel">
+                  <input type="text" class="form-control" fullWidth id="company" placeholder="" name="company_name" [(ngModel)]="companyname" #company_name="ngModel" disabled>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <label  class="label">Expiry Date</label>
-                  <input type="text" class="form-control" fullWidth id="expiry-date-1" placeholder="" name="expiry_date" [(ngModel)]="formData.expiry_date" #expiry_date="ngModel" bsDatepicker placement="bottom-left" [bsValue]="formData.expiry_date" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}">
+                  <input type="text" class="form-control" fullWidth id="expiry-date-1" placeholder="dd-mm-yyyy" name="expiry_date" [(ngModel)]="formData.expiry_date" #expiry_date="ngModel" bsDatepicker placement="bottom-left" [bsValue]="formData.expiry_date" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-dark-blue'}">
                 </div>
               </div>
               <div class="col-md-12">
@@ -162,7 +162,7 @@
               </div>
               <div class="col-md-12 text-center">
                 <button type="submit" class="btn btn-primary" style="margin-right: 5px;" [disabled]="!admin.valid || admin.pristine || admin.invalid">SUBMIT</button>
-                <button class="btn btn-danger">CANCEL</button>
+                <button routerLink="/pages/manage-user" class="btn btn-danger">CANCEL</button>
               </div>
             </div>
           </form>
@@ -260,7 +260,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label  class="label">Expiry Date</label>
-                  <input type="text" class="form-control" fullWidth id="expiry-date" name="expiry_date" [(ngModel)]="formData.expiry_date" #expiry_date="ngModel" bsDatepicker placement="bottom-left" [bsValue]="formData.expiry_date" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}">
+                  <input type="text" class="form-control" fullWidth id="expiry-date" name="expiry_date" [(ngModel)]="formData.expiry_date" #expiry_date="ngModel" bsDatepicker placement="bottom-left" [bsValue]="formData.expiry_date" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-dark-blue'}" placeholder="dd-mm-yyyy">
                 </div>
               </div>
               <div class="col-md-12">
@@ -271,7 +271,7 @@
               </div>
               <div class="col-md-12 text-center">
                 <button type="submit" class="btn btn-primary" style="margin-right: 5px;">SUBMIT</button>
-                <button type="submit" class="btn btn-danger">CANCEL</button>
+                <button routerLink="/pages/manage-user" class="btn btn-danger">CANCEL</button>
               </div>
             </div>
           </form>
@@ -299,25 +299,25 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label  class="label">Date of Birth</label>
-                  <input type="text"  class="form-control" fullWidth name="dob" [(ngModel)]="con_generalInfo[0].dob"  bsDatepicker placement="bottom" [bsValue]="conData.dob" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" placeholder="D-o-b">
+                  <input type="text"  class="form-control" fullWidth name="dob" [(ngModel)]="con_generalInfo[0].dob"  bsDatepicker placement="bottom" [bsValue]="conData.dob" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-dark-blue'}" placeholder="dd-mm-yyyy">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label  class="label">Education</label>
-                  <input type="text" class="form-control" fullWidth name="education" [(ngModel)]="con_generalInfo[0].education" #education="ngModel" placeholder="">
+                  <input type="text" class="form-control" fullWidth name="education" [(ngModel)]="con_generalInfo[0].education" placeholder="">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label  class="label">Rate <span style="color: darkgreen;">$/hour</span></label>
-                  <input type="text" class="form-control" fullWidth name="rate" [(ngModel)]="con_generalInfo[0].rate" #rate="ngModel" placeholder="">
+                  <input type="text" class="form-control" fullWidth name="rate" [(ngModel)]="con_generalInfo[0].rate" placeholder="">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label  class="label">Expiry Date</label>
-                  <input type="text" class="form-control" fullWidth name="expiry_date" [(ngModel)]="con_generalInfo[0].expiry_date" #expiry_date="ngModel" bsDatepicker placement="top" [bsValue]="conData.expiry_date" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" placeholder="Expiry Date">
+                  <input type="text" class="form-control" fullWidth name="expiry_date" [(ngModel)]="con_generalInfo[0].expiry_date" bsDatepicker placement="top" [bsValue]="conData.expiry_date" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-dark-blue'}" placeholder="dd-mm-yyyy">
                 </div>
               </div>
               <div class="col-md-12">
@@ -340,10 +340,10 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label  class="label">Relocation</label>
-                  <select  selected="1" fullWidth class="form-control" name="relocation" [(ngModel)]="con_contactInfo[0].relocation" >
-                    <option value="1">Select</option>
-                    <option value="2">Yes</option>
-                    <option value="3">No</option>
+                  <select fullWidth class="form-control" name="relocation" [(ngModel)]="con_contactInfo[0].relocation" >
+                    <option value="">Select</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
                   </select>
                 </div>
               </div>
@@ -379,11 +379,11 @@
                   </div>
                 </div>
                 <div class="col-md-1" *ngIf= "i != 0">
-                  <button type="submit" class="btn btn-danger" (click)="removeForm(i)">
+                  <a class="btn btn-danger" style="color: white;" (click)="removeForm(i)">
                     <i class="fa fa-minus" aria-hidden="true"></i>
-                  </button>
+                  </a>
                 </div>
-              
+
               <div class="col-md-3">
                 <div class="form-group">
                   <label  class="label">Total Experience</label>
@@ -435,9 +435,8 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label  class="label">Tags</label>
-                  <ng-select [multiple]="true" name="tags__{{obj.id}}" [(ngModel)]="obj.tags" >
+                  <ng-select [multiple]="true" name="tags_{{obj.id}}" [(ngModel)]="obj.tags" >
                     <ng-option *ngFor="let tag of data" [value]="tag.tag_name" [disabled]="tag.disabled">{{tag.tag_name}}</ng-option>
-                    <!-- <ng-option [value]="'custom'">Custom</ng-option> -->
                   </ng-select>
                 </div>
               </div>
@@ -450,15 +449,15 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label  class="label">Certification</label>
-                  <input type="file"  class="form-control" fullWidth name="certificate_loc_{{obj.id}" [(ngModel)]="obj.certificate_loc" >
+                  <input type="file"  class="form-control" fullWidth name="certificate_loc_{{obj.id}}" [(ngModel)]="obj.certificate_loc" >
                 </div>
               </div>
-              
+
               <div class="col-md-12" *ngIf= "i == 0">
-                <button type="submit" class="btn btn-primary" (click)="addForm()">Add Technology</button>
+                <a class="btn btn-primary" style="color: white;" (click)="addForm()">Add Technology</a>
               </div>
             </div>
-            <!-- <div class="row mt-3" *ngFor="let obj of con_technology; let i=index "> 
+            <!-- <div class="row mt-3" *ngFor="let obj of con_technology; let i=index ">
               <div class="col-md-12">
                 <div class="row">
                   <div class="col-md-11">
@@ -467,7 +466,7 @@
                     </div>
                   </div>
                   <div class="col-md-1">
-                    <button type="submit" class="btn btn-danger" (click)="removeForm(i)">
+                    <button class="btn btn-danger" (click)="removeForm(i)">
                       <i class="fa fa-minus" aria-hidden="true"></i>
                     </button>
                   </div>
@@ -567,29 +566,29 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <label  class="label">Visa Copy</label>
-                      <input type="file" (change)="readFile($event)"  class="form-control" fullWidth name="visa_copy_loc" [(ngModel)]="conData.visa_copy_loc" #visa_copy_loc="ngModel">
+                      <input type="file" (change)="readFile($event)"  class="form-control" fullWidth>
                     </div>
                   </div>
                   <div class="col-md-12">
                     <div class="form-group">
                       <label  class="label">Visa Status</label>
-                      <select  selected="1" fullWidth class="form-control" [disabled]= "visaDisable" name="visa_status" [(ngModel)]="conData.visa_status" #visa_status="ngModel">
-                        <option value="1">Select</option>
-                        <option value="2">Active</option>
-                        <option value="3">Inactive</option>
+                      <select fullWidth class="form-control" [disabled]= "visaDisable" name="visa_status" [(ngModel)]="con_otherInfo[0].visa_status">
+                        <option value="">Select</option>
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
                       </select>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label  class="label">Visa Valid From</label>
-                      <input type="text" class="form-control" fullWidth [disabled]= "visaDisable" name="visa_valid_from" [(ngModel)]="conData.visa_valid_from" #visa_valid_from="ngModel" bsDatepicker placement="top" [bsValue]="conData.visa_valid_from" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}">
+                      <input type="text" class="form-control" fullWidth [disabled]= "visaDisable" name="visa_valid_from" [(ngModel)]="con_otherInfo[0].visa_valid_from" bsDatepicker placement="top" [bsValue]="con_otherInfo[0].visa_valid_from" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-dark-blue'}" placeholder="dd-mm-yyyy">
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label  class="label">Visa Valid To</label>
-                      <input type="text" class="form-control" fullWidth [disabled]= "visaDisable" name="visa_valid_to" [(ngModel)]="conData.visa_valid_to" #visa_valid_to="ngModel" bsDatepicker placement="top" [bsValue]="conData.visa_valid_to" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}">
+                      <input type="text" class="form-control" fullWidth [disabled]= "visaDisable" name="visa_valid_to" [(ngModel)]="con_otherInfo[0].visa_valid_to" bsDatepicker placement="top" [bsValue]="con_otherInfo[0].visa_valid_to" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-dark-blue'}" placeholder="dd-mm-yyyy">
                     </div>
                   </div>
                 </div>
@@ -602,19 +601,19 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <label  class="label">Driving License Copy</label>
-                      <input type="file"  (change)="drivFile()" class="form-control" fullWidth name="DL_copy" [(ngModel)]="conData.DL_copy" #DL_copy="ngModel">
+                      <input type="file"  (change)="drivFile($event)" class="form-control" fullWidth>
                     </div>
                   </div>
                   <div class="col-md-12">
                     <div class="form-group">
                       <label  class="label">Driving License Valid From</label>
-                      <input type="text" class="form-control"  [disabled]= "drivDisable" fullWidth name="DL_valid_from" [(ngModel)]="conData.DL_valid_from" #DL_valid_from="ngModel" bsDatepicker placement="top" [bsValue]="conData.DL_valid_from" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}">
+                      <input type="text" class="form-control"  [disabled]= "drivDisable" fullWidth name="DL_valid_from" [(ngModel)]="con_otherInfo[0].DL_valid_from" bsDatepicker placement="top" [bsValue]="con_otherInfo[0].DL_valid_from" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-dark-blue'}" placeholder="dd-mm-yyyy">
                     </div>
                   </div>
                   <div class="col-md-12">
                     <div class="form-group">
                       <label  class="label">Driving License Valid To</label>
-                      <input type="text" class="form-control" [disabled]= "drivDisable" fullWidth name="DL_valid_to" [(ngModel)]="conData.DL_valid_to" #DL_valid_to="ngModel" bsDatepicker placement="top" [bsValue]="conData.DL_valid_to" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}">
+                      <input type="text" class="form-control" [disabled]= "drivDisable" fullWidth name="DL_valid_to" [(ngModel)]="con_otherInfo[0].DL_valid_to" bsDatepicker placement="top" [bsValue]="con_otherInfo[0].DL_valid_to" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-dark-blue'}" placeholder="dd-mm-yyyy">
                     </div>
                   </div>
                 </div>
@@ -624,12 +623,12 @@
               <div class="col-md-12 mt-2">
                 <div class="form-group">
                   <label  class="label">Comments</label>
-                  <textarea rows=4 class="form-control" fullWidth id="inputEmail" placeholder="Enter Comments" name="comments" [(ngModel)]="conData.comments" #comments="ngModel"></textarea>
+                  <textarea rows=4 class="form-control" fullWidth id="inputEmail" placeholder="Enter Comments" name="comments" [(ngModel)]="con_otherInfo[0].comments" #comments="ngModel"></textarea>
                 </div>
               </div>
               <div class="col-md-12 text-center">
                 <button type="submit" class="btn btn-primary" style="margin-right: 5px;">SUBMIT</button>
-                <button class="btn btn-danger">CANCEL</button>
+                <button routerLink="/pages/manage-user" class="btn btn-danger">CANCEL</button>
               </div>
             </div>
           </form>

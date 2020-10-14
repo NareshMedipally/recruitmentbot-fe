@@ -70,11 +70,14 @@ export class EnterpriseComponent implements OnInit {
         this.authService.delEntCompany(data.correl_id).subscribe((result)=>{
           console.log(result);
           swal.fire(
-            'Deleted!',
-            'Your file has been deleted.',
+            '',
+            'Deleted successfully!',
             'success'
-          )
-          this.getData();
+          ).then((result) => {
+            if (result.isConfirmed) {
+              this.getData();
+            }
+          })
         },err => {
           console.log(err)
         })

@@ -32,7 +32,7 @@ export class CreateUserComponent implements OnInit {
   visaDisable = true;
   drivDisable = true;
   data: any[] = [];
-emailTemplate ="";
+  emailTemplate ="";
   AccessToken:string = "";
   fileToUpload;
   certificate;
@@ -141,7 +141,7 @@ emailTemplate ="";
   //con_technology  =[]
 
 
-  
+
 
   con_otherInfo = [{
     "email_template" : "",
@@ -157,14 +157,13 @@ emailTemplate ="";
 
   constructor(private modalService: BsModalService, private datapipe:DatePipe, private http: HttpClient, private router: Router, private globals:ServicesService, private authService: AuthService) {
     console.log(this.globals.UserRoleid);
-    this.Role_id = 1;
-    this.Role_id = this.globals.UserRoleid;
+    this.Role_id = localStorage.getItem('roleId');
     this.admincompanyname = this.globals.company;
     this.AccessToken = localStorage.getItem('token');
-    if(this.globals.company == '1'){
+    if(this.Role_id == '1'){
       this.companyname = localStorage.getItem('company');
     }else {
-      this.companyname = this.globals.company;
+      this.companyname = localStorage.getItem('company_Name');
     }
   }
 
@@ -284,7 +283,7 @@ emailTemplate ="";
     let sadmin_form = {
       "first_name" : this.formData.first_name,
       "last_name" : this.formData.last_name,
-      "company_name": localStorage.getItem('company'),
+      "company_name": this.companyname,
       "expiry_date": this.formData.expiry_date,
       "email_id": this.formData.email_id,
       "phone": this.formData.phone,
@@ -295,8 +294,7 @@ emailTemplate ="";
     this.authService.createUser(sadmin_form).subscribe((result)=>{
       console.log(result);
       if(result.status == 200){
-        swal.fire('Form Submitted', '', 'success').then((result) => {
-          /* Read more about isConfirmed, isDenied below */
+        swal.fire('', 'Created successfully', 'success').then((result) => {
           if (result.isConfirmed) {
             this.router.navigate(['/pages/manage-user']);
           }
@@ -304,12 +302,7 @@ emailTemplate ="";
       }
     },err=>{
       console.log(err)
-      swal.fire('Something went wrong', '', 'warning').then((result) => {
-        /* Read more about isConfirmed, isDenied below */
-        if (result.isConfirmed) {
-          this.router.navigate(['/pages/manage-user']);
-        }
-      })
+      swal.fire('Something went wrong', '', 'error')
     })
   }
 
@@ -318,7 +311,7 @@ emailTemplate ="";
     let admin_form = {
       "first_name" : this.formData.first_name,
       "last_name" : this.formData.last_name,
-      "company_name": localStorage.getItem('company'),
+      "company_name": this.companyname,
       "expiry_date": this.formData.expiry_date ? this.datapipe.transform(this.formData.expiry_date, 'yyyy-MM-dd') : "",
       "email_id": this.formData.email_id,
       "phone": this.formData.phone,
@@ -329,10 +322,15 @@ emailTemplate ="";
     this.authService.createUser(admin_form).subscribe((result)=>{
       console.log(result);
       if(result.status == 200){
-        this.router.navigate(['/pages/manage-user']);
+        swal.fire('', 'Created successfully', 'success').then((result) => {
+          if (result.isConfirmed) {
+            this.router.navigate(['/pages/manage-user']);
+          }
+        })
       }
     },err=>{
-      console.log(err)
+      console.log(err);
+      swal.fire('Something went wrong', '', 'warning')
     })
   }
 
@@ -340,7 +338,7 @@ emailTemplate ="";
     let recData = {
       "first_name" : this.formData.first_name,
       "last_name" : this.formData.last_name,
-      "company_name": localStorage.getItem('company'),
+      "company_name": this.companyname,
       "expiry_date": this.formData.expiry_date ? this.datapipe.transform(this.formData.expiry_date, 'yyyy-MM-dd') : "",
       "email_id": this.formData.email_id,
       "phone": this.formData.phone,
@@ -356,10 +354,15 @@ emailTemplate ="";
     this.authService.createUser(recData).subscribe((result)=>{
       console.log(result);
       if(result.status == 200){
-        this.router.navigate(['/pages/manage-user']);
+        swal.fire('', 'Created successfully', 'success').then((result) => {
+          if (result.isConfirmed) {
+            this.router.navigate(['/pages/manage-user']);
+          }
+        })
       }
     },err=>{
-      console.log(err)
+      console.log(err);
+      swal.fire('Something went wrong', '', 'error')
     })
   }
 
@@ -397,10 +400,10 @@ emailTemplate ="";
     formData.append("technology", JSON.stringify(this.con_technology));
     formData.append("emailTemplate", "");
     formData.append("otherInfo",JSON.stringify(this.con_otherInfo));
-     formData.append("role_type", localStorage.getItem('role'));
-     formData.append("role_id", localStorage.getItem('role'));
-      formData.append("company_name", this.companyname);
-      formData.append("resume_loc", this.resume);
+    formData.append("role_type", localStorage.getItem('role'));
+    formData.append("role_id", localStorage.getItem('role'));
+    formData.append("company_name", this.companyname);
+    formData.append("resume_loc", this.resume);
     // formData.append("first_name", this.con_generalInfo[0].first_name);
     // formData.append("last_name", this.con_generalInfo[0].last_name);
     // formData.append("company_name", this.companyname);
@@ -442,7 +445,11 @@ emailTemplate ="";
       console.log(res);
       if(res.body.status == 'success'){
         this.resetForm()
-        swal.fire('','User Created','success')
+        swal.fire('', 'Created successfully', 'success').then((result) => {
+          if (result.isConfirmed) {
+            this.router.navigate(['/pages/manage-user']);
+          }
+        })
       }else if(res.body.status == 'Failed'){
         swal.fire('','User Already Exists!','error')
       }
@@ -459,7 +466,7 @@ emailTemplate ="";
         "rate" : "",
         "expiry_date" : null
     }]
-  
+
     this.con_contactInfo = [{
       "email_id":"",
       "phone":"",
@@ -469,7 +476,7 @@ emailTemplate ="";
       "zipcode" : "",
       "city" : "",
     }]
-  
+
     this.con_technology = [
       {
         "id": 1,
@@ -487,10 +494,10 @@ emailTemplate ="";
       }
     ]
     //con_technology  =[]
-  
-  
-    
-  
+
+
+
+
     this.con_otherInfo = [{
       "email_template" : "",
       "DL_copy" : "",
@@ -502,7 +509,7 @@ emailTemplate ="";
       "visa_valid_to": null,
       "comments":"",
     }]
-  
+
   }
 
 }

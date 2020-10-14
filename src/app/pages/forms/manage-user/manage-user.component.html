@@ -40,7 +40,7 @@
                     <span class="slider round"></span>
                   </label>
                   <label class="switch" *ngIf="(data.role_id == '3') || (data.role_id == '4')">
-                    <input type="checkbox" checked>
+                    <input type="checkbox" [checked]="data.bot_status == 1" (change)="onChange(data)">
                     <span class="slider round"></span>
                   </label>
                 </td>
@@ -64,7 +64,7 @@
                     <span class="slider round"></span>
                   </label>
                   <label class="switch" *ngIf="(data.role_id == '3') || (data.role_id == '4')">
-                    <input type="checkbox" checked>
+                    <input type="checkbox" [checked]="data.bot_status == 1" (change)="onChange(data)">
                     <span class="slider round"></span>
                   </label>
                 </td>
@@ -88,7 +88,7 @@
                     <span class="slider round"></span>
                   </label>
                   <label class="switch" *ngIf="(data.role_id == '3') || (data.role_id == '4')">
-                    <input type="checkbox" checked>
+                    <input type="checkbox" [checked]="data.bot_status == 1" (change)="onChange(data)">
                     <span class="slider round"></span>
                   </label>
                 </td>

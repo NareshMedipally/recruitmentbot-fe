@@ -40,11 +40,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   userMenu = [  {
                   title: 'Reset Password',
-                  url: '/pages/reset-pwd'
+                  link: '/pages/reset-pwd'
                 },
                 {
                   title: 'Log out',
-                  url: 'login'
+                  link: 'login'
                 }
               ];
 

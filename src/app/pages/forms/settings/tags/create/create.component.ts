@@ -46,16 +46,27 @@ export class CreateComponent implements OnInit {
     let tagData = {
       "tag_name": this.tags.tag_name,
       "tag_desc": this.tags.tag_desc,
-      "tag_type": this.tagType,
-      "company_name": this.globals.company,
-      "created_user": this.globals.email
+      "tag_type": this.tech[0].value,
+      "company_name": localStorage.getItem('company_Name'),
+      "created_user": localStorage.getItem('email_id')
     }
     console.log(tagData);
     this.authService.postTags(tagData).subscribe((res)=>{
       console.log(res);
       if(res.body.status == 'success'){
-        this.router.navigate(['/pages/tags']);
-      }else if(res.body.status == 'failed!') {
+        swal.fire({
+          text: 'Created successfully',
+          icon: 'success',
+          showDenyButton: false,
+          showCancelButton: false,
+          confirmButtonText: `Ok`,
+        }).then((result) => {
+          /* Read more about isConfirmed, isDenied below */
+          if (result.isConfirmed) {
+            this.router.navigate(['/pages/tags']);
+          }
+        })
+      }else if(res.body.status == 'failed') {
         swal.fire('','Something went wrong!','error')
       }
     },err=>{
@@ -65,7 +76,7 @@ export class CreateComponent implements OnInit {
 
   getData(){
     this.globals.showLoading('');
-    this.authService.getTags(this.globals.company).subscribe((result)=>{
+    this.authService.getTags(localStorage.getItem('company_Name')).subscribe((result)=>{
       console.log(result);
       this.globals.hideLoading('');
     },err=>{

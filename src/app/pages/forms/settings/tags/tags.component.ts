@@ -23,7 +23,7 @@ export class TagsComponent implements OnInit {
 
   getData(){
     this.globals.showLoading('');
-    this.authService.getTags(this.globals.company).subscribe((result)=>{
+    this.authService.getTags(localStorage.getItem('company_Name')).subscribe((result)=>{
       console.log(result.body.fields);
       this.data = result.body.fields;
       this.globals.hideLoading('');
@@ -51,19 +51,25 @@ export class TagsComponent implements OnInit {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonText: 'Delete'
     }).then((result) => {
       if (result.isConfirmed) {
         this.authService.DeleteTag(data.tag_id).subscribe((result)=>{
           console.log(result);
-          swal.fire(
-            'Deleted!',
-            'Your file has been deleted.',
-            'success'
-          )
-          // this.getData();
+          swal.fire({
+            text: 'Deleted successfully',
+            icon: 'success',
+            showDenyButton: false,
+            showCancelButton: false,
+            confirmButtonText: `Ok`,
+          }).then((result) => {
+            if (result.isConfirmed) {
+              this.getData();
+            }
+          })
         },err => {
-          console.log(err)
+          console.log(err);
+          swal.fire('','Something went wrong!','error');
         })
       }
     })

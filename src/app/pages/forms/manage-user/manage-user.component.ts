@@ -74,7 +74,7 @@ export class ManageUserComponent implements OnInit {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonText: 'Delete'
     }).then((result) => {
       if (result.isConfirmed) {
         this.authService.deleteCompany(data.correl_id).subscribe((result)=>{
@@ -83,13 +83,49 @@ export class ManageUserComponent implements OnInit {
             'Deleted!',
             'Your file has been deleted.',
             'success'
-          )
-          this.getCompanies();
+          ).then((result) => {
+            if (result.isConfirmed) {
+              this.getCompanies();
+            }
+          })
         },err => {
           console.log(err)
         })
       }
     })
+  }
+
+  onChange(item){
+    console.log(item);
+    if(item.bot_status == 0 || item.bot_status == null){
+      let data = {
+        "bot_status": 1,
+        "email_id": item.email_id
+      };
+      console.log(data)
+      this.authService.botStatus(data).subscribe((res)=>{
+        console.log(res);
+        swal.fire('', 'Updated successfully!', 'success').then((result) => {
+          if (result.isConfirmed) {
+            this.getCompanies();
+          }
+        })
+      })
+    }else if(item.bot_status == 1){
+      let data = {
+        "bot_status": 0,
+        "email_id": item.email_id
+      };
+      console.log(data)
+      this.authService.botStatus(data).subscribe((res)=>{
+        console.log(res);
+        swal.fire('', 'Updated successfully!', 'success').then((result) => {
+          if (result.isConfirmed) {
+            this.getCompanies();
+          }
+        })
+      })
+    }
   }
 
 }

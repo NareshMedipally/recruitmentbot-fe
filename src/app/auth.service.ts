@@ -111,6 +111,17 @@ export class AuthService {
     }
   }
 
+  botStatus(data){
+    this.getToken();
+    if(this.AccessToken) {
+      var headersForAPI = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*', 'Authorization': 'Bearer ' + this.AccessToken });
+      headersForAPI.append("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
+      let url =  this.baseUrl + '/botstatus';
+      console.log(url);
+      return this.http.put<any>(url,data, { headers: headersForAPI, observe: 'response' });
+    }
+  }
+
   getTags(id){
     this.getToken();
     if(this.AccessToken) {

@@ -62,17 +62,29 @@ export class UpdateTagsComponent implements OnInit {
   }
 
   saveTag(){
-    this.globals.showLoading('');
     let tagdata = {
       "tag_name": this.tags.tag_name,
       "tag_desc": this.tags.tag_desc,
       "tag_type": this.tags.tag_type,
     }
     console.log(tagdata);
+    this.globals.showLoading('');
     this.authService.UpdateTag(this.route.snapshot.params.id,tagdata).subscribe((res)=>{
       console.log(res);
       if(res.body.status == 'Success') {
-        this.router.navigate(['/pages/tags']);
+        this.globals.hideLoading('');
+        swal.fire({
+          text: 'Updated successfully',
+          icon: 'success',
+          showDenyButton: false,
+          showCancelButton: false,
+          confirmButtonText: `Ok`,
+        }).then((result) => {
+          /* Read more about isConfirmed, isDenied below */
+          if (result.isConfirmed) {
+            this.router.navigate(['/pages/tags']);
+          }
+        })
       }
     },err => {
       swal.fire('','Something went wrong!','error');
