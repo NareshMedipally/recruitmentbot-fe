@@ -443,13 +443,13 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label  class="label">Resume</label>
-                  <input type="file"  class="form-control" fullWidth (change)="onFileChange($event)">
+                  <input type="file"  class="form-control" fullWidth name="resume_loc_{{obj.id}}"  (change)="onFileChange('resume',$event,i)">
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <label  class="label">Certification</label>
-                  <input type="file"  class="form-control" fullWidth name="certificate_loc_{{obj.id}}" [(ngModel)]="obj.certificate_loc" >
+                  <input type="file"  class="form-control" fullWidth name="certificate_loc_{{obj.id}}"   (change)="onFileChange('certificate',$event,i)">
                 </div>
               </div>
 
@@ -566,7 +566,7 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <label  class="label">Visa Copy</label>
-                      <input type="file" (change)="readFile($event)"  class="form-control" fullWidth>
+                      <input type="file"  (change)="onFileChange('visa',$event,'')"  class="form-control" fullWidth>
                     </div>
                   </div>
                   <div class="col-md-12">
@@ -601,7 +601,7 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <label  class="label">Driving License Copy</label>
-                      <input type="file"  (change)="drivFile($event)" class="form-control" fullWidth>
+                      <input type="file"  (change)="onFileChange('driving_license',$event,'')"class="form-control" fullWidth>
                     </div>
                   </div>
                   <div class="col-md-12">

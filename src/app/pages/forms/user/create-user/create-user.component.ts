@@ -35,10 +35,10 @@ export class CreateUserComponent implements OnInit {
   emailTemplate ="";
   AccessToken:string = "";
   fileToUpload;
-  certificate;
-  visacopy;
-  drivingcopy;
-  resume;
+  certificate:any =[]
+  visacopy:any
+  drivingcopy:any;
+  resume:any =[]
 
   selectedCars = [3];
     cars = [
@@ -366,13 +366,29 @@ export class CreateUserComponent implements OnInit {
     })
   }
 
-  onFileChange(event){
+  onFileChange(source,event,index?){
+    console.log("source",source)
+    let file = ''
     if (event.target.files.length > 0) {
-      const file = event.target.files[0];
-      this.fileToUpload = file;
-      this.resume = this.fileToUpload;
-    }
+      console.log('here3');
+      file = event.target.files[0];
+      if(source == "resume")
+      this.resume.push(file)
+     else if(source == "certificate"){
+      console.log('here');
+     this.certificate.push(file)
+  } else if(source == "driving_license"){
+    this.drivingcopy = file
+  }else if(source == "visa"){
+    this.visacopy = file
   }
+}
+  console.log('resume',this.resume)
+  console.log('certificate',this.certificate)
+  console.log('driving_license',this.drivingcopy)
+  console.log('visa',this.visacopy)
+
+}
 
   gettags(){
     this.globals.showLoading('');
@@ -403,7 +419,25 @@ export class CreateUserComponent implements OnInit {
     formData.append("role_type", localStorage.getItem('role'));
     formData.append("role_id", localStorage.getItem('role'));
     formData.append("company_name", this.companyname);
-    formData.append("resume_loc", this.resume);
+    //formData.append("resume_loc", this.resume);
+    if(this.resume){
+      for(var x = 0; x<this.resume.length; x++) {
+        formData.append("resume", this.resume[x]);
+    }
+      
+    }
+    if(this.certificate){
+      for(var x = 0; x<this.certificate.length; x++) {
+        formData.append("certificate", this.certificate[x]);
+    }
+      
+    }
+    if(this.visacopy){
+      formData.append("visa", this.visacopy);
+    }
+    if(this.drivingcopy){
+      formData.append("driving_license", this.drivingcopy);
+    }
     // formData.append("first_name", this.con_generalInfo[0].first_name);
     // formData.append("last_name", this.con_generalInfo[0].last_name);
     // formData.append("company_name", this.companyname);
@@ -457,6 +491,10 @@ export class CreateUserComponent implements OnInit {
   }
 
   resetForm(){
+    this.resume = [];
+    this.certificate = [];
+    this.visacopy = "";
+    this.drivingcopy = "";
     this.con_generalInfo  = [
       {
         "first_name" : "",
