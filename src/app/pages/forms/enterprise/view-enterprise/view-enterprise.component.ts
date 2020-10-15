@@ -24,8 +24,8 @@ export class ViewEnterpriseComponent implements OnInit {
     "address_line_2": "",
     "zipcode": "",
     "city": "",
-    "valid_from": "",
-    "valid_to": "",
+    "valid_from": null,
+    "valid_to": null,
     "comments": ""
   }
 
@@ -46,8 +46,8 @@ export class ViewEnterpriseComponent implements OnInit {
         "address_line_2": result.body.aresult[0].address_line_2,
         "zipcode": result.body.aresult[0].zipcode,
         "city": result.body.aresult[0].city,
-        "valid_from": result.body.fields[0].valid_from ? this.datapipe.transform(result.body.fields[0].valid_from, 'dd-MM-yyyy') : "",
-        "valid_to": result.body.fields[0].valid_to ? this.datapipe.transform(result.body.fields[0].valid_to, 'dd-MM-yyyy') : "",
+        "valid_from": result.body.fields[0].valid_from ? this.datapipe.transform(result.body.fields[0].valid_from, 'yyyy-MM-dd') : "",
+        "valid_to": result.body.fields[0].valid_to ? this.datapipe.transform(result.body.fields[0].valid_to, 'yyyy-MM-dd') : "",
         "comments": result.body.fields[0].comments
       };
       console.log(this.company);

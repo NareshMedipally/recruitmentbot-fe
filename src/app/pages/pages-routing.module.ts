@@ -25,6 +25,7 @@ import { TagsComponent } from './forms/settings/tags/tags.component';
 import { CreateComponent } from './forms/settings/tags/create/create.component';
 import { ViewEnterpriseComponent } from './forms/enterprise/view-enterprise/view-enterprise.component';
 import { UpdateTagsComponent } from './forms/settings/tags/update-tags/update-tags.component';
+import { UpdateEnterpriseComponent } from './forms/enterprise/update-enterprise/update-enterprise.component';
 
 const routes: Routes = [{
   path: '',
@@ -53,6 +54,10 @@ const routes: Routes = [{
     {
       path: 'view-enterprise/:id',
       component: ViewEnterpriseComponent,
+    },
+    {
+      path: 'update-enterprise/:id',
+      component: UpdateEnterpriseComponent,
     },
     {
       path: 'create-user',

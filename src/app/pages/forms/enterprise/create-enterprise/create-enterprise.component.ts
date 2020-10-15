@@ -26,8 +26,8 @@ export class CreateEnterpriseComponent implements OnInit {
     "address_line_2": "",
     "zipcode": "",
     "city": "",
-    "valid_from": "",
-    "valid_to": "",
+    "valid_from": null,
+    "valid_to": null,
     "comments": ""
   }
 

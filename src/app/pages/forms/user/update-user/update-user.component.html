@@ -76,7 +76,7 @@
           <div class="col-md-6">
             <div class="form-group">
               <label for="exampleInputEmail1" class="label">Expiry Date</label>
-              <input type="text" class="form-control" fullWidth id="expiry-date-1" placeholder="" name="expiry_date" [disabled]="dateVisible" [(ngModel)]="formData.expiry_date" #expiry_date="ngModel" bsDatepicker placement="bottom-left" [bsValue]="formData.expiry_date" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-dark-blue'}">
+              <input type="text" class="form-control" fullWidth id="expiry-date-1" placeholder="" name="expiry_date" [disabled]="dateVisible" [(ngModel)]="formData.expiry_date" #expiry_date="ngModel" bsDatepicker placement="bottom-left" [bsValue]="formData.expiry_date" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}">
             </div>
           </div>
           <div class="col-md-6">
@@ -180,7 +180,7 @@
           <div class="col-md-6">
             <div class="form-group">
               <label for="exampleInputEmail1" class="label">Expiry Date</label>
-              <input type="text" class="form-control" fullWidth id="expiry-date" [disabled]="dateVisible" name="expiry_date" [(ngModel)]="formData.expiry_date" #expiry_date="ngModel" bsDatepicker placement="bottom-left" [bsValue]="formData.expiry_date" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-dark-blue'}">
+              <input type="text" class="form-control" fullWidth id="expiry-date" [disabled]="dateVisible" name="expiry_date" [(ngModel)]="formData.expiry_date" #expiry_date="ngModel" bsDatepicker placement="bottom-left" [bsValue]="formData.expiry_date" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}">
             </div>
           </div>
           <div class="col-md-12">

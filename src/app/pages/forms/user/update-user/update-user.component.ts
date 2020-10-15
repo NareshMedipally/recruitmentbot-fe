@@ -81,8 +81,11 @@ export class UpdateUserComponent implements OnInit {
       console.log(sData);
       this.authService.updateCompany(this.route.snapshot.params.id, sData).subscribe((result)=>{
         console.log(result);
-        swal.fire('Record updated!', '', 'success')
-        this.router.navigate(['/pages/manage-user']);
+        swal.fire('', 'Updated successfully', 'success').then((result) => {
+          if (result.isConfirmed) {
+            this.router.navigate(['/pages/manage-user']);
+          }
+        })
       },err=> {
         console.log(err);
         swal.fire('Oops...', 'Something went wrong!', 'error')
@@ -103,8 +106,11 @@ export class UpdateUserComponent implements OnInit {
       console.log(aData);
       this.authService.updateCompany(this.route.snapshot.params.id, aData).subscribe((result)=>{
         console.log(result);
-        swal.fire('Record updated!', '', 'success')
-        this.router.navigate(['/pages/manage-user']);
+        swal.fire('', 'Updated successfully', 'success').then((result) => {
+          if (result.isConfirmed) {
+            this.router.navigate(['/pages/manage-user']);
+          }
+        })
       },err=> {
         console.log(err);
         swal.fire('Oops...', 'Something went wrong!', 'error')
@@ -130,8 +136,11 @@ export class UpdateUserComponent implements OnInit {
       console.log(aData);
       this.authService.updateCompany(this.route.snapshot.params.id, aData).subscribe((result)=>{
         console.log(result);
-        swal.fire('Record updated!', '', 'success')
-        this.router.navigate(['/pages/manage-user']);
+        swal.fire('', 'Updated successfully', 'success').then((result) => {
+          if (result.isConfirmed) {
+            this.router.navigate(['/pages/manage-user']);
+          }
+        })
       },err=> {
         console.log(err);
         swal.fire('Oops...', 'Something went wrong!', 'error')

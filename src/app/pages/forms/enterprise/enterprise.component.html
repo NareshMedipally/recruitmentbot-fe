@@ -28,7 +28,7 @@
                 <td>{{item.phone}}</td>
                 <td>
                   <a routerLink="/pages/view-enterprise/{{item.correl_id}}"><i class="fa fa-eye" aria-hidden="true" style="margin-right: 5px; color: #212529"></i></a>
-                  <!-- <i class="fa fa-pencil" aria-hidden="true" style="margin-right:5px;font-size:18px; color: #212529"></i> -->
+                  <a routerLink="/pages/update-enterprise/{{item.correl_id}}"><i class="fa fa-pencil" aria-hidden="true" style="margin-right:5px;font-size:18px; color: #212529"></i></a>
                   <a (click)="openDelete(item)"><i class="fa fa-trash" aria-hidden="true"  style="font-size:18px;color: #212529"></i></a>
                   </td>
               </tr>
