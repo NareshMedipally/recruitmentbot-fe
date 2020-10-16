@@ -10,6 +10,7 @@ import { ServicesService } from 'app/services.service';
 import { AuthService } from 'app/auth.service';
 import { DatePipe } from '@angular/common';
 
+
 @Component({
   selector: 'ngx-create-user',
   templateUrl: './create-user.component.html',
@@ -414,7 +415,7 @@ export class CreateUserComponent implements OnInit {
     formData.append("generalInfo", JSON.stringify(this.con_generalInfo));
     formData.append("contactInfo", JSON.stringify(this.con_contactInfo));
     formData.append("technology", JSON.stringify(this.con_technology));
-    formData.append("emailTemplate", "");
+    formData.append("emailTemplate", this.emailTemplate);
     formData.append("otherInfo",JSON.stringify(this.con_otherInfo));
     formData.append("role_type", localStorage.getItem('role'));
     formData.append("role_id", localStorage.getItem('role'));
@@ -494,7 +495,7 @@ export class CreateUserComponent implements OnInit {
     this.resume = [];
     this.certificate = [];
     this.visacopy = "";
-    this.drivingcopy = "";
+    this.drivingcopy = ""
     this.con_generalInfo  = [
       {
         "first_name" : "",
@@ -549,5 +550,10 @@ export class CreateUserComponent implements OnInit {
     }]
 
   }
+  getemailContent(val){
+    console.log("val",val)
+    this.emailTemplate = val
+  }
+
 
 }

@@ -546,7 +546,8 @@
               <div class="col-md-12">
                 <label  class="label">Email Template</label>
                 <div class="form-group">
-                  <ngx-tiny-mce [(ngModel)]="emailTemplate" ></ngx-tiny-mce>
+                  <ngx-tiny-mce (editorKeyup)="getemailContent($event)" ></ngx-tiny-mce>
+                  
                 </div>
               </div>
             </div>
