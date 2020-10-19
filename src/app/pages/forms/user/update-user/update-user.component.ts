@@ -73,6 +73,7 @@ export class UpdateUserComponent implements OnInit {
       "certificate_loc": ""
     }
   ]
+  content = '<h1>Hello</h1>';
 
   constructor(private datapipe:DatePipe, private router: Router, private route: ActivatedRoute, private http: HttpClient, private authService: AuthService, private globals: ServicesService) {
     this.getRecLoc();
@@ -189,6 +190,11 @@ export class UpdateUserComponent implements OnInit {
     },err=>{
       swal.fire('','Something went wrong!','error')
     })
+  }
+
+  getemailContent(val){
+    console.log("val",val)
+    this.formData.email_template = val
   }
 
   updateCompany(type){

@@ -14,6 +14,7 @@ import swal from 'sweetalert2';
 export class ViewUserComponent implements OnInit {
 
   recLoc: any[] =[];
+  visa: any[] =[];
   data: any[] = [];
   dataType: any;
   dateVisible = true;
@@ -73,6 +74,7 @@ export class ViewUserComponent implements OnInit {
   constructor(private datapipe:DatePipe, private route: ActivatedRoute, private router: ActivatedRoute, private http: HttpClient, private authService: AuthService, private globals: ServicesService) {
     this.getUser();
     this.getRecLoc();
+    this.visaStatus();
   }
 
   ngOnInit(): void {
@@ -211,6 +213,13 @@ export class ViewUserComponent implements OnInit {
     },err=>{
       swal.fire('','Something went wrong!','error')
     })
+  }
+
+  visaStatus(){
+    this.visa = [
+      {"id":0,"title":"Active","value":"Active"},
+      {"id":1,"title":"Inactive","value":"Inactive"},
+    ]
   }
 
 }

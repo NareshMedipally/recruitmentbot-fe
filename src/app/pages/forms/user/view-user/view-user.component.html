@@ -336,8 +336,8 @@
         <div class="col-md-6">
           <div class="form-group">
             <label  class="label">Technology Tags</label>
-            <ng-select [multiple]="true" name="tags" [(ngModel)]="obj.tags" >
-              <ng-option *ngFor="let tag of data" [value]="tag.tag_name" [disabled]="tag.disabled">{{tag.tag_name}}</ng-option>
+            <ng-select [multiple]="true" name="tags" [(ngModel)]="obj.tags" [disabled]="true">
+              <ng-option *ngFor="let tag of data" [value]="tag.tag_name">{{tag.tag_name}}</ng-option>
             </ng-select>
           </div>
         </div>
@@ -365,7 +365,7 @@
         <div class="col-md-12">
           <label >Email Template</label>
           <div class="form-group">
-            <ngx-tiny-mce disabled></ngx-tiny-mce>
+            <ngx-tiny-mce [innerHtml]="formData.email_template"></ngx-tiny-mce>
           </div>
         </div>
       </div>
@@ -384,10 +384,9 @@
             <div class="col-md-12">
               <div class="form-group">
                 <label  class="label">Visa Status</label>
-                <select fullWidth class="form-control" name="visa_status" disabled>
+                <select fullWidth class="form-control" name="visa_status" [(ngModel)]="formData.visa_status" disabled>
                   <option value="">Select</option>
-                  <option value="Active">Active</option>
-                  <option value="Inactive">Inactive</option>
+                  <option *ngFor="let item of visa" value="{{item.value}}">{{item.title}}</option>
                 </select>
               </div>
             </div>
@@ -435,7 +434,7 @@
         <div class="col-md-12 mt-2">
           <div class="form-group">
             <label  class="label">Comments</label>
-            <textarea rows=4 class="form-control" fullWidth id="inputEmail" placeholder="Enter Comments" name="comments" disabled></textarea>
+            <textarea rows=4 class="form-control" fullWidth id="inputEmail" placeholder="Enter Comments" name="comments" [(ngModel)]="formData.comments" disabled></textarea>
           </div>
         </div>
         <!-- <div class="col-md-12 text-center">

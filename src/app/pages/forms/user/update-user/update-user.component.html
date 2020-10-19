@@ -382,7 +382,7 @@
         <div class="col-md-12">
           <label >Email Template</label>
           <div class="form-group">
-            <ngx-tiny-mce></ngx-tiny-mce>
+            <ngx-tiny-mce (editorKeyup)="getemailContent($event)" [innerHtml]="formData.email_template"></ngx-tiny-mce>
           </div>
         </div>
       </div>
@@ -451,7 +451,7 @@
         <div class="col-md-12 mt-2">
           <div class="form-group">
             <label  class="label">Comments</label>
-            <textarea rows=4 class="form-control" fullWidth id="inputEmail" placeholder="Enter Comments" name="comments" ></textarea>
+            <textarea rows=4 class="form-control" fullWidth id="inputEmail" placeholder="Enter Comments" name="comments" [(ngModel)]="formData.comments"></textarea>
           </div>
         </div>
         <div class="col-md-12 text-center">
