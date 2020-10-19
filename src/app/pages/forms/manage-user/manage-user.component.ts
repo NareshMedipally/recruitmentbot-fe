@@ -79,17 +79,20 @@ export class ManageUserComponent implements OnInit {
       if (result.isConfirmed) {
         this.authService.deleteCompany(data.correl_id).subscribe((result)=>{
           console.log(result);
-          swal.fire(
-            'Deleted!',
-            'Your file has been deleted.',
-            'success'
-          ).then((result) => {
-            if (result.isConfirmed) {
-              this.getCompanies();
-            }
-          })
+          if(result.body.status == 'Success'){
+            swal.fire(
+              'Deleted!',
+              'Your file has been deleted.',
+              'success'
+            ).then((result) => {
+              if (result.isConfirmed) {
+                this.getCompanies();
+              }
+            })
+          }
         },err => {
-          console.log(err)
+          console.log(err);
+          swal.fire('','something went wrong!','error');
         })
       }
     })

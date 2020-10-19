@@ -99,7 +99,7 @@
     <!--Profile of Recruiter-->
     <nb-card *ngIf="Role_id == '3'">
       <nb-card-body>
-        <form class="form-horizontal" style="margin-top:30px;">
+        <form class="form-horizontal" style="margin-top:30px;" #f="ngForm">
           <div class="form-group row">
             <label for="inputEmail3" class="label col-sm-3 form-control-label">Company Name</label>
             <div class="col-sm-9">
@@ -139,36 +139,61 @@
           <div class="form-group row">
             <label for="inputEmail3" class="label col-sm-3 form-control-label">Primary Email Address</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" fullWidth [(ngModel)]="profile.primary_email_id" name="primary_email_id">
+              <input type="text" class="form-control" fullWidth [(ngModel)]="profile.primary_email_id" name="primary_email_id" #primary_email_id="ngModel" email>
+              <ng-container *ngIf="primary_email_id.touched">
+                <p class="error-message text-danger" *ngIf="primary_email_id.errors?.email">
+                  Email should be the real one!
+                </p>
+              </ng-container>
             </div>
           </div>
           <div class="form-group row">
             <label for="inputEmail3" class="label col-sm-3 form-control-label">Generic Email Address</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" fullWidth [(ngModel)]="profile.generic_email_id" name="generic_email_id">
+              <input type="text" class="form-control" fullWidth [(ngModel)]="profile.generic_email_id" name="generic_email_id" #generic_email_id="ngModel" email>
+              <ng-container *ngIf="generic_email_id.touched">
+                <p class="error-message text-danger" *ngIf="generic_email_id.errors?.email">
+                  Email should be the real one!
+                </p>
+              </ng-container>
             </div>
           </div>
           <div class="form-group row">
             <label for="inputEmail3" class="label col-sm-3 form-control-label">Personal Email Address</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" fullWidth [(ngModel)]="profile.personal_email_id" name="personal_email_id">
+              <input type="text" class="form-control" fullWidth [(ngModel)]="profile.personal_email_id" name="personal_email_id" #personal_email_id="ngModel" email>
+              <ng-container *ngIf="personal_email_id.touched">
+                <p class="error-message text-danger" *ngIf="personal_email_id.errors?.email">
+                  Email should be the real one!
+                </p>
+              </ng-container>
             </div>
           </div>
           <div class="form-group row">
             <label for="inputEmail3" class="label col-sm-3 form-control-label">CC Email Address</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" fullWidth [(ngModel)]="profile.cc_email_id" name="cc_email_id">
+              <input type="text" class="form-control" fullWidth [(ngModel)]="profile.cc_email_id" name="cc_email_id" #cc_email_id="ngModel" email>
+              <ng-container *ngIf="cc_email_id.touched">
+                <p class="error-message text-danger" *ngIf="cc_email_id.errors?.email">
+                  Email should be the real one!
+                </p>
+              </ng-container>
             </div>
           </div>
           <div class="form-group row">
             <label for="inputEmail3" class="label col-sm-3 form-control-label">BCC Email Address</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" fullWidth [(ngModel)]="profile.bcc_email_id" name="bcc_email_id">
+              <input type="text" class="form-control" fullWidth [(ngModel)]="profile.bcc_email_id" name="bcc_email_id" #bcc_email_id="ngModel" email>
+              <ng-container *ngIf="bcc_email_id.touched">
+                <p class="error-message text-danger" *ngIf="bcc_email_id.errors?.email">
+                  Email should be the real one!
+                </p>
+              </ng-container>
             </div>
           </div>
           <div class="form-group row text-center">
             <div class="col-sm-12">
-              <button type="submit" class="btn btn-primary w-10" (click)="updateRecruiter()" style="margin-right: 10px;">SUBMIT</button>
+              <button type="submit" class="btn btn-primary w-10" (click)="updateRecruiter()" [disabled]="!f.valid || f.invalid" style="margin-right: 10px;">SUBMIT</button>
               <button routerLink="/pages/manage-user" class="btn btn-danger w-10">CANCEL</button>
             </div>
           </div>

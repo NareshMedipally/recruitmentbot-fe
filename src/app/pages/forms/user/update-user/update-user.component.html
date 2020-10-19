@@ -1,5 +1,5 @@
+<h5 style="color:#2e3192;">UPDATE USER</h5>
 <nb-card>
-  <nb-card-header>Update User</nb-card-header>
   <nb-card-body>
     <div *ngIf="dataType == 'Super Admin'" class="" style=" background-color: white; border: 1px white;">
       <form #form="ngForm" (ngSubmit)="updateCompany('Super Admin')">
@@ -237,7 +237,7 @@
         <div class="col-md-4">
           <div class="form-group">
             <label  class="label">Expiry Date</label>
-            <input type="text" class="form-control" fullWidth name="expiry_date" [(ngModel)]="formData.expiry_date" disabled>
+            <input type="text" class="form-control" fullWidth name="expiry_date" [(ngModel)]="formData.expiry_date" [disabled]="dateVisible">
           </div>
         </div>
         <div class="col-md-12">
@@ -342,7 +342,12 @@
         <div class="col-md-6">
           <div class="form-group">
             <label  class="label">Marketing Linkedin Profile</label>
-            <input type="url" class="form-control" fullWidth name="linkedIn_url" [(ngModel)]="obj.linkedIn_url">
+            <input type="url" pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$" class="form-control" fullWidth name="linkedIn_url" [(ngModel)]="obj.linkedIn_url" #linkedIn_url="ngModel">
+            <ng-container *ngIf="linkedIn_url.touched ">
+              <p class="error-message text-danger" *ngIf="linkedIn_url.errors?.pattern">
+                Allow type http or www!
+              </p>
+            </ng-container>
           </div>
         </div>
         <div class="col-md-6">
