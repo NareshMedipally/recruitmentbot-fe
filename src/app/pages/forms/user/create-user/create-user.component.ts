@@ -431,12 +431,8 @@ export class CreateUserComponent implements OnInit {
     formData.append("generalInfo", JSON.stringify(this.con_generalInfo));
     formData.append("contactInfo", JSON.stringify(this.con_contactInfo));
     formData.append("technology", JSON.stringify(this.con_technology));
-<<<<<<< Updated upstream
-    formData.append("emailTemplate", this.emailTemplate);
-=======
     // formData.append("email_template", this.emailTemplate);
     formData.append("email_template", this.emailTemplate);
->>>>>>> Stashed changes
     formData.append("otherInfo",JSON.stringify(this.con_otherInfo));
     formData.append("role_type", localStorage.getItem('role'));
     formData.append("role_id", localStorage.getItem('role'));
@@ -571,15 +567,9 @@ export class CreateUserComponent implements OnInit {
     }]
 
   }
-  getemailContent(val){
-    console.log("val",val)
-    this.emailTemplate = val
-  }
-
 
   getemailContent(val){
     console.log("val",val)
     this.emailTemplate = val
   }
-
 }

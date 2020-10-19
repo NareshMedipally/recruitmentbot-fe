@@ -28,7 +28,7 @@
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label for="inputLastName" class="label">Website Name</label>
-                    <input type="url" pattern="https?://.+" class="form-control" fullWidth placeholder="" name="website_url" [(ngModel)]="entData.website_url" #website_url="ngModel" required>
+                    <input type="url" pattern="https?://.+" class="form-control" fullWidth placeholder="" name="website_url" [(ngModel)]="entData.website_url" #website_url="ngModel">
                     <ng-container *ngIf="website_url.touched ">
                       <p class="error-message text-danger" *ngIf="website_url.errors?.pattern">
                         Invalid URL!
@@ -39,7 +39,7 @@
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label for="inputFirstName" class="label">LinkedIn Profile</label>
-                    <input type="url" pattern="https?://.+" class="form-control" fullWidth  placeholder="" name="linkedIn_url" [(ngModel)]="entData.linkedIn_url" #linkedIn_url="ngModel" required>
+                    <input type="url" pattern="https?://.+" class="form-control" fullWidth  placeholder="" name="linkedIn_url" [(ngModel)]="entData.linkedIn_url" #linkedIn_url="ngModel">
                     <ng-container *ngIf="linkedIn_url.touched ">
                       <p class="error-message text-danger" *ngIf="linkedIn_url.errors?.pattern">
                         Invalid URL!
