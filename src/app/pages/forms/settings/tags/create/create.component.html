@@ -9,7 +9,12 @@
           <div class="form-group row">
             <label for="inputEmail3" class="label col-sm-3 form-control-label">Name</label>
             <div class="col-sm-9">
-              <input type="email" class="form-control" fullWidth placeholder="Name" name="tag_name" [(ngModel)]="tags.tag_name" #tag_name="ngModel">
+              <input type="email" class="form-control" fullWidth placeholder="Name" name="tag_name" [(ngModel)]="tags.tag_name" #tag_name="ngModel" required>
+              <ng-container *ngIf="tag_name.touched ">
+                <p class="error-message text-danger" *ngIf="tag_name.errors?.required">
+                  Field can't be empty!
+                </p>
+              </ng-container>
             </div>
           </div>
           <!-- <div class="form-group row">
@@ -29,7 +34,7 @@
           </div>
           <div class="form-group row text-center">
             <div class="col-sm-12">
-              <button type="submit" class="btn btn-primary w-10" style="margin-right: 10px;">Submit</button>
+              <button type="submit" class="btn btn-primary w-10" [disabled]="!f.valid || f.invalid" style="margin-right: 10px;">Submit</button>
               <button routerLink="/pages/tags" class="btn btn-danger w-10">Cancel</button>
             </div>
           </div>

@@ -39,7 +39,8 @@ export class CreateUserComponent implements OnInit {
   certificate:any =[]
   visacopy:any
   drivingcopy:any;
-  resume:any =[]
+  resume:any =[];
+  expiryDate = new Date();
 
   selectedCars = [3];
     cars = [
@@ -117,8 +118,8 @@ export class CreateUserComponent implements OnInit {
     "email_id":"",
     "phone":"",
     "relocation":"",
-    "addressline1" : "",
-    "addressline2" : "",
+    "address_line_1" : "",
+    "address_line_2" : "",
     "zipcode" : "",
     "city" : "",
   }]
@@ -132,17 +133,13 @@ export class CreateUserComponent implements OnInit {
       "marketing_email_id" : "",
       "looking_for_job" : "",
       "subject_tag" : "",
-      "non_sub_tag" : "",
+      "non_subject_tag" : "",
       "linkedIn_url" : "",
       "tags" : "",
       "resume_loc" : "",
       "certificate_loc" : "",
     }
   ]
-  //con_technology  =[]
-
-
-
 
   con_otherInfo = [{
     "email_template" : "",
@@ -175,12 +172,19 @@ export class CreateUserComponent implements OnInit {
   }
 
   getCompanies() {
-    this.companies=[
-      {"id":0,"company":"BlueSpace","value":"BlueSpace"},
-      {"id":1,"company":"Company 1","value":"Company 1"},
-      {"id":2,"company":"Company 2","value":"Company 2"},
-      {"id":3,"company":"Company 3","value":"Company 3"},
-    ]
+    // this.companies=[
+    //   {"id":0,"company":"BlueSpace","value":"BlueSpace"},
+    //   {"id":1,"company":"Company 1","value":"Company 1"},
+    //   {"id":2,"company":"Company 2","value":"Company 2"},
+    //   {"id":3,"company":"Company 3","value":"Company 3"},
+    // ];
+    this.authService.getEntCompanies().subscribe((result)=>{
+      console.log(result.body.fields);
+      this.companies = result.body.fields;
+    },err => {
+      console.log(err);
+      swal.fire('','Something went wrong!','error');
+    })
   }
 
   getRoles(){
@@ -205,7 +209,7 @@ export class CreateUserComponent implements OnInit {
     console.log(value);
     this.superadmin = true;
     localStorage.setItem('company', this.selectedcompany);
-    if(this.selectedcompany == 'BlueSpace'){
+    if(this.selectedcompany == 'Bluespace'){
       this.roles=[
         {"id":0,"role":"Super Admin","value":1},
         {"id":1,"role":"Admin","value":2},
@@ -264,7 +268,7 @@ export class CreateUserComponent implements OnInit {
       "marketing_email_id" : "",
       "looking_for_job" : "",
       "subject_tag" : "",
-      "non_sub_tag" : "",
+      "non_subject_tag" : "",
       "linkedIn_url" : "",
       "tags" : "",
       "resume_loc" : "",
@@ -294,12 +298,14 @@ export class CreateUserComponent implements OnInit {
     console.log(sadmin_form);
     this.authService.createUser(sadmin_form).subscribe((result)=>{
       console.log(result);
-      if(result.status == 200){
+      if(result.body.status == 'success'){
         swal.fire('', 'Created successfully', 'success').then((result) => {
           if (result.isConfirmed) {
             this.router.navigate(['/pages/manage-user']);
           }
         })
+      }else if(result.body.desc == 'User Already Exists'){
+        swal.fire('', 'Email Address Already Exists!', 'error')
       }
     },err=>{
       console.log(err)
@@ -322,12 +328,14 @@ export class CreateUserComponent implements OnInit {
     console.log(admin_form);
     this.authService.createUser(admin_form).subscribe((result)=>{
       console.log(result);
-      if(result.status == 200){
+      if(result.body.status == 'success'){
         swal.fire('', 'Created successfully', 'success').then((result) => {
           if (result.isConfirmed) {
             this.router.navigate(['/pages/manage-user']);
           }
         })
+      }else if(result.body.desc == 'User Already Exists'){
+        swal.fire('', 'Email Address Already Exists!', 'error')
       }
     },err=>{
       console.log(err);
@@ -354,12 +362,14 @@ export class CreateUserComponent implements OnInit {
     console.log(recData);
     this.authService.createUser(recData).subscribe((result)=>{
       console.log(result);
-      if(result.status == 200){
+      if(result.body.status == 'success'){
         swal.fire('', 'Created successfully', 'success').then((result) => {
           if (result.isConfirmed) {
             this.router.navigate(['/pages/manage-user']);
           }
         })
+      }else if(result.body.desc == 'User Already Exists'){
+        swal.fire('', 'Email Address Already Exists!', 'error')
       }
     },err=>{
       console.log(err);
@@ -379,9 +389,11 @@ export class CreateUserComponent implements OnInit {
       console.log('here');
      this.certificate.push(file)
   } else if(source == "driving_license"){
-    this.drivingcopy = file
+    this.drivingcopy = file;
+    this.drivDisable = false;
   }else if(source == "visa"){
-    this.visacopy = file
+    this.visacopy = file;
+    this.visaDisable = false;
   }
 }
   console.log('resume',this.resume)
@@ -410,12 +422,21 @@ export class CreateUserComponent implements OnInit {
     console.log(this.emailTemplate)
     this.con_generalInfo[0].dob = this.con_generalInfo[0].dob ? this.datapipe.transform(this.con_generalInfo[0].dob, 'yyyy-MM-dd'): null
     this.con_generalInfo[0].expiry_date = this.con_generalInfo[0].expiry_date ? this.datapipe.transform(this.con_generalInfo[0].expiry_date, 'yyyy-MM-dd'): null
-    this.con_generalInfo[0]["created_user"] = this.globals.email;
+    this.con_otherInfo[0].visa_valid_from = this.con_otherInfo[0].visa_valid_from ? this.datapipe.transform(this.con_otherInfo[0].visa_valid_from, 'yyyy-MM-dd'): null
+    this.con_otherInfo[0].visa_valid_to = this.con_otherInfo[0].visa_valid_to ? this.datapipe.transform(this.con_otherInfo[0].visa_valid_to, 'yyyy-MM-dd'): null
+    this.con_otherInfo[0].DL_valid_from = this.con_otherInfo[0].DL_valid_from ? this.datapipe.transform(this.con_otherInfo[0].DL_valid_from, 'yyyy-MM-dd'): null
+    this.con_otherInfo[0].DL_valid_to = this.con_otherInfo[0].DL_valid_to ? this.datapipe.transform(this.con_otherInfo[0].DL_valid_to, 'yyyy-MM-dd'): null
+    this.con_generalInfo[0]["created_user"] = localStorage.getItem('email_id');
     const formData = new FormData();
     formData.append("generalInfo", JSON.stringify(this.con_generalInfo));
     formData.append("contactInfo", JSON.stringify(this.con_contactInfo));
     formData.append("technology", JSON.stringify(this.con_technology));
+<<<<<<< Updated upstream
     formData.append("emailTemplate", this.emailTemplate);
+=======
+    // formData.append("email_template", this.emailTemplate);
+    formData.append("email_template", this.emailTemplate);
+>>>>>>> Stashed changes
     formData.append("otherInfo",JSON.stringify(this.con_otherInfo));
     formData.append("role_type", localStorage.getItem('role'));
     formData.append("role_id", localStorage.getItem('role'));
@@ -425,13 +446,13 @@ export class CreateUserComponent implements OnInit {
       for(var x = 0; x<this.resume.length; x++) {
         formData.append("resume", this.resume[x]);
     }
-      
+
     }
     if(this.certificate){
       for(var x = 0; x<this.certificate.length; x++) {
         formData.append("certificate", this.certificate[x]);
     }
-      
+
     }
     if(this.visacopy){
       formData.append("visa", this.visacopy);
@@ -485,8 +506,8 @@ export class CreateUserComponent implements OnInit {
             this.router.navigate(['/pages/manage-user']);
           }
         })
-      }else if(res.body.status == 'Failed'){
-        swal.fire('','User Already Exists!','error')
+      }else if(res.body.desc == 'User Already Exists'){
+        swal.fire('', 'Email Address Already Exists!', 'error')
       }
     })
   }
@@ -510,8 +531,8 @@ export class CreateUserComponent implements OnInit {
       "email_id":"",
       "phone":"",
       "relocation":"",
-      "addressline1" : "",
-      "addressline2" : "",
+      "address_line_1" : "",
+      "address_line_2" : "",
       "zipcode" : "",
       "city" : "",
     }]
@@ -525,7 +546,7 @@ export class CreateUserComponent implements OnInit {
         "marketing_email_id" : "",
         "looking_for_job" : "",
         "subject_tag" : "",
-        "non_sub_tag" : "",
+        "non_subject_tag" : "",
         "linkedIn_url" : "",
         "tags" : "",
         "resume_loc" : "",
@@ -555,5 +576,10 @@ export class CreateUserComponent implements OnInit {
     this.emailTemplate = val
   }
 
+
+  getemailContent(val){
+    console.log("val",val)
+    this.emailTemplate = val
+  }
 
 }
