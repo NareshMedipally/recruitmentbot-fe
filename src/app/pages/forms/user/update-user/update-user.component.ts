@@ -31,20 +31,20 @@ export class UpdateUserComponent implements OnInit {
     "cc_email_id": "",
     "bcc_email_id":"",
     "comments":"",
-    "expiry_date": "",
+    "expiry_date": null,
     "role_type":"",
     "role_id": '',
-    "dob": "",
+    "dob": null,
     "education": "",
     "rate": "",
     "relocation": "",
     "visa_copy_loc": "",
     "visa_status": "",
-    "visa_valid_from": "",
-    "visa_valid_to": "",
+    "visa_valid_from": null,
+    "visa_valid_to": null,
     "DL_copy": "",
-    "DL_valid_from": "",
-    "DL_valid_to": "",
+    "DL_valid_from": null,
+    "DL_valid_to": null,
     "correl_id": "",
     "created_user": "",
     "email_template": "",
@@ -155,7 +155,7 @@ export class UpdateUserComponent implements OnInit {
           "city": result.body.addresult[0].city,
           "zipcode": result.body.addresult[0].zipcode
         }
-        this.techInfo = result.body.techresult
+        this.techInfo = result.body.techresult;
       }
       console.log(this.formData);
       console.log(this.addressInfo);
@@ -186,6 +186,7 @@ export class UpdateUserComponent implements OnInit {
     this.authService.getTags(this.globals.company).subscribe((result)=>{
       console.log(result.body.fields);
       this.data = result.body.fields;
+      console.log
       this.globals.hideLoading('');
     },err=>{
       swal.fire('','Something went wrong!','error')

@@ -31,6 +31,7 @@ export class UpdateEnterpriseComponent implements OnInit {
     "comments": ""
   }
   validFrom = new Date();
+  logoImg = false;
 
   constructor( private router: Router, private datapipe: DatePipe , private route: ActivatedRoute, private http: HttpClient, private authService: AuthService, private globals: ServicesService) {
     this.getData();
@@ -76,6 +77,7 @@ export class UpdateEnterpriseComponent implements OnInit {
         this.company.company_logo = e.target.result;
       }
     }
+    this.logoImg = true;
   }
 
   Save(){

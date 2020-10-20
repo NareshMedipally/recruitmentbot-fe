@@ -5,7 +5,7 @@
       <nb-card-body>
         <div class="form-group" *ngIf="Role_id == 1">
           <label  class="label">Select Company <span style="color: red;">*</span></label>
-          <select class="form-control" name="" id="" (change)="onchange($event.target.value)" [disabled]="companyDis">
+          <select class="form-control" name="" id="" (change)="onchange($event.target.value)">
             <option value=''>Select Company</option>
             <option *ngFor="let company of companies" value="{{ company.company_name }}">{{ company.company_name }}</option>
           </select>
@@ -24,7 +24,7 @@
             <option *ngFor="let role1 of roles1" value="{{ role1.value }}">{{ role1.role }}</option>
           </select>
         </div>
-        <div *ngIf="selectedrole == '1'">
+        <div *ngIf="selectedrole == '1' && selectedcompany == 'Bluespace'">
           <form #form="ngForm" (ngSubmit)="submitForm()">
             <div class="row">
               <div class="col-md-12">
@@ -172,7 +172,7 @@
             </div>
           </form>
         </div>
-        <div *ngIf="selectedrole == '3'">
+        <div *ngIf="selectedrole == '3' && selectedcompany == 'Bluespace'">
           <form #rec="ngForm" (ngSubmit)="recruiterForm()">
             <div class="row">
               <div class="col-md-12">
@@ -311,7 +311,7 @@
             </div>
           </form>
         </div>
-        <div *ngIf="selectedrole == '4'">
+        <div *ngIf="selectedrole == '4' && selectedcompany == 'Bluespace'">
           <form #f="ngForm" (ngSubmit)="saveCon()">
             <div class="row">
               <div class="col-md-12">
@@ -538,100 +538,6 @@
                 <a class="btn btn-primary" style="color: white;" (click)="addForm()">Add Technology</a>
               </div>
             </div>
-            <!-- <div class="row mt-3" *ngFor="let obj of con_technology; let i=index ">
-              <div class="col-md-12">
-                <div class="row">
-                  <div class="col-md-11">
-                    <div class="form-group border-bottom border-primary">
-                      <label for="" style="font-weight: bold;">Technology</label>
-                    </div>
-                  </div>
-                  <div class="col-md-1">
-                    <button class="btn btn-danger" (click)="removeForm(i)">
-                      <i class="fa fa-minus" aria-hidden="true"></i>
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="form-group">
-                  <label  class="label">Total Experience</label>
-                  <input type="text" class="form-control" name="totalexperience{{i}}" [(ngModel)]="obj.totalexperience" #totalexperience="ngModel" fullWidth>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="form-group">
-                  <label  class="label">USA Experience</label>
-                  <input type="text" class="form-control" name="usaxperience{{i}}" [(ngModel)]="obj.usaxperience" #usaxperience="ngModel" fullWidth>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="form-group">
-                  <label  class="label">Marketing Phone Number</label>
-                  <input type="text" class="form-control" name="phonenumber{{i}}" [(ngModel)]="obj.phonenumber" #phonenumber="ngModel" fullWidth>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="form-group">
-                  <label  class="label">Marketing Email ID</label>
-                  <input type="email" class="form-control" name="emailid{{i}}" [(ngModel)]="obj.emailid"  #emailid="ngModel" fullWidth>
-                </div>
-              </div>
-              <div class="col-4">
-                <div class="form-group">
-                  <label class="label">Looking for Job</label>
-                  <input type="text" class="form-control" name="lookingforjob{{i}}" [(ngModel)]="obj.lookingforjob"  #lookingforjob="ngModel" fullWidth>
-                </div>
-              </div>
-              <div class="col-4">
-                <div class="form-group">
-                  <label class="label">Subject Tag</label>
-                  <input type="text" class="form-control" name="subjecttag{{i}}" [(ngModel)]="obj.subjecttag"  #subjecttag="ngModel" fullWidth>
-                </div>
-              </div>
-              <div class="col-4">
-                <div class="form-group">
-                  <label class="label">Non-Subject Tag</label>
-                  <input type="text" class="form-control" name="nonsubtag{{i}}" [(ngModel)]="obj.nonsubtag"  #nonsubtag="ngModel" fullWidth>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label  class="label">Marketing Linkedin Profile</label>
-                  <input type="text" class="form-control" name="linkedin{{i}}" [(ngModel)]="obj.linkedin" #linkedin="ngModel" fullWidth>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label  class="label">Tags</label>
-                  <ng-select [multiple]="true" [(ngModel)]="selectedCars && obj.tags" name="tags{{i}}" #tags="ngModel">
-                    <ng-option *ngFor="let car of cars" [value]="car.id" [disabled]="car.disabled">{{car.name}}</ng-option>
-                    <ng-option [value]="'custom'">Custom</ng-option>
-                  </ng-select>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label  class="label">Resume</label>
-                  <input type="file" name="resume{{i}}" [(ngModel)]="obj.resume" #resume="ngModel" class="form-control" fullWidth>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label  class="label">Certification</label>
-                  <input type="file" name ="certification{{i}}" [(ngModel)]="obj.certification" #certification="ngModel" class="form-control" fullWidth>
-                </div>
-              </div>
-            </div> -->
-            <!-- <div class="row mt-3">
-              <div class="col-md-12">
-                <label  class="label">Email Template</label>
-                <div class="form-group">
-                  <ngx-tiny-mce (editorKeyup)="getemailContent($event)" ></ngx-tiny-mce>
-
-                </div>
-              </div>
-            </div> -->
             <div class="row mt-3">
               <div class="col-md-12">
                 <div class="form-group border-bottom border-primary">
