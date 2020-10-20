@@ -408,6 +408,16 @@ export class CreateUserComponent implements OnInit {
     console.log(this.con_technology);
     console.log(this.con_otherInfo);
     console.log(this.emailTemplate)
+    if(this.con_technology.length > 0){
+      this.con_technology.forEach(element =>{
+        if(element.tags)
+        element.tags = element.tags.toString()
+      })
+    }else{
+      if(this.con_technology[0].tags){
+        this.con_technology[0].tags =this.con_technology[0].tags.toString()
+      }
+    }
     this.con_generalInfo[0].dob = this.con_generalInfo[0].dob ? this.datapipe.transform(this.con_generalInfo[0].dob, 'yyyy-MM-dd'): null
     this.con_generalInfo[0].expiry_date = this.con_generalInfo[0].expiry_date ? this.datapipe.transform(this.con_generalInfo[0].expiry_date, 'yyyy-MM-dd'): null
     this.con_generalInfo[0]["created_user"] = this.globals.email;
