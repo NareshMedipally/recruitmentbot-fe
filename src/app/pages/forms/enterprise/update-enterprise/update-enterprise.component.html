@@ -22,14 +22,24 @@
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <label for="inputLastName" class="label">Website Name</label>
-                    <input type="text" class="form-control" fullWidth name="website_url" [(ngModel)]="company.website_url" >
+                    <label for="inputLastName" class="label">Website</label>
+                    <input type="url" pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$" class="form-control" fullWidth name="website_url" [(ngModel)]="company.website_url" #website_url="ngModel">
+                    <ng-container *ngIf="website_url.touched ">
+                      <p class="error-message text-danger" *ngIf="website_url.errors?.pattern">
+                        Allow type http or www!
+                      </p>
+                    </ng-container>
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label for="inputFirstName" class="label">LinkedIn Profile</label>
-                    <input type="text" class="form-control" fullWidth name="linkedIn_url" [(ngModel)]="company.linkedIn_url" >
+                    <input type="url" pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$" class="form-control" fullWidth name="linkedIn_url" [(ngModel)]="company.linkedIn_url" #linkedIn_url="ngModel">
+                    <ng-container *ngIf="linkedIn_url.touched ">
+                      <p class="error-message text-danger" *ngIf="linkedIn_url.errors?.pattern">
+                        Allow type http or www!
+                      </p>
+                    </ng-container>
                   </div>
                 </div>
                 <div class="col-sm-6">
@@ -63,7 +73,7 @@
                         <input type="file" class="upload" (change)="onFileChange($event)" accept="image/*">
                       </div><br>
                       <span style="font-size: xx-small; color: red;">
-                        Logo max size is 500KB
+                        Allow type Jpg or png
                       </span>
                   </div>
                 </div>
@@ -81,7 +91,7 @@
             <div class="col-sm-6">
               <div class="form-group">
                 <label for="inputEmail" class="label">Email <span style="color: red">*</span></label>
-                <input type="email" class="form-control" fullWidth name="email_id" [(ngModel)]="company.email_id" >
+                <input type="email" class="form-control" fullWidth name="email_id" [(ngModel)]="company.email_id" disabled>
               </div>
             </div>
             <div class="col-sm-6">
@@ -130,13 +140,13 @@
             <div class="col-sm-6">
               <div class="form-group">
                 <label for="inputEmail" class="label">Valid From</label>
-                <input  type="text" class="form-control" fullWidth name="valid_from" [(ngModel)]="company.valid_from" #valid_from="bsDatepicker" bsDatepicker placement="bottom-left" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}">
+                <input  type="text" class="form-control" fullWidth name="valid_from" [(ngModel)]="company.valid_from" #valid_from="bsDatepicker" [minDate]="validFrom" bsDatepicker placement="bottom-left" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}">
               </div>
             </div>
             <div class="col-sm-6">
               <div class="form-group">
                 <label for="inputWebsite" class="label">Valid To</label>
-                <input  type="text" class="form-control" fullWidth name="valid_to" [(ngModel)]="company.valid_to" #valid_to="bsDatepicker" bsDatepicker placement="bottom-left" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" placeholder="dd-mm-yyyy">
+                <input  type="text" class="form-control" fullWidth name="valid_to" [(ngModel)]="company.valid_to" #valid_to="bsDatepicker" [minDate]="company.valid_from" bsDatepicker placement="bottom-left" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" placeholder="dd-mm-yyyy">
               </div>
             </div>
           </div>
@@ -151,7 +161,7 @@
           <div class="row">
             <div class="col-sm-12 text-center">
               <div class="form-group">
-                <button type="submit" class="btn btn-primary" style="margin-right: 10px;">Submit</button>
+                <button type="submit" class="btn btn-primary" [disabled]="!f.valid || f.invalid" style="margin-right: 10px;">Submit</button>
                 <button class="btn btn-danger" routerLink="/pages/enterprise-info">Cancel</button>
               </div>
             </div>

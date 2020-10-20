@@ -5,9 +5,9 @@
       <nb-card-body>
         <div class="form-group" *ngIf="Role_id == 1">
           <label  class="label">Select Company <span style="color: red;">*</span></label>
-          <select class="form-control" name="" id="" (change)="onchange($event.target.value)">
+          <select class="form-control" name="" id="" (change)="onchange($event.target.value)" [disabled]="companyDis">
             <option value=''>Select Company</option>
-            <option *ngFor="let company of companies" value="{{ company.value }}">{{ company.company }}</option>
+            <option *ngFor="let company of companies" value="{{ company.company_name }}">{{ company.company_name }}</option>
           </select>
         </div>
         <div class="form-group" *ngIf="superadmin == true">
@@ -120,8 +120,13 @@
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label  class="label">Expiry Date</label>
-                  <input type="text" class="form-control" fullWidth id="expiry-date-1" placeholder="yyyy-mm-dd" name="expiry_date" [(ngModel)]="formData.expiry_date" #expiry_date="ngModel" bsDatepicker placement="bottom-left" [bsValue]="formData.expiry_date" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}">
+                  <label  class="label">Expiry Date <span style="color: red;">*</span></label>
+                  <input type="text" class="form-control" fullWidth id="expiry-date-1" placeholder="yyyy-mm-dd" name="expiry_date" [(ngModel)]="formData.expiry_date" #expiry_date="ngModel" [minDate]="expiryDate" bsDatepicker placement="bottom-left" [bsValue]="formData.expiry_date" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" required>
+                  <ng-container *ngIf="expiry_date.touched ">
+                    <p class="error-message text-danger" *ngIf="expiry_date.errors?.required">
+                      Expiry Date is required!
+                    </p>
+                  </ng-container>
                 </div>
               </div>
               <div class="col-md-12">
@@ -189,7 +194,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label  class="label">Last name</label>
-                  <input type="text" class="form-control" fullWidth placeholder="" name="last_name" [(ngModel)]="formData.last_name" #last_name="ngModel" required>
+                  <input type="text" class="form-control" fullWidth placeholder="" name="last_name" [(ngModel)]="formData.last_name" #last_name="ngModel">
                 </div>
               </div>
               <div class="col-md-12">
@@ -225,31 +230,56 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label  class="label">Primary Email Address</label>
-                  <input type="email" class="form-control" fullWidth id="pemail"  name="primary_email_id" [(ngModel)]="formData.primary_email_id" #primary_email_id="ngModel">
+                  <input type="email" class="form-control" fullWidth id="pemail"  name="primary_email_id" [(ngModel)]="formData.primary_email_id" #primary_email_id="ngModel" email>
+                  <ng-container *ngIf="primary_email_id.touched">
+                    <p class="error-message text-danger" *ngIf="primary_email_id.errors?.email">
+                      Email should be the real one!
+                    </p>
+                  </ng-container>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <label  class="label">Generic Email Address</label>
-                  <input type="email" class="form-control" fullWidth id="gemail" name="generic_email_id" [(ngModel)]="formData.generic_email_id" #generic_email_id="ngModel">
+                  <input type="email" class="form-control" fullWidth id="gemail" name="generic_email_id" [(ngModel)]="formData.generic_email_id" #generic_email_id="ngModel" email>
+                  <ng-container *ngIf="generic_email_id.touched">
+                    <p class="error-message text-danger" *ngIf="generic_email_id.errors?.email">
+                      Email should be the real one!
+                    </p>
+                  </ng-container>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <label  class="label">Personal Email Address</label>
-                  <input type="email" class="form-control" fullWidth id="personal-email" name="personal_email_id" [(ngModel)]="formData.personal_email_id" #personal_email_id="ngModel">
+                  <input type="email" class="form-control" fullWidth id="personal-email" name="personal_email_id" [(ngModel)]="formData.personal_email_id" #personal_email_id="ngModel" email>
+                  <ng-container *ngIf="personal_email_id.touched">
+                    <p class="error-message text-danger" *ngIf="personal_email_id.errors?.email">
+                      Email should be the real one!
+                    </p>
+                  </ng-container>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <label  class="label">CC Email Address</label>
-                  <input type="email" class="form-control" fullWidth id="cc-email" name="cc_email_id" [(ngModel)]="formData.cc_email_id" #cc_email_id="ngModel">
+                  <input type="email" class="form-control" fullWidth id="cc-email" name="cc_email_id" [(ngModel)]="formData.cc_email_id" #cc_email_id="ngModel" email>
+                  <ng-container *ngIf="cc_email_id.touched">
+                    <p class="error-message text-danger" *ngIf="cc_email_id.errors?.email">
+                      Email should be the real one!
+                    </p>
+                  </ng-container>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <label  class="label">BCC Email Address</label>
-                  <input type="email" class="form-control" fullWidth id="bcc-email" name="bcc_email_id" [(ngModel)]="formData.bcc_email_id" #bcc_email_id="ngModel">
+                  <input type="email" class="form-control" fullWidth id="bcc-email" name="bcc_email_id" [(ngModel)]="formData.bcc_email_id" #bcc_email_id="ngModel" email>
+                  <ng-container *ngIf="bcc_email_id.touched">
+                    <p class="error-message text-danger" *ngIf="bcc_email_id.errors?.email">
+                      Email should be the real one!
+                    </p>
+                  </ng-container>
                 </div>
               </div>
               <div class="col-md-12">
@@ -259,8 +289,13 @@
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label  class="label">Expiry Date</label>
-                  <input type="text" class="form-control" fullWidth id="expiry-date" name="expiry_date" [(ngModel)]="formData.expiry_date" #expiry_date="ngModel" bsDatepicker placement="bottom-left" [bsValue]="formData.expiry_date" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" placeholder="yyyy-mm-dd">
+                  <label  class="label">Expiry Date <span style="color: red;">*</span></label>
+                  <input type="text" class="form-control" fullWidth id="expiry-date" name="expiry_date" [(ngModel)]="formData.expiry_date" #expiry_date="ngModel" [minDate]="expiryDate" bsDatepicker placement="bottom-left" [bsValue]="formData.expiry_date" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" placeholder="yyyy-mm-dd" required>
+                  <ng-container *ngIf="expiry_date.touched ">
+                    <p class="error-message text-danger" *ngIf="expiry_date.errors?.required">
+                      Expiry Date is required!
+                    </p>
+                  </ng-container>
                 </div>
               </div>
               <div class="col-md-12">
@@ -270,7 +305,7 @@
                 </div>
               </div>
               <div class="col-md-12 text-center">
-                <button type="submit" class="btn btn-primary" style="margin-right: 5px;">SUBMIT</button>
+                <button type="submit" class="btn btn-primary" [disabled]="!rec.valid || rec.invalid" style="margin-right: 5px;">SUBMIT</button>
                 <button routerLink="/pages/manage-user" class="btn btn-danger">CANCEL</button>
               </div>
             </div>
@@ -287,7 +322,12 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label  class="label">First name <span style="color: red;">*</span></label>
-                  <input type="text"  class="form-control" fullWidth name="first_name" [(ngModel)]="con_generalInfo[0].first_name"  placeholder="">
+                  <input type="text"  class="form-control" fullWidth name="first_name" [(ngModel)]="con_generalInfo[0].first_name" #first_name="ngModel" required placeholder="">
+                  <ng-container *ngIf="first_name.touched ">
+                    <p class="error-message text-danger" *ngIf="first_name.errors?.required">
+                      First Name is required!
+                    </p>
+                  </ng-container>
                 </div>
               </div>
               <div class="col-md-4">
@@ -298,8 +338,13 @@
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label  class="label">Date of Birth</label>
-                  <input type="text"  class="form-control" fullWidth name="dob" [(ngModel)]="con_generalInfo[0].dob"  bsDatepicker placement="bottom" [bsValue]="conData.dob" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" placeholder="yyyy-mm-dd">
+                  <label  class="label">Date of Birth <span style="color: red;">*</span></label>
+                  <input type="text"  class="form-control" fullWidth name="dob" [(ngModel)]="con_generalInfo[0].dob" #dob="ngModel" bsDatepicker placement="bottom" [bsValue]="conData.dob" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" placeholder="yyyy-mm-dd" required>
+                  <ng-container *ngIf="dob.touched ">
+                    <p class="error-message text-danger" *ngIf="dob.errors?.required">
+                      DOB is required!
+                    </p>
+                  </ng-container>
                 </div>
               </div>
               <div class="col-md-4">
@@ -311,13 +356,18 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label  class="label">Rate <span style="color: darkgreen;">$/hour</span></label>
-                  <input type="text" class="form-control" fullWidth name="rate" [(ngModel)]="con_generalInfo[0].rate" placeholder="">
+                  <input type="number" class="form-control" fullWidth name="rate" [(ngModel)]="con_generalInfo[0].rate" placeholder="">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label  class="label">Expiry Date</label>
-                  <input type="text" class="form-control" fullWidth name="expiry_date" [(ngModel)]="con_generalInfo[0].expiry_date" bsDatepicker placement="top" [bsValue]="conData.expiry_date" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" placeholder="yyyy-mm-dd">
+                  <label  class="label">Expiry Date <span style="color: red;">*</span></label>
+                  <input type="text" class="form-control" fullWidth name="expiry_date" [(ngModel)]="con_generalInfo[0].expiry_date" [minDate]="expiryDate" #expiry_date="ngModel" bsDatepicker placement="top" [bsValue]="conData.expiry_date" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" placeholder="yyyy-mm-dd" required>
+                  <ng-container *ngIf="expiry_date.touched ">
+                    <p class="error-message text-danger" *ngIf="expiry_date.errors?.required">
+                      Expiry Date is required!
+                    </p>
+                  </ng-container>
                 </div>
               </div>
               <div class="col-md-12">
@@ -328,13 +378,26 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label  class="label">Email <span style="color: red;">*</span></label>
-                  <input type="email" class="form-control" fullWidth name="email_id" [(ngModel)]="con_contactInfo[0].email_id" #email_id="ngModel" placeholder="">
+                  <input type="email" class="form-control" fullWidth name="email_id" [(ngModel)]="con_contactInfo[0].email_id" #email_id="ngModel" placeholder="" email required>
+                  <ng-container *ngIf="email_id.invalid && email_id.touched">
+                    <p class="error-message text-danger" *ngIf="email_id.errors?.required">
+                      Email is required!
+                    </p>
+                    <p class="error-message text-danger" *ngIf="email_id.errors?.email">
+                      Email should be the real one!
+                    </p>
+                  </ng-container>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label  class="label">Phone Number <span style="color: red;">*</span></label>
-                  <input type="number" class="form-control" fullWidth name="phone" [(ngModel)]="con_contactInfo[0].phone" #phone="ngModel" placeholder="">
+                  <input type="number" class="form-control" fullWidth name="phone" [(ngModel)]="con_contactInfo[0].phone" #phone="ngModel" placeholder="" required>
+                  <ng-container *ngIf="phone.touched ">
+                    <p class="error-message text-danger" *ngIf="phone.errors?.required">
+                      Phone number is required!
+                    </p>
+                  </ng-container>
                 </div>
               </div>
               <div class="col-md-4">
@@ -350,25 +413,30 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label  class="label">Address Line 1</label>
-                  <input type="text" class="form-control" fullWidth name="addressline1" [(ngModel)]="con_contactInfo[0].addressline1" >
+                  <input type="text" class="form-control" fullWidth name="address_line_1" [(ngModel)]="con_contactInfo[0].address_line_1" >
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <label  class="label">Address Line 2</label>
-                  <input type="text" class="form-control" fullWidth name="addressline2" [(ngModel)]="con_contactInfo[0].addressline2" >
+                  <input type="text" class="form-control" fullWidth name="address_line_2" [(ngModel)]="con_contactInfo[0].address_line_2" >
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <label  class="label">Zip Code</label>
-                  <input type="text" class="form-control" fullWidth name="zipcode" [(ngModel)]="con_contactInfo[0].zipcode">
+                  <input type="number" class="form-control" fullWidth name="zipcode" [(ngModel)]="con_contactInfo[0].zipcode">
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label  class="label">City</label>
-                  <input type="text" class="form-control" fullWidth name="city" [(ngModel)]="con_contactInfo[0].city" >
+                  <label  class="label">City <span style="color: red;">*</span></label>
+                  <input type="text" class="form-control" fullWidth name="city" [(ngModel)]="con_contactInfo[0].city" #city="ngModel" required>
+                  <ng-container *ngIf="city.touched ">
+                    <p class="error-message text-danger" *ngIf="city.errors?.required">
+                      City required!
+                    </p>
+                  </ng-container>
                 </div>
               </div>
             </div>
@@ -399,13 +467,21 @@
               <div class="col-md-3">
                 <div class="form-group">
                   <label  class="label">Marketing Phone Number</label>
-                  <input type="text" class="form-control" fullWidth name="marketing_phone_{{obj.id}}" [(ngModel)]="obj.marketing_phone" >
+                  <input type="number" class="form-control" fullWidth name="marketing_phone_{{obj.id}}" [(ngModel)]="obj.marketing_phone" >
                 </div>
               </div>
               <div class="col-md-3">
                 <div class="form-group">
-                  <label  class="label">Marketing Email ID</label>
-                  <input type="email" class="form-control" fullWidth name="marketing_email_id_{{obj.id}}" [(ngModel)]="obj.marketing_email_id" >
+                  <label  class="label">Marketing Email ID <span style="color: red;">*</span></label>
+                  <input type="email" class="form-control" fullWidth name="marketing_email_id_{{obj.id}}" [(ngModel)]="obj.marketing_email_id" #marketing_email_id="ngModel" email required>
+                  <ng-container *ngIf="marketing_email_id.invalid && marketing_email_id.touched">
+                    <p class="error-message text-danger" *ngIf="marketing_email_id.errors?.required">
+                      Marketing Email is required!
+                    </p>
+                    <p class="error-message text-danger" *ngIf="marketing_email_id.errors?.email">
+                      Marketing Email should be the real one!
+                    </p>
+                  </ng-container>
                 </div>
               </div>
               <div class="col-4">
@@ -416,25 +492,30 @@
               </div>
               <div class="col-4">
                 <div class="form-group">
-                  <label class="label">Subject Tag</label>
+                  <label class="label">Subject Tags</label>
                   <input type="text" class="form-control" fullWidth name="subject_tag_{{obj.id}}" [(ngModel)]="obj.subject_tag" >
                 </div>
               </div>
               <div class="col-4">
                 <div class="form-group">
-                  <label class="label">Non-Subject Tag</label>
-                  <input type="text" class="form-control" fullWidth name="non_sub_tag_{{obj.id}}" [(ngModel)]="obj.non_sub_tag" >
+                  <label class="label">Non-Subject Tags</label>
+                  <input type="text" class="form-control" fullWidth name="non_sub_tag_{{obj.id}}" [(ngModel)]="obj.non_subject_tag" >
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <label  class="label">Marketing Linkedin Profile</label>
-                  <input type="text" class="form-control" fullWidth name="linkedIn_url_{{obj.id}}" [(ngModel)]="obj.linkedIn_url">
+                  <input type="url" pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$" class="form-control" fullWidth name="linkedIn_url_{{obj.id}}" [(ngModel)]="obj.linkedIn_url" #linkedIn_url="ngModel">
+                  <ng-container *ngIf="linkedIn_url.touched ">
+                    <p class="error-message text-danger" *ngIf="linkedIn_url.errors?.pattern">
+                      Allow type http or www!
+                    </p>
+                  </ng-container>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label  class="label">Tags</label>
+                  <label  class="label">Technology Tags</label>
                   <ng-select [multiple]="true" name="tags__{{obj.id}}" [(ngModel)]="obj.tags" >
                     <ng-option *ngFor="let tag of data" [value]="tag.tag_name" [disabled]="tag.disabled">{{tag.tag_name}}</ng-option>
                   </ng-select>
@@ -542,19 +623,27 @@
                 </div>
               </div>
             </div> -->
-            <div class="row mt-3">
+            <!-- <div class="row mt-3">
               <div class="col-md-12">
                 <label  class="label">Email Template</label>
                 <div class="form-group">
                   <ngx-tiny-mce (editorKeyup)="getemailContent($event)" ></ngx-tiny-mce>
-                  
+
                 </div>
               </div>
-            </div>
+            </div> -->
             <div class="row mt-3">
               <div class="col-md-12">
                 <div class="form-group border-bottom border-primary">
                   <label for="" style="font-weight: bold;">Other Info</label>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-md-12">
+                <label  style="font-weight: bold;">Email Template</label>
+                <div class="form-group">
+                  <ngx-tiny-mce (editorKeyup)="getemailContent($event)"></ngx-tiny-mce>
                 </div>
               </div>
             </div>
@@ -583,13 +672,13 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <label  class="label">Visa Valid From</label>
-                      <input type="text" class="form-control" fullWidth [disabled]= "visaDisable" name="visa_valid_from" [(ngModel)]="con_otherInfo[0].visa_valid_from" bsDatepicker placement="top" [bsValue]="con_otherInfo[0].visa_valid_from" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" placeholder="yyyy-mm-dd">
+                      <input type="text" class="form-control" fullWidth [disabled]= "visaDisable" name="visa_valid_from" [(ngModel)]="con_otherInfo[0].visa_valid_from" bsDatepicker placement="top" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" placeholder="yyyy-mm-dd">
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label  class="label">Visa Valid To</label>
-                      <input type="text" class="form-control" fullWidth [disabled]= "visaDisable" name="visa_valid_to" [(ngModel)]="con_otherInfo[0].visa_valid_to" bsDatepicker placement="top" [bsValue]="con_otherInfo[0].visa_valid_to" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" placeholder="yyyy-mm-dd">
+                      <input type="text" class="form-control" fullWidth [disabled]= "visaDisable" name="visa_valid_to" [(ngModel)]="con_otherInfo[0].visa_valid_to" [minDate]="con_otherInfo[0].visa_valid_from" bsDatepicker placement="top" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" placeholder="yyyy-mm-dd">
                     </div>
                   </div>
                 </div>
@@ -608,13 +697,13 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <label  class="label">Driving License Valid From</label>
-                      <input type="text" class="form-control"  [disabled]= "drivDisable" fullWidth name="DL_valid_from" [(ngModel)]="con_otherInfo[0].DL_valid_from" bsDatepicker placement="top" [bsValue]="con_otherInfo[0].DL_valid_from" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" placeholder="yyyy-mm-dd">
+                      <input type="text" class="form-control"  [disabled]= "drivDisable" fullWidth name="DL_valid_from" [(ngModel)]="con_otherInfo[0].DL_valid_from" bsDatepicker placement="top" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" placeholder="yyyy-mm-dd">
                     </div>
                   </div>
                   <div class="col-md-12">
                     <div class="form-group">
                       <label  class="label">Driving License Valid To</label>
-                      <input type="text" class="form-control" [disabled]= "drivDisable" fullWidth name="DL_valid_to" [(ngModel)]="con_otherInfo[0].DL_valid_to" bsDatepicker placement="top" [bsValue]="con_otherInfo[0].DL_valid_to" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" placeholder="yyyy-mm-dd">
+                      <input type="text" class="form-control" [disabled]= "drivDisable" fullWidth name="DL_valid_to" [(ngModel)]="con_otherInfo[0].DL_valid_to" [minDate]="con_otherInfo[0].DL_valid_from" bsDatepicker placement="top" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" placeholder="yyyy-mm-dd">
                     </div>
                   </div>
                 </div>

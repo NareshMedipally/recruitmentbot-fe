@@ -80,7 +80,7 @@ export class AuthService {
     if(this.AccessToken) {
       var headersForAPI = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*', 'Authorization': 'Bearer ' + this.AccessToken });
       headersForAPI.append("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
-      let url =  this.baseUrl + '/getuser/{correl_id}'
+      let url =  this.baseUrl + '/getconsultant/{correl_id}'
       url = url.replace('{correl_id}', id);
       console.log(url);
       return this.http.get<any>(url, { headers: headersForAPI, observe: 'response' });
@@ -104,7 +104,7 @@ export class AuthService {
     if(this.AccessToken) {
       var headersForAPI = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*', 'Authorization': 'Bearer ' + this.AccessToken });
       headersForAPI.append("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
-      let url =  this.baseUrl + '/deleteuser/{correl_id}';
+      let url =  this.baseUrl + '/deleteconsultant/{correl_id}';
       url = url.replace('{correl_id}', id);
       console.log(url);
       return this.http.delete<any>(url, { headers: headersForAPI, observe: 'response' });

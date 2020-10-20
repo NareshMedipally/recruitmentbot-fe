@@ -14,7 +14,7 @@ export const MENU_ITEMS_ADMIN: NbMenuItem[] = [
   },
   {
     title: 'Users',
-    icon: 'keypad-outline',
+    icon: 'people',
     children:[
       {
         title:'Create Users',
@@ -30,7 +30,7 @@ export const MENU_ITEMS_ADMIN: NbMenuItem[] = [
   },
   {
     title: 'Tags',
-    icon: 'settings',
+    icon: 'bookmark',
     children:[
       {
         title:'Create Tags',
@@ -49,11 +49,11 @@ export const MENU_ITEMS_ADMIN: NbMenuItem[] = [
    },
    {
      title: 'Profile',
-     icon: 'lock-outline',
+     icon: 'person-outline',
      link:'/pages/profile',
    },
    {
-     title: 'LogOut',
+     title: 'Logout',
      icon: 'power',
      link:'/login',
    },

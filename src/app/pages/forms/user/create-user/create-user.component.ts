@@ -30,6 +30,7 @@ export class CreateUserComponent implements OnInit {
   technology= new technology()
   dataarray=[];
   Role_id:any;
+  companyDis = false;
   visaDisable = true;
   drivDisable = true;
   data: any[] = [];
@@ -39,7 +40,8 @@ export class CreateUserComponent implements OnInit {
   certificate:any =[]
   visacopy:any
   drivingcopy:any;
-  resume:any =[]
+  resume:any =[];
+  expiryDate = new Date();
 
   selectedCars = [3];
     cars = [
@@ -117,8 +119,8 @@ export class CreateUserComponent implements OnInit {
     "email_id":"",
     "phone":"",
     "relocation":"",
-    "addressline1" : "",
-    "addressline2" : "",
+    "address_line_1" : "",
+    "address_line_2" : "",
     "zipcode" : "",
     "city" : "",
   }]
@@ -132,17 +134,13 @@ export class CreateUserComponent implements OnInit {
       "marketing_email_id" : "",
       "looking_for_job" : "",
       "subject_tag" : "",
-      "non_sub_tag" : "",
+      "non_subject_tag" : "",
       "linkedIn_url" : "",
       "tags" : "",
       "resume_loc" : "",
       "certificate_loc" : "",
     }
   ]
-  //con_technology  =[]
-
-
-
 
   con_otherInfo = [{
     "email_template" : "",
@@ -175,12 +173,19 @@ export class CreateUserComponent implements OnInit {
   }
 
   getCompanies() {
-    this.companies=[
-      {"id":0,"company":"BlueSpace","value":"BlueSpace"},
-      {"id":1,"company":"Company 1","value":"Company 1"},
-      {"id":2,"company":"Company 2","value":"Company 2"},
-      {"id":3,"company":"Company 3","value":"Company 3"},
-    ]
+    // this.companies=[
+    //   {"id":0,"company":"BlueSpace","value":"BlueSpace"},
+    //   {"id":1,"company":"Company 1","value":"Company 1"},
+    //   {"id":2,"company":"Company 2","value":"Company 2"},
+    //   {"id":3,"company":"Company 3","value":"Company 3"},
+    // ];
+    this.authService.getEntCompanies().subscribe((result)=>{
+      console.log(result.body.fields);
+      this.companies = result.body.fields;
+    },err => {
+      console.log(err);
+      swal.fire('','Something went wrong!','error');
+    })
   }
 
   getRoles(){
@@ -205,13 +210,14 @@ export class CreateUserComponent implements OnInit {
     console.log(value);
     this.superadmin = true;
     localStorage.setItem('company', this.selectedcompany);
-    if(this.selectedcompany == 'BlueSpace'){
+    if(this.selectedcompany == 'Bluespace'){
       this.roles=[
         {"id":0,"role":"Super Admin","value":1},
         {"id":1,"role":"Admin","value":2},
         {"id":2,"role":"Recruiter","value":3},
         {"id":3,"role":"Consultant","value":4},
-      ]
+      ];
+      this.companyDis = true;
     }else{
       this.roles=[
         {"id":0,"role":"Admin","value":2},
@@ -264,7 +270,7 @@ export class CreateUserComponent implements OnInit {
       "marketing_email_id" : "",
       "looking_for_job" : "",
       "subject_tag" : "",
-      "non_sub_tag" : "",
+      "non_subject_tag" : "",
       "linkedIn_url" : "",
       "tags" : "",
       "resume_loc" : "",
@@ -294,12 +300,14 @@ export class CreateUserComponent implements OnInit {
     console.log(sadmin_form);
     this.authService.createUser(sadmin_form).subscribe((result)=>{
       console.log(result);
-      if(result.status == 200){
+      if(result.body.status == 'success'){
         swal.fire('', 'Created successfully', 'success').then((result) => {
           if (result.isConfirmed) {
             this.router.navigate(['/pages/manage-user']);
           }
         })
+      }else if(result.body.desc == 'User Already Exists'){
+        swal.fire('', 'Email Address Already Exists!', 'error')
       }
     },err=>{
       console.log(err)
@@ -322,12 +330,14 @@ export class CreateUserComponent implements OnInit {
     console.log(admin_form);
     this.authService.createUser(admin_form).subscribe((result)=>{
       console.log(result);
-      if(result.status == 200){
+      if(result.body.status == 'success'){
         swal.fire('', 'Created successfully', 'success').then((result) => {
           if (result.isConfirmed) {
             this.router.navigate(['/pages/manage-user']);
           }
         })
+      }else if(result.body.desc == 'User Already Exists'){
+        swal.fire('', 'Email Address Already Exists!', 'error')
       }
     },err=>{
       console.log(err);
@@ -354,12 +364,14 @@ export class CreateUserComponent implements OnInit {
     console.log(recData);
     this.authService.createUser(recData).subscribe((result)=>{
       console.log(result);
-      if(result.status == 200){
+      if(result.body.status == 'success'){
         swal.fire('', 'Created successfully', 'success').then((result) => {
           if (result.isConfirmed) {
             this.router.navigate(['/pages/manage-user']);
           }
         })
+      }else if(result.body.desc == 'User Already Exists'){
+        swal.fire('', 'Email Address Already Exists!', 'error')
       }
     },err=>{
       console.log(err);
@@ -373,23 +385,24 @@ export class CreateUserComponent implements OnInit {
     if (event.target.files.length > 0) {
       console.log('here3');
       file = event.target.files[0];
-      if(source == "resume")
-      this.resume.push(file)
-     else if(source == "certificate"){
-      console.log('here');
-     this.certificate.push(file)
-  } else if(source == "driving_license"){
-    this.drivingcopy = file
-  }else if(source == "visa"){
-    this.visacopy = file
+      if(source == "resume"){
+        this.resume.push(file)
+      }else if(source == "certificate"){
+        console.log('here');
+        this.certificate.push(file)
+      } else if(source == "driving_license"){
+        this.drivingcopy = file;
+        this.drivDisable = false;
+      }else if(source == "visa"){
+        this.visacopy = file;
+        this.visaDisable = false;
+      }
+    }
+    console.log('resume',this.resume)
+    console.log('certificate',this.certificate)
+    console.log('driving_license',this.drivingcopy)
+    console.log('visa',this.visacopy)
   }
-}
-  console.log('resume',this.resume)
-  console.log('certificate',this.certificate)
-  console.log('driving_license',this.drivingcopy)
-  console.log('visa',this.visacopy)
-
-}
 
   gettags(){
     this.globals.showLoading('');
@@ -420,28 +433,31 @@ export class CreateUserComponent implements OnInit {
     }
     this.con_generalInfo[0].dob = this.con_generalInfo[0].dob ? this.datapipe.transform(this.con_generalInfo[0].dob, 'yyyy-MM-dd'): null
     this.con_generalInfo[0].expiry_date = this.con_generalInfo[0].expiry_date ? this.datapipe.transform(this.con_generalInfo[0].expiry_date, 'yyyy-MM-dd'): null
-    this.con_generalInfo[0]["created_user"] = this.globals.email;
+    this.con_otherInfo[0].visa_valid_from = this.con_otherInfo[0].visa_valid_from ? this.datapipe.transform(this.con_otherInfo[0].visa_valid_from, 'yyyy-MM-dd'): null
+    this.con_otherInfo[0].visa_valid_to = this.con_otherInfo[0].visa_valid_to ? this.datapipe.transform(this.con_otherInfo[0].visa_valid_to, 'yyyy-MM-dd'): null
+    this.con_otherInfo[0].DL_valid_from = this.con_otherInfo[0].DL_valid_from ? this.datapipe.transform(this.con_otherInfo[0].DL_valid_from, 'yyyy-MM-dd'): null
+    this.con_otherInfo[0].DL_valid_to = this.con_otherInfo[0].DL_valid_to ? this.datapipe.transform(this.con_otherInfo[0].DL_valid_to, 'yyyy-MM-dd'): null
+    this.con_generalInfo[0]["created_user"] = localStorage.getItem('email_id');
     const formData = new FormData();
     formData.append("generalInfo", JSON.stringify(this.con_generalInfo));
     formData.append("contactInfo", JSON.stringify(this.con_contactInfo));
     formData.append("technology", JSON.stringify(this.con_technology));
-    formData.append("emailTemplate", this.emailTemplate);
+    formData.append("email_template", this.emailTemplate);
     formData.append("otherInfo",JSON.stringify(this.con_otherInfo));
     formData.append("role_type", localStorage.getItem('role'));
     formData.append("role_id", localStorage.getItem('role'));
     formData.append("company_name", this.companyname);
-    //formData.append("resume_loc", this.resume);
     if(this.resume){
       for(var x = 0; x<this.resume.length; x++) {
         formData.append("resume", this.resume[x]);
     }
-      
+
     }
     if(this.certificate){
       for(var x = 0; x<this.certificate.length; x++) {
         formData.append("certificate", this.certificate[x]);
     }
-      
+
     }
     if(this.visacopy){
       formData.append("visa", this.visacopy);
@@ -449,43 +465,6 @@ export class CreateUserComponent implements OnInit {
     if(this.drivingcopy){
       formData.append("driving_license", this.drivingcopy);
     }
-    // formData.append("first_name", this.con_generalInfo[0].first_name);
-    // formData.append("last_name", this.con_generalInfo[0].last_name);
-    // formData.append("company_name", this.companyname);
-    // formData.append("created_user", this.globals.email);
-    // formData.append("email_id", this.con_contactInfo[0].email_id);
-    // formData.append("phone", this.con_contactInfo[0].phone);
-    // formData.append("dob", this.con_generalInfo[0].dob ? this.datapipe.transform(this.con_generalInfo[0].dob, 'yyyy-MM-dd') : "");
-    // formData.append("comments", this.con_otherInfo[0].comments);
-    // formData.append("role_type", localStorage.getItem('role'));
-    // formData.append("role_id", localStorage.getItem('role'));
-    // formData.append("expiry_date", this.con_generalInfo[0].expiry_date ? this.datapipe.transform(this.con_generalInfo[0].expiry_date, 'yyyy-MM-dd') : "");
-    // formData.append("education", this.con_generalInfo[0].education);
-    // formData.append("rate", this.con_generalInfo[0].rate);
-    // formData.append("relocation", this.con_contactInfo[0].relocation);
-    // formData.append("addressline1", this.con_contactInfo[0].addressline1);
-    // formData.append("addressline2", this.con_contactInfo[0].addressline2);
-    // formData.append("zipcode", this.con_contactInfo[0].zipcode);
-    // formData.append("city", this.con_contactInfo[0].city);
-    // formData.append("total_experience", this.con_technology[0].total_experience);
-    // formData.append("usa_experience", this.con_technology[0].usa_experience);
-    // formData.append("marketing_phone", this.con_technology[0].marketing_phone);
-    // formData.append("marketing_email_id", this.con_technology[0].marketing_email_id);
-    // formData.append("looking_for_job", this.con_technology[0].looking_for_job);
-    // formData.append("subject_tag", this.con_technology[0].subject_tag);
-    // formData.append("non_sub_tag", this.con_technology[0].non_sub_tag);
-    // formData.append("linkedIn_url", this.con_technology[0].linkedIn_url);
-    // formData.append("tags", this.con_technology[0].tags);
-    // formData.append("resume_loc", this.con_technology[0].resume_loc);
-    // formData.append("certificate_loc", this.con_technology[0].certificate_loc);
-    // formData.append("email_template", this.con_otherInfo[0].email_template);
-    // formData.append("DL_copy", this.con_otherInfo[0].DL_copy);
-    // formData.append("DL_valid_from", this.con_otherInfo[0].DL_valid_from ? this.datapipe.transform(this.con_otherInfo[0].DL_valid_from, 'yyyy-MM-dd') : "");
-    // formData.append("DL_valid_to", this.con_otherInfo[0].DL_valid_to ? this.datapipe.transform(this.con_otherInfo[0].DL_valid_to, 'yyyy-MM-dd') : "");
-    // formData.append("visa_status", this.con_otherInfo[0].visa_status);
-    // formData.append("visa_copy_loc", this.con_otherInfo[0].visa_copy_loc);
-    // formData.append("visa_valid_from", this.con_otherInfo[0].visa_valid_from ? this.datapipe.transform(this.con_otherInfo[0].visa_valid_from, 'yyyy-MM-dd') : "");
-    // formData.append("visa_valid_to", this.con_otherInfo[0].visa_valid_to ? this.datapipe.transform(this.con_otherInfo[0].visa_valid_to, 'yyyy-MM-dd') : "");
     this.authService.createConsultant(formData).subscribe((res)=>{
       console.log(res);
       if(res.body.status == 'success'){
@@ -495,8 +474,8 @@ export class CreateUserComponent implements OnInit {
             this.router.navigate(['/pages/manage-user']);
           }
         })
-      }else if(res.body.status == 'Failed'){
-        swal.fire('','User Already Exists!','error')
+      }else if(res.body.desc == 'User Already Exists'){
+        swal.fire('', 'Email Address Already Exists!', 'error')
       }
     })
   }
@@ -520,8 +499,8 @@ export class CreateUserComponent implements OnInit {
       "email_id":"",
       "phone":"",
       "relocation":"",
-      "addressline1" : "",
-      "addressline2" : "",
+      "address_line_1" : "",
+      "address_line_2" : "",
       "zipcode" : "",
       "city" : "",
     }]
@@ -535,17 +514,13 @@ export class CreateUserComponent implements OnInit {
         "marketing_email_id" : "",
         "looking_for_job" : "",
         "subject_tag" : "",
-        "non_sub_tag" : "",
+        "non_subject_tag" : "",
         "linkedIn_url" : "",
         "tags" : "",
         "resume_loc" : "",
         "certificate_loc" : "",
       }
     ]
-    //con_technology  =[]
-
-
-
 
     this.con_otherInfo = [{
       "email_template" : "",
@@ -560,10 +535,9 @@ export class CreateUserComponent implements OnInit {
     }]
 
   }
+
   getemailContent(val){
     console.log("val",val)
     this.emailTemplate = val
   }
-
-
 }

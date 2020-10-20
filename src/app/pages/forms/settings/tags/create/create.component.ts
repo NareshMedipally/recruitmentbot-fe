@@ -66,11 +66,12 @@ export class CreateComponent implements OnInit {
             this.router.navigate(['/pages/tags']);
           }
         })
-      }else if(res.body.status == 'failed') {
-        swal.fire('','Something went wrong!','error')
+      }else if(res.body.desc == 'Tag Already Exists') {
+        swal.fire('','Tag Already Exists','error')
       }
     },err=>{
-      console.log(err)
+      console.log(err);
+      swal.fire('','Somethine went wrong!','error')
     })
   }
 

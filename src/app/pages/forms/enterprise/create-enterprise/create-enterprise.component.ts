@@ -14,6 +14,7 @@ import swal from 'sweetalert2';
 export class CreateEnterpriseComponent implements OnInit {
 
   fileToUpload;
+  validFrom = new Date();
   entData = {
     "company_name": "",
     "website_url": "",
@@ -67,11 +68,17 @@ export class CreateEnterpriseComponent implements OnInit {
     this.authService.createCompany(formData)
       .subscribe(event => {
         console.log("event",event);
-        swal.fire('', 'Created Successfully!', 'success').then((result) => {
-          if (result.isConfirmed) {
-            this.router.navigate(['/pages/enterprise-info']);
-          }
-        })
+        if(event.body.status == 'success'){
+          swal.fire('', 'Created Successfully!', 'success').then((result) => {
+            if (result.isConfirmed) {
+              this.router.navigate(['/pages/enterprise-info']);
+            }
+          })
+        }else if(event.body.desc == 'Company Name Already Exists'){
+          swal.fire('','Company Name Already Exists!','error')
+        }else if(event.body.desc == 'Email Address Already Exists'){
+          swal.fire('','Email Address Already Exists!','error')
+        }
       },err => {
         console.log(err);
         swal.fire('','Something went wrong!','error')

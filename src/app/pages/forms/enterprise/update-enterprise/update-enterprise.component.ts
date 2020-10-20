@@ -30,6 +30,7 @@ export class UpdateEnterpriseComponent implements OnInit {
     "valid_to": null,
     "comments": ""
   }
+  validFrom = new Date();
 
   constructor( private router: Router, private datapipe: DatePipe , private route: ActivatedRoute, private http: HttpClient, private authService: AuthService, private globals: ServicesService) {
     this.getData();

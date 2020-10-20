@@ -61,6 +61,7 @@
     "font-awesome": "^4.7.0",
     "intl": "1.2.5",
     "ionicons": "2.0.1",
+    "moment": "^2.29.1",
     "nebular-icons": "1.1.0",
     "ng2-ckeditor": "^1.2.9",
     "ngx-bootstrap": "^6.1.0",
