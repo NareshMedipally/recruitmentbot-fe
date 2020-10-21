@@ -48,10 +48,15 @@ export const MENU_ITEMS_ADMIN: NbMenuItem[] = [
     link:'/pages/reports'
    },
    {
-     title: 'Profile',
+     title: 'Email Authorization',
      icon: 'person-outline',
-     link:'/pages/profile',
+     link:'/pages/email-auth',
    },
+   {
+    title: 'Profile',
+    icon: 'person-outline',
+    link:'/pages/profile',
+  },
    {
      title: 'Logout',
      icon: 'power',

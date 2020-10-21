@@ -58,20 +58,20 @@ export class UpdateUserComponent implements OnInit {
   }
 
   techInfo = [
-    {
-      "technology_name": "",
-      "total_experience": "",
-      "usa_experience": "",
-      "marketing_phone": "",
-      "marketing_email_id": "",
-      "looking_for_job": "",
-      "subject_tag": "",
-      "non_subject_tag": "",
-      "linkedIn_url": "",
-      "tags": "",
-      "resume_loc": "",
-      "certificate_loc": ""
-    }
+    // {
+    //   "technology_name": "",
+    //   "total_experience": "",
+    //   "usa_experience": "",
+    //   "marketing_phone": "",
+    //   "marketing_email_id": "",
+    //   "looking_for_job": "",
+    //   "subject_tag": "",
+    //   "non_subject_tag": "",
+    //   "linkedIn_url": "",
+    //   "tags": [],
+    //   "resume_loc": "",
+    //   "certificate_loc": ""
+    // }
   ]
   content = '<h1>Hello</h1>';
 
@@ -155,7 +155,11 @@ export class UpdateUserComponent implements OnInit {
           "city": result.body.addresult[0].city,
           "zipcode": result.body.addresult[0].zipcode
         }
-        this.techInfo = result.body.techresult;
+        // this.techInfo = result.body.techresult;
+        for (const item of result.body.techresult) {
+          item.tags = item.tags.split(',');
+          this.techInfo.push(item)
+        }
       }
       console.log(this.formData);
       console.log(this.addressInfo);
@@ -186,7 +190,6 @@ export class UpdateUserComponent implements OnInit {
     this.authService.getTags(this.globals.company).subscribe((result)=>{
       console.log(result.body.fields);
       this.data = result.body.fields;
-      console.log
       this.globals.hideLoading('');
     },err=>{
       swal.fire('','Something went wrong!','error')
@@ -213,12 +216,14 @@ export class UpdateUserComponent implements OnInit {
       }
       console.log(sData);
       this.authService.updateCompany(this.route.snapshot.params.id, sData).subscribe((result)=>{
-        console.log(result);
-        swal.fire('', 'Updated successfully', 'success').then((result) => {
-          if (result.isConfirmed) {
-            this.router.navigate(['/pages/manage-user']);
-          }
-        })
+        if(result.body.desc == 'Record Updated Successfully'){
+          console.log(result);
+          swal.fire('', 'Updated successfully', 'success').then((result) => {
+            if (result.isConfirmed) {
+              this.router.navigate(['/pages/manage-user']);
+            }
+          })
+        }
       },err=> {
         console.log(err);
         swal.fire('Oops...', 'Something went wrong!', 'error')
@@ -238,19 +243,21 @@ export class UpdateUserComponent implements OnInit {
       }
       console.log(aData);
       this.authService.updateCompany(this.route.snapshot.params.id, aData).subscribe((result)=>{
-        console.log(result);
-        swal.fire('', 'Updated successfully', 'success').then((result) => {
-          if (result.isConfirmed) {
-            this.router.navigate(['/pages/manage-user']);
-          }
-        })
+        if(result.body.desc == 'Record Updated Successfully'){
+          console.log(result);
+          swal.fire('', 'Updated successfully', 'success').then((result) => {
+            if (result.isConfirmed) {
+              this.router.navigate(['/pages/manage-user']);
+            }
+          })
+        }
       },err=> {
         console.log(err);
         swal.fire('Oops...', 'Something went wrong!', 'error')
       })
     }else if(type == 'Recruiter') {
       console.log(type)
-      let aData = {
+      let rData = {
         "first_name" : this.formData.first_name,
         "last_name" : this.formData.last_name,
         "company_name": this.formData.company_name,
@@ -266,14 +273,16 @@ export class UpdateUserComponent implements OnInit {
         "role_type": this.formData.role_id ? this.formData.role_id : "null",
         "role_id": this.formData.role_id ? this.formData.role_id : "null",
       }
-      console.log(aData);
-      this.authService.updateCompany(this.route.snapshot.params.id, aData).subscribe((result)=>{
-        console.log(result);
-        swal.fire('', 'Updated successfully', 'success').then((result) => {
-          if (result.isConfirmed) {
-            this.router.navigate(['/pages/manage-user']);
-          }
-        })
+      console.log(rData);
+      this.authService.updateCompany(this.route.snapshot.params.id, rData).subscribe((result)=>{
+        if(result.body.desc == 'Record Updated Successfully'){
+          console.log(result);
+          swal.fire('', 'Updated successfully', 'success').then((result) => {
+            if (result.isConfirmed) {
+              this.router.navigate(['/pages/manage-user']);
+            }
+          })
+        }
       },err=> {
         console.log(err);
         swal.fire('Oops...', 'Something went wrong!', 'error')

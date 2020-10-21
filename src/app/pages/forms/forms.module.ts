@@ -38,6 +38,7 @@ import { CreateComponent } from './settings/tags/create/create.component';
 import { ViewEnterpriseComponent } from './enterprise/view-enterprise/view-enterprise.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { UpdateTagsComponent } from './settings/tags/update-tags/update-tags.component';
+import { EmailAuthComponent } from './email-auth/email-auth.component';
 
 @NgModule({
   imports: [
@@ -80,6 +81,7 @@ import { UpdateTagsComponent } from './settings/tags/update-tags/update-tags.com
     CreateComponent,
     ViewEnterpriseComponent,
     UpdateTagsComponent,
+    EmailAuthComponent,
   ],
   providers: [
     NgxPaginationModule,

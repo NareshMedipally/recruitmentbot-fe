@@ -70,12 +70,14 @@ export class ProfileComponent implements OnInit {
       "role_id": this.profile.role_id ? this.profile.role_id : "null",
     }
     this.authService.updateCompany(this.correlId,data).subscribe((res)=>{
-      console.log(res);
-      swal.fire('', 'Updated successfully!', 'success').then((result) => {
-        if (result.isConfirmed) {
-          this.router.navigate(['/pages/manage-user']);
-        }
-      })
+      if(res.body.desc == 'Record Updated Successfully'){
+        console.log(res);
+        swal.fire('', 'Updated successfully', 'success').then((result) => {
+          if (result.isConfirmed) {
+            this.router.navigate(['/pages/manage-user']);
+          }
+        })
+      }
     },err => {
       swal.fire('','Something went wrong!','error');
     })

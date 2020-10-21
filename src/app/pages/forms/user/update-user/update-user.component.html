@@ -106,7 +106,7 @@
     </div>
 
     <div *ngIf="dataType == 'Recruiter'" class="" style=" background-color: white; border: 1px white;">
-      <form (ngSubmit)="updateCompany('Recruiter')">
+      <form #rec="ngForm" (ngSubmit)="updateCompany('Recruiter')">
         <div class="row">
           <div class="col-md-12">
             <div class="form-group border-bottom border-primary">
@@ -145,31 +145,56 @@
           <div class="col-md-6">
             <div class="form-group">
               <label for="exampleInputEmail1" class="label">Primary Email Address</label>
-              <input type="email" class="form-control" fullWidth id="pemail" name="primary_email_id" [(ngModel)]="formData.primary_email_id" #primary_email_id="ngModel">
+              <input type="email" class="form-control" fullWidth id="pemail" name="primary_email_id" [(ngModel)]="formData.primary_email_id" #primary_email_id="ngModel" email>
+              <ng-container *ngIf="primary_email_id.touched">
+                <p class="error-message text-danger" *ngIf="primary_email_id.errors?.email">
+                  Email should be the real one!
+                </p>
+              </ng-container>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
               <label for="exampleInputEmail1" class="label">Generic Email Address</label>
-              <input type="email" class="form-control" fullWidth id="gemail" name="generic_email_id" [(ngModel)]="formData.generic_email_id" #generic_email_id="ngModel">
+              <input type="email" class="form-control" fullWidth id="gemail" name="generic_email_id" [(ngModel)]="formData.generic_email_id" #generic_email_id="ngModel" email>
+              <ng-container *ngIf="generic_email_id.touched">
+                <p class="error-message text-danger" *ngIf="generic_email_id.errors?.email">
+                  Email should be the real one!
+                </p>
+              </ng-container>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
               <label for="exampleInputEmail1" class="label">Personal Email Address</label>
-              <input type="email" class="form-control" fullWidth id="personal-email" name="personal_email_id" [(ngModel)]="formData.personal_email_id" #personal_email_id="ngModel">
+              <input type="email" class="form-control" fullWidth id="personal-email" name="personal_email_id" [(ngModel)]="formData.personal_email_id" #personal_email_id="ngModel" email>
+              <ng-container *ngIf="personal_email_id.touched">
+                <p class="error-message text-danger" *ngIf="personal_email_id.errors?.email">
+                  Email should be the real one!
+                </p>
+              </ng-container>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
               <label for="exampleInputEmail1" class="label">CC Email Address</label>
-              <input type="email" class="form-control" fullWidth id="cc-email" name="cc_email_id" [(ngModel)]="formData.cc_email_id" #cc_email_id="ngModel">
+              <input type="email" class="form-control" fullWidth id="cc-email" name="cc_email_id" [(ngModel)]="formData.cc_email_id" #cc_email_id="ngModel" email>
+              <ng-container *ngIf="cc_email_id.touched">
+                <p class="error-message text-danger" *ngIf="cc_email_id.errors?.email">
+                  Email should be the real one!
+                </p>
+              </ng-container>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
               <label for="exampleInputEmail1" class="label">BCC Email Address</label>
-              <input type="email" class="form-control" fullWidth id="bcc-email" name="bcc_email_id" [(ngModel)]="formData.bcc_email_id" #bcc_email_id="ngModel">
+              <input type="email" class="form-control" fullWidth id="bcc-email" name="bcc_email_id" [(ngModel)]="formData.bcc_email_id" #bcc_email_id="ngModel" email>
+              <ng-container *ngIf="bcc_email_id.touched">
+                <p class="error-message text-danger" *ngIf="bcc_email_id.errors?.email">
+                  Email should be the real one!
+                </p>
+              </ng-container>
             </div>
           </div>
           <div class="col-md-12">
@@ -190,7 +215,7 @@
             </div>
           </div>
           <div class="col-md-12 text-center">
-            <button type="submit" class="btn btn-primary" style="margin-right: 5px;">Update</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!rec.valid || rec.invalid" style="margin-right: 5px;">Update</button>
             <button class="btn btn-danger" routerLink="/pages/manage-user">Cancel</button>
           </div>
         </div>
@@ -198,267 +223,276 @@
     </div>
 
     <div *ngIf="dataType == 'Consultant'" class="" style=" background-color: white; border: 1px white;">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="form-group border-bottom border-primary">
-            <label for="" style="font-weight: bold;">General Info</label>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="form-group">
-            <label  class="label">First name</label>
-            <input type="text"  class="form-control" fullWidth name="first_name" [(ngModel)]="formData.first_name" placeholder="">
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="form-group">
-            <label  class="label">Last name</label>
-            <input type="text" class="form-control" fullWidth name="last_name" [(ngModel)]="formData.last_name" placeholder="">
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="form-group">
-            <label  class="label">Date of Birth</label>
-            <input type="text" class="form-control" name="dob" [(ngModel)]="formData.dob" fullWidth>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="form-group">
-            <label  class="label">Education</label>
-            <input type="text" class="form-control" fullWidth name="education" [(ngModel)]="formData.education">
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="form-group">
-            <label  class="label">Rate <span style="color: darkgreen;">$/hour</span></label>
-            <input type="text" class="form-control" fullWidth name="rate" [(ngModel)]="formData.rate">
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="form-group">
-            <label  class="label">Expiry Date</label>
-            <input type="text" class="form-control" fullWidth name="expiry_date" [(ngModel)]="formData.expiry_date" [disabled]="dateVisible">
-          </div>
-        </div>
-        <div class="col-md-12">
-          <div class="form-group border-bottom border-primary">
-            <label for="" style="font-weight: bold;">Contact Info</label>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="form-group">
-            <label  class="label">Email</label>
-            <input type="email" class="form-control" fullWidth name="email_id" [(ngModel)]="formData.email_id" disabled>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="form-group">
-            <label  class="label">Phone Number</label>
-            <input type="number" class="form-control" fullWidth name="phone" [(ngModel)]="formData.phone">
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="form-group">
-            <label  class="label">Relocation</label>
-            <select fullWidth class="form-control" name="relocation" [(ngModel)]="formData.relocation">
-              <option value="">Select</option>
-              <option *ngFor="let item of recLoc" value="{{item.value}}">{{item.title}}</option>
-            </select>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <label  class="label">Address Line 1</label>
-            <input type="text" class="form-control" fullWidth name="address_line_1" [(ngModel)]="addressInfo.address_line_1">
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <label  class="label">Address Line 2</label>
-            <input type="text" class="form-control" fullWidth name="address_line_2" [(ngModel)]="addressInfo.address_line_2">
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <label  class="label">Zip Code</label>
-            <input type="text" class="form-control" fullWidth name="zipcode" [(ngModel)]="addressInfo.zipcode">
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <label  class="label">City</label>
-            <input type="text" class="form-control" fullWidth name="city" [(ngModel)]="addressInfo.city">
-          </div>
-        </div>
-      </div>
-      <div class="row" *ngFor="let obj of techInfo; let i=index ">
-        <div class="col-md-12">
-          <div class="form-group border-bottom border-primary">
-            <label for="" style="font-weight: bold;">Technology</label>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="form-group">
-            <label  class="label">Total Experience</label>
-            <input type="text" class="form-control" fullWidth name="total_experience" [(ngModel)]="obj.total_experience" >
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="form-group">
-            <label  class="label">USA Experience</label>
-            <input type="text" class="form-control" fullWidth name="usa_experience" [(ngModel)]="obj.usa_experience" >
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="form-group">
-            <label  class="label">Marketing Phone Number</label>
-            <input type="number" class="form-control" fullWidth name="marketing_phone" [(ngModel)]="obj.marketing_phone" >
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="form-group">
-            <label  class="label">Marketing Email ID</label>
-            <input type="email" class="form-control" fullWidth name="marketing_email_id" [(ngModel)]="obj.marketing_email_id" >
-          </div>
-        </div>
-        <div class="col-4">
-          <div class="form-group">
-            <label class="label">Looking for Job</label>
-            <input type="text" class="form-control" fullWidth name="looking_for_job" [(ngModel)]="obj.looking_for_job" >
-          </div>
-        </div>
-        <div class="col-4">
-          <div class="form-group">
-            <label class="label">Subject Tags</label>
-            <input type="text" class="form-control" fullWidth name="subject_tag" [(ngModel)]="obj.subject_tag" >
-          </div>
-        </div>
-        <div class="col-4">
-          <div class="form-group">
-            <label class="label">Non-Subject Tags</label>
-            <input type="text" class="form-control" fullWidth name="non_sub_tag" [(ngModel)]="obj.non_subject_tag" >
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <label  class="label">Marketing Linkedin Profile</label>
-            <input type="url" pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$" class="form-control" fullWidth name="linkedIn_url" [(ngModel)]="obj.linkedIn_url" #linkedIn_url="ngModel">
-            <ng-container *ngIf="linkedIn_url.touched ">
-              <p class="error-message text-danger" *ngIf="linkedIn_url.errors?.pattern">
-                Allow type http or www!
-              </p>
-            </ng-container>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <label  class="label">Technology Tags</label>
-            <ng-select [multiple]="true" name="tags" [(ngModel)]="obj.tags" >
-              <ng-option *ngFor="let tag of data" [value]="tag.tag_name" [disabled]="tag.disabled">{{tag.tag_name}}</ng-option>
-            </ng-select>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <label  class="label">Resume</label>
-            <input type="file"  class="form-control" fullWidth>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <label  class="label">Certification</label>
-            <input type="file"  class="form-control" fullWidth>
-          </div>
-        </div>
-      </div>
-      <div class="row mt-3">
-        <div class="col-md-12">
-          <div class="form-group border-bottom border-primary">
-            <label for="" style="font-weight: bold;">Other Info</label>
-          </div>
-        </div>
-      </div>
-      <div class="row mt-2">
-        <div class="col-md-12">
-          <label >Email Template</label>
-          <div class="form-group">
-            <ngx-tiny-mce (editorKeyup)="getemailContent($event)" [innerHtml]="formData.email_template"></ngx-tiny-mce>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="form-group border-bottom border-primary">
-            <label for="" style="font-weight: bold;">Visa Info</label>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="form-group">
-                <label  class="label">Visa Copy</label>
-                <input type="file" class="form-control" fullWidth>
-              </div>
+      <form #con_form="ngForm">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group border-bottom border-primary">
+              <label for="" style="font-weight: bold;">General Info</label>
             </div>
-            <div class="col-md-12">
-              <div class="form-group">
-                <label  class="label">Visa Status</label>
-                <select fullWidth class="form-control" name="visa_status" [(ngModel)]="formData.visa_status">
-                  <option value="">Select</option>
-                  <option *ngFor="let item of visa" value="{{item.value}}">{{item.title}}</option>
-                </select>
-              </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label  class="label">First name</label>
+              <input type="text"  class="form-control" fullWidth name="first_name" [(ngModel)]="formData.first_name" placeholder="">
             </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label  class="label">Visa Valid From</label>
-                <input type="text" class="form-control" fullWidth name="visa_valid_from" [(ngModel)]="formData.visa_valid_from">
-              </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label  class="label">Last name</label>
+              <input type="text" class="form-control" fullWidth name="last_name" [(ngModel)]="formData.last_name" placeholder="">
             </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label  class="label">Visa Valid To</label>
-                <input type="text" class="form-control" fullWidth name="visa_valid_to" [(ngModel)]="formData.visa_valid_to">
-              </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label  class="label">Date of Birth</label>
+              <input type="text" class="form-control" name="dob" [(ngModel)]="formData.dob" fullWidth>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label  class="label">Education</label>
+              <input type="text" class="form-control" fullWidth name="education" [(ngModel)]="formData.education">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label  class="label">Rate <span style="color: darkgreen;">$/hour</span></label>
+              <input type="text" class="form-control" fullWidth name="rate" [(ngModel)]="formData.rate">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label  class="label">Expiry Date</label>
+              <input type="text" class="form-control" fullWidth name="expiry_date" [(ngModel)]="formData.expiry_date" [disabled]="dateVisible">
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group border-bottom border-primary">
+              <label for="" style="font-weight: bold;">Contact Info</label>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label  class="label">Email</label>
+              <input type="email" class="form-control" fullWidth name="email_id" [(ngModel)]="formData.email_id" disabled>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label  class="label">Phone Number</label>
+              <input type="number" class="form-control" fullWidth name="phone" [(ngModel)]="formData.phone">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label  class="label">Relocation</label>
+              <select fullWidth class="form-control" name="relocation" [(ngModel)]="formData.relocation">
+                <option value="">Select</option>
+                <option *ngFor="let item of recLoc" value="{{item.value}}">{{item.title}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label  class="label">Address Line 1</label>
+              <input type="text" class="form-control" fullWidth name="address_line_1" [(ngModel)]="addressInfo.address_line_1">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label  class="label">Address Line 2</label>
+              <input type="text" class="form-control" fullWidth name="address_line_2" [(ngModel)]="addressInfo.address_line_2">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label  class="label">Zip Code</label>
+              <input type="number" class="form-control" fullWidth name="zipcode" [(ngModel)]="addressInfo.zipcode">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label  class="label">City</label>
+              <input type="text" class="form-control" fullWidth name="city" [(ngModel)]="addressInfo.city">
             </div>
           </div>
         </div>
-        <div class="col-md-6">
-          <div class="form-group border-bottom border-primary">
-            <label for="" style="font-weight: bold;">Driving License Info</label>
+        <div class="row" *ngFor="let obj of techInfo; let i=index ">
+          <div class="col-md-12">
+            <div class="form-group border-bottom border-primary">
+              <label for="" style="font-weight: bold;">Technology</label>
+            </div>
           </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="form-group">
-                <label  class="label">Driving License Copy</label>
-                <input type="file" class="form-control" fullWidth>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label  class="label">Total Experience</label>
+              <input type="text" class="form-control" fullWidth name="total_experience" [(ngModel)]="obj.total_experience" >
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label  class="label">USA Experience</label>
+              <input type="text" class="form-control" fullWidth name="usa_experience" [(ngModel)]="obj.usa_experience" >
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label  class="label">Marketing Phone Number</label>
+              <input type="number" class="form-control" fullWidth name="marketing_phone" [(ngModel)]="obj.marketing_phone" >
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label  class="label">Marketing Email ID</label>
+              <input type="email" class="form-control" fullWidth name="marketing_email_id" [(ngModel)]="obj.marketing_email_id" #marketing_email_id="ngModel" email>
+              <ng-container *ngIf="marketing_email_id.touched">
+                <p class="error-message text-danger" *ngIf="marketing_email_id.errors?.email">
+                  Email should be the real one!
+                </p>
+              </ng-container>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="form-group">
+              <label class="label">Looking for Job</label>
+              <input type="text" class="form-control" fullWidth name="looking_for_job" [(ngModel)]="obj.looking_for_job" >
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="form-group">
+              <label class="label">Subject Tags</label>
+              <input type="text" class="form-control" fullWidth name="subject_tag" [(ngModel)]="obj.subject_tag" >
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="form-group">
+              <label class="label">Non-Subject Tags</label>
+              <input type="text" class="form-control" fullWidth name="non_sub_tag" [(ngModel)]="obj.non_subject_tag" >
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label  class="label">Marketing Linkedin Profile</label>
+              <input type="url" pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$" class="form-control" fullWidth name="linkedIn_url" [(ngModel)]="obj.linkedIn_url" #linkedIn_url="ngModel">
+              <ng-container *ngIf="linkedIn_url.touched ">
+                <p class="error-message text-danger" *ngIf="linkedIn_url.errors?.pattern">
+                  Allow type http or www!
+                </p>
+              </ng-container>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label  class="label">Technology Tags</label>
+              <ng-select [multiple]="true" name="tags" [(ngModel)]="obj.tags" >
+                <ng-option *ngFor="let tag of data" [value]="tag.tag_name" [disabled]="tag.disabled">{{tag.tag_name}}</ng-option>
+              </ng-select>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label  class="label">Resume</label>
+              <input type="file"  class="form-control" fullWidth>
+            </div>
+            <a target="_blank" href="http://localhost:5000/files/{{obj.resume_loc}}">View previous upload</a>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label  class="label">Certification</label>
+              <input type="file"  class="form-control" fullWidth>
+            </div>
+            <a target="_blank" href="http://localhost:5000/files/{{obj.certificate_loc}}">View previous upload</a>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-12">
+            <div class="form-group border-bottom border-primary">
+              <label for="" style="font-weight: bold;">Other Info</label>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-md-12">
+            <label >Email Template</label>
+            <div class="form-group">
+              <ngx-tiny-mce (editorKeyup)="getemailContent($event)" [innerHtml]="formData.email_template"></ngx-tiny-mce>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group border-bottom border-primary">
+              <label for="" style="font-weight: bold;">Visa Info</label>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label  class="label">Visa Copy</label>
+                  <input type="file" class="form-control" fullWidth>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label  class="label">Visa Status</label>
+                  <select fullWidth class="form-control" name="visa_status" [(ngModel)]="formData.visa_status">
+                    <option value="">Select</option>
+                    <option *ngFor="let item of visa" value="{{item.value}}">{{item.title}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label  class="label">Visa Valid From</label>
+                  <input type="text" class="form-control" fullWidth name="visa_valid_from" [(ngModel)]="formData.visa_valid_from" bsDatepicker placement="top" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" placeholder="yyyy-mm-dd">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label  class="label">Visa Valid To</label>
+                  <input type="text" class="form-control" fullWidth name="visa_valid_to" [(ngModel)]="formData.visa_valid_to" bsDatepicker placement="top" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" placeholder="yyyy-mm-dd">
+                </div>
               </div>
             </div>
-            <div class="col-md-12">
-              <div class="form-group">
-                <label  class="label">Driving License Valid From</label>
-                <input type="text" class="form-control" fullWidth name="DL_valid_from" [(ngModel)]="formData.DL_valid_from">
-              </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group border-bottom border-primary">
+              <label for="" style="font-weight: bold;">Driving License Info</label>
             </div>
-            <div class="col-md-12">
-              <div class="form-group">
-                <label  class="label">Driving License Valid To</label>
-                <input type="text" class="form-control" fullWidth name="DL_valid_to" [(ngModel)]="formData.DL_valid_to">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label  class="label">Driving License Copy</label>
+                  <input type="file" class="form-control" fullWidth>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label  class="label">Driving License Valid From</label>
+                  <input type="text" class="form-control" fullWidth name="DL_valid_from" [(ngModel)]="formData.DL_valid_from" bsDatepicker placement="top" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" placeholder="yyyy-mm-dd">
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label  class="label">Driving License Valid To</label>
+                  <input type="text" class="form-control" fullWidth name="DL_valid_to" [(ngModel)]="formData.DL_valid_to" bsDatepicker placement="top" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" placeholder="yyyy-mm-dd">
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12 mt-2">
-          <div class="form-group">
-            <label  class="label">Comments</label>
-            <textarea rows=4 class="form-control" fullWidth id="inputEmail" placeholder="Enter Comments" name="comments" [(ngModel)]="formData.comments"></textarea>
+        <div class="row">
+          <div class="col-md-12 mt-2">
+            <div class="form-group">
+              <label  class="label">Comments</label>
+              <textarea rows=4 class="form-control" fullWidth id="inputEmail" placeholder="Enter Comments" name="comments" [(ngModel)]="formData.comments"></textarea>
+            </div>
+          </div>
+          <div class="col-md-12 text-center">
+            <button class="btn btn-primary" [disabled]="!con_form.valid || con_form.pristine || con_form.invalid" style="margin-right: 5px;">Update</button>
+            <button routerLink="/pages/manage-user" class="btn btn-danger">Cancel</button>
           </div>
         </div>
-        <div class="col-md-12 text-center">
-          <button class="btn btn-primary" style="margin-right: 5px;">Update</button>
-          <button routerLink="/pages/manage-user" class="btn btn-danger">Cancel</button>
-        </div>
-      </div>
+      </form>
     </div>
   </nb-card-body>
 </nb-card>

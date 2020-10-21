@@ -66,6 +66,7 @@ export class UpdateTagsComponent implements OnInit {
       "tag_name": this.tags.tag_name,
       "tag_desc": this.tags.tag_desc,
       "tag_type": this.tags.tag_type,
+      "company_name": this.tags.company_name
     }
     console.log(tagdata);
     this.globals.showLoading('');
@@ -85,6 +86,9 @@ export class UpdateTagsComponent implements OnInit {
             this.router.navigate(['/pages/tags']);
           }
         })
+      }else if(res.body.desc == 'Tag Already Exists'){
+        this.globals.hideLoading('');
+        swal.fire('','Tag Already Exists!','error');
       }
     },err => {
       swal.fire('','Something went wrong!','error');

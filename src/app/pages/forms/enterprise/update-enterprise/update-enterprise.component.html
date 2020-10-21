@@ -62,8 +62,8 @@
                 <div class="row">
                   <div class="col-12 text-center">
                     <figure class="figure">
-                      <img style="max-width:170px;max-height: 130px;" src="http://localhost:5000/{{company.company_logo}}" class="figure-img img-fluid rounded" *ngIf="logoImg == false" alt="">
-                      <img style="max-width:170px;max-height: 130px;" [src]="company.company_logo" class="figure-img img-fluid rounded" *ngIf="logoImg == true" alt="">
+                      <img style="max-width:170px;max-height: 130px;" src="http://localhost:5000/files/{{company.company_logo}}" class="figure-img img-fluid rounded" *ngIf="logoImg == false" alt="">
+                      <img style="max-width:170px;max-height: 130px;" [src]="logo" class="figure-img img-fluid rounded" *ngIf="logoImg == true" alt="">
                     </figure>
                   </div>
                 </div>
@@ -126,7 +126,7 @@
             <div class="col-sm-6">
               <div class="form-group">
                 <label for="inputWebsite" class="label">Zipcode</label>
-                <input type="text" class="form-control" fullWidth name="zipcode" [(ngModel)]="company.zipcode" >
+                <input type="number" class="form-control" fullWidth name="zipcode" [(ngModel)]="company.zipcode" >
               </div>
             </div>
           </div>
@@ -141,13 +141,13 @@
             <div class="col-sm-6">
               <div class="form-group">
                 <label for="inputEmail" class="label">Valid From</label>
-                <input  type="text" class="form-control" fullWidth name="valid_from" [(ngModel)]="company.valid_from" #valid_from="bsDatepicker" [minDate]="validFrom" bsDatepicker placement="bottom-left" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}">
+                <input  type="text" class="form-control" fullWidth name="valid_from" [(ngModel)]="company.valid_from" #valid_from="bsDatepicker" [minDate]="validFrom" bsDatepicker placement="bottom-left" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" placeholder="yyyy-mm-dd">
               </div>
             </div>
             <div class="col-sm-6">
               <div class="form-group">
                 <label for="inputWebsite" class="label">Valid To</label>
-                <input  type="text" class="form-control" fullWidth name="valid_to" [(ngModel)]="company.valid_to" #valid_to="bsDatepicker" [minDate]="company.valid_from" bsDatepicker placement="bottom-left" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" placeholder="dd-mm-yyyy">
+                <input  type="text" class="form-control" fullWidth name="valid_to" [(ngModel)]="company.valid_to" #valid_to="bsDatepicker" [minDate]="validFrom" bsDatepicker placement="bottom-left" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" placeholder="yyyy-mm-dd">
               </div>
             </div>
           </div>

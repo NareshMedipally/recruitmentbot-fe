@@ -26,6 +26,7 @@ import { CreateComponent } from './forms/settings/tags/create/create.component';
 import { ViewEnterpriseComponent } from './forms/enterprise/view-enterprise/view-enterprise.component';
 import { UpdateTagsComponent } from './forms/settings/tags/update-tags/update-tags.component';
 import { UpdateEnterpriseComponent } from './forms/enterprise/update-enterprise/update-enterprise.component';
+import { EmailAuthComponent } from './forms/email-auth/email-auth.component';
 
 const routes: Routes = [{
   path: '',
@@ -78,6 +79,10 @@ const routes: Routes = [{
     {
       path: 'profile',
       component: ProfileComponent,
+    },
+    {
+      path: 'email-auth',
+      component: EmailAuthComponent,
     },
     {
       path: 'tags',

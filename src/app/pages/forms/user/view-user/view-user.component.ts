@@ -56,20 +56,7 @@ export class ViewUserComponent implements OnInit {
     "zipcode": ""
   }
 
-  techInfo = {
-    "technology_name": "",
-    "total_experience": "",
-    "usa_experience": "",
-    "marketing_phone": "",
-    "marketing_email_id": "",
-    "looking_for_job": "",
-    "subject_tag": "",
-    "non_subject_tag": "",
-    "linkedIn_url": "",
-    "tags": "",
-    "resume_loc": "",
-    "certificate_loc": ""
-  }
+  techInfo = [];
 
   constructor(private datapipe:DatePipe, private route: ActivatedRoute, private router: ActivatedRoute, private http: HttpClient, private authService: AuthService, private globals: ServicesService) {
     this.getUser();
@@ -155,37 +142,10 @@ export class ViewUserComponent implements OnInit {
           "city": result.body.addresult[0].city,
           "zipcode": result.body.addresult[0].zipcode
         }
-        this.techInfo = result.body.techresult
-        // this.techInfo = [
-        //   {
-        //     "technology_name": result.body.techresult[0].technology_name,
-        //     "total_experience": result.body.techresult[0].total_experience,
-        //     "usa_experience": result.body.techresult[0].usa_experience,
-        //     "marketing_phone": result.body.techresult[0].marketing_phone,
-        //     "marketing_email_id": result.body.techresult[0].marketing_email_id,
-        //     "looking_for_job": result.body.techresult[0].looking_for_job,
-        //     "subject_tag": result.body.techresult[0].subject_tag,
-        //     "non_subject_tag": result.body.techresult[0].non_subject_tag,
-        //     "linkedIn_url": result.body.techresult[0].linkedIn_url,
-        //     "tags": result.body.techresult[0].tags,
-        //     "resume_loc": result.body.techresult[0].resume_loc,
-        //     "certificate_loc": result.body.techresult[0].certificate_loc
-        //   },
-        //   {
-        //     "technology_name": result.body.techresult[1].technology_name,
-        //     "total_experience": result.body.techresult[1].total_experience,
-        //     "usa_experience": result.body.techresult[1].usa_experience,
-        //     "marketing_phone": result.body.techresult[1].marketing_phone,
-        //     "marketing_email_id": result.body.techresult[1].marketing_email_id,
-        //     "looking_for_job": result.body.techresult[1].looking_for_job,
-        //     "subject_tag": result.body.techresult[1].subject_tag,
-        //     "non_subject_tag": result.body.techresult[1].non_subject_tag,
-        //     "linkedIn_url": result.body.techresult[1].linkedIn_url,
-        //     "tags": result.body.techresult[1].tags,
-        //     "resume_loc": result.body.techresult[1].resume_loc,
-        //     "certificate_loc": result.body.techresult[1].certificate_loc
-        //   }
-        // ]
+        for (const item of result.body.techresult) {
+          item.tags = item.tags.split(',');
+          this.techInfo.push(item)
+        }
       }
       console.log(this.formData);
       console.log(this.addressInfo);

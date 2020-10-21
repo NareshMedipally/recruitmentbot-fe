@@ -56,7 +56,7 @@ export class TagsComponent implements OnInit {
       if (result.isConfirmed) {
         this.authService.DeleteTag(data.tag_id).subscribe((result)=>{
           console.log(result);
-          if(result.body.status == 'Success'){
+          if(result.body.desc == 'Tag Deleted'){
             swal.fire({
               text: 'Deleted successfully',
               icon: 'success',

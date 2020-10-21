@@ -32,6 +32,7 @@ export class UpdateEnterpriseComponent implements OnInit {
   }
   validFrom = new Date();
   logoImg = false;
+  logo: string;
 
   constructor( private router: Router, private datapipe: DatePipe , private route: ActivatedRoute, private http: HttpClient, private authService: AuthService, private globals: ServicesService) {
     this.getData();
@@ -70,11 +71,12 @@ export class UpdateEnterpriseComponent implements OnInit {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       this.fileToUpload = file;
-      this.company.company_logo = this.fileToUpload
+      this.company.company_logo = this.fileToUpload;
+      console.log(this.company.company_logo)
       var reader = new FileReader();
       reader.readAsDataURL(event.target.files[0]);
       reader.onload = (e: any)=>{
-        this.company.company_logo = e.target.result;
+        this.logo = e.target.result;
       }
     }
     this.logoImg = true;
@@ -84,7 +86,7 @@ export class UpdateEnterpriseComponent implements OnInit {
     const formData = new FormData();
     formData.append("company_name", this.company.company_name);
     formData.append("website_url", this.company.website_url);
-    formData.append("company_logo", this.fileToUpload);
+    formData.append("company_logo", this.company.company_logo);
     formData.append("email_id", this.company.email_id);
     formData.append("linkedIn_url", this.company.linkedIn_url);
     formData.append("phone", this.company.phone);
@@ -99,11 +101,17 @@ export class UpdateEnterpriseComponent implements OnInit {
     this.authService.updateEntCompany(this.route.snapshot.params.id,formData)
       .subscribe(event => {
         console.log("event",event);
-        swal.fire('', 'Updated Successfully!', 'success').then((result) => {
-          if (result.isConfirmed) {
-            this.router.navigate(['/pages/enterprise-info']);
-          }
-        })
+        if(event.body.desc == 'Record Updated Successfully'){
+          swal.fire('', 'Updated Successfully!', 'success').then((result) => {
+            if (result.isConfirmed) {
+              this.router.navigate(['/pages/enterprise-info']);
+            }
+          })
+        }else if(event.body.desc == 'Company Name Already Exists'){
+          swal.fire('','Company Name Already Exists!','error')
+        }else if(event.body.desc == 'Email Address Already Exists'){
+          swal.fire('','Email Address Already Exists!','error')
+        }
       },err => {
         console.log(err);
         swal.fire('','Something went wrong!','error')
