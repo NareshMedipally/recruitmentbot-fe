@@ -49,7 +49,7 @@ export const MENU_ITEMS_ADMIN: NbMenuItem[] = [
    },
    {
      title: 'Email Authorization',
-     icon: 'person-outline',
+     icon: 'email',
      link:'/pages/email-auth',
    },
    {

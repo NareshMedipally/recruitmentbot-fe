@@ -99,6 +99,18 @@ export class AuthService {
     }
   }
 
+  updateConsultant(id,data){
+    this.getToken();
+    if(this.AccessToken) {
+      var headersForAPI = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*', 'Authorization': 'Bearer ' + this.AccessToken });
+      headersForAPI.append("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
+      let url =  this.baseUrl + '/updateconsultant/{correl_id}';
+      url = url.replace('{correl_id}', id);
+      console.log(url);
+      return this.http.put<any>(url,data, { headers: headersForAPI, observe: 'response' });
+    }
+  }
+
   deleteCompany(id){
     this.getToken();
     if(this.AccessToken) {

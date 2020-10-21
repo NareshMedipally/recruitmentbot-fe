@@ -19,6 +19,10 @@ export class UpdateUserComponent implements OnInit {
   dataType: any;
   dateVisible = true;
   data: any[] = [];
+  certificate:any =[]
+  visacopy:any
+  drivingcopy:any;
+  resume:any =[];
   formData = {
     "first_name" : "",
     "last_name" : "",
@@ -201,6 +205,29 @@ export class UpdateUserComponent implements OnInit {
     this.formData.email_template = val
   }
 
+  onFileChange(source,event,index?){
+    console.log("source",source)
+    let file = ''
+    if (event.target.files.length > 0) {
+      console.log('here3');
+      file = event.target.files[0];
+      if(source == "resume"){
+        this.resume.push(file)
+      }else if(source == "certificate"){
+        console.log('here');
+        this.certificate.push(file)
+      } else if(source == "driving_license"){
+        this.drivingcopy = file;
+      }else if(source == "visa"){
+        this.visacopy = file;
+      }
+    }
+    console.log('resume',this.resume)
+    console.log('certificate',this.certificate)
+    console.log('driving_license',this.drivingcopy)
+    console.log('visa',this.visacopy)
+  }
+
   updateCompany(type){
     if(type == 'Super Admin'){
       console.log(type);
@@ -286,6 +313,94 @@ export class UpdateUserComponent implements OnInit {
       },err=> {
         console.log(err);
         swal.fire('Oops...', 'Something went wrong!', 'error')
+      })
+    }else if(type == 'Consultant'){
+      if(this.techInfo.length > 0){
+        this.techInfo.forEach(element =>{
+          if(element.tags)
+          element.tags = element.tags.toString()
+        })
+      }else{
+        if(this.techInfo[0].tags){
+          this.techInfo[0].tags =this.techInfo[0].tags.toString()
+        }
+      }
+      let con_generalInfo = [
+        {
+          "first_name" : this.formData.first_name,
+          "last_name" : this.formData.last_name,
+          "dob": this.formData.dob ? this.datapipe.transform(this.formData.dob, 'yyyy-MM-dd'): null,
+          "education": this.formData.education,
+          "rate" : this.formData.rate,
+          "expiry_date" : this.formData.expiry_date ? this.datapipe.transform(this.formData.expiry_date, 'yyyy-MM-dd'): null,
+          "created_user": localStorage.getItem('email_id')
+        }
+      ];
+      let con_contactInfo = [
+        {
+          "email_id": this.formData.email_id,
+          "phone": this.formData.phone,
+          "relocation": this.formData.relocation,
+          "address_line_1" : this.addressInfo.address_line_1,
+          "address_line_2" : this.addressInfo.address_line_2,
+          "zipcode" : this.addressInfo.zipcode,
+          "city" : this.addressInfo.city,
+        }
+      ];
+      let con_otherInfo = [
+        {
+          "DL_copy" : this.formData.DL_copy,
+          "DL_valid_from" : this.formData.DL_valid_from ? this.datapipe.transform(this.formData.DL_valid_from, 'yyyy-MM-dd'): null,
+          "DL_valid_to" : this.formData.DL_valid_to ? this.datapipe.transform(this.formData.DL_valid_to, 'yyyy-MM-dd'): null,
+          "visa_status": this.formData.visa_status,
+          "visa_copy_loc": this.formData.visa_copy_loc,
+          "visa_valid_from": this.formData.visa_valid_from ? this.datapipe.transform(this.formData.visa_valid_from, 'yyyy-MM-dd'): null,
+          "visa_valid_to": this.formData.visa_valid_to ? this.datapipe.transform(this.formData.visa_valid_to, 'yyyy-MM-dd'): null,
+          "comments": this.formData.comments,
+        }
+      ]
+      const formData = new FormData();
+      formData.append("generalInfo", JSON.stringify(con_generalInfo));
+      formData.append("contactInfo", JSON.stringify(con_contactInfo));
+      formData.append("technology", JSON.stringify(this.techInfo));
+      formData.append("email_template", this.formData.email_template);
+      formData.append("role_type", localStorage.getItem('role'));
+      formData.append("role_id", localStorage.getItem('role'));
+      formData.append("company_name", localStorage.getItem('company_Name'));
+      if(this.resume){
+        for(var x = 0; x<this.resume.length; x++) {
+          formData.append("resume", this.resume[x]);
+      }
+
+      }
+      if(this.certificate){
+        for(var x = 0; x<this.certificate.length; x++) {
+          formData.append("certificate", this.certificate[x]);
+      }
+
+      }
+      if(this.visacopy){
+        formData.append("visa", this.visacopy);
+      }
+      if(this.drivingcopy){
+        formData.append("driving_license", this.drivingcopy);
+      }
+      console.log(con_generalInfo);
+      console.log(con_contactInfo);
+      console.log(con_otherInfo);
+      console.log(this.techInfo);
+      this.authService.updateConsultant(this.route.snapshot.params.id, formData).subscribe((result)=>{
+        if(result.body.desc == 'Record Updated Successfully'){
+          console.log(result);
+          swal.fire('', 'Updated successfully', 'success').then((result) => {
+            if (result.isConfirmed) {
+              this.router.navigate(['/pages/manage-user']);
+            }
+          })
+        }
+      },err=> {
+        console.log(err);
+        swal.fire('', 'Something went wrong!', 'error')
       })
     }
 

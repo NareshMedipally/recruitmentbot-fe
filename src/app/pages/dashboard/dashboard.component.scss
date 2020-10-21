@@ -14,3 +14,9 @@
     }
   }
 }
+
+.sm-mt-2 {
+  @media (max-width: 576px) {
+    margin-top: 0.5rem !important;
+  }
+}

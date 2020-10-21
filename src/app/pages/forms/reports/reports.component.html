@@ -1,1 +1,36 @@
-<p>Reports</p>
+<h5 style="color:#2e3192;">REPORTS</h5>
+<nb-card>
+  <nb-card-body>
+    <div class="row">
+      <div class="col-md-12 text-right">
+        <label class="search-label" for="search">Search:&nbsp;&nbsp;</label>
+        <input [(ngModel)]="searchTerm" class="search-input" (input)="Search()">
+      </div>
+    </div><br>
+    <div class="row">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>S.NO</th>
+            <th>Recruiter Mail id</th>
+            <th>Receiver Mail id</th>
+            <th>Subject</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let report of reports | paginate: { itemsPerPage: 10, currentPage: Page } ; let i = index">
+            <td>{{i+1}}</td>
+            <td>{{report.title}}</td>
+            <td>{{report.title_2}}</td>
+            <td>{{report.subject}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="row">
+      <div class="col-md-12 mt-2 text-right">
+        <pagination-controls (pageChange)="Page=$event"></pagination-controls>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

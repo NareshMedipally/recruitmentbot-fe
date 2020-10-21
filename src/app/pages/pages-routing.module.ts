@@ -27,6 +27,7 @@ import { ViewEnterpriseComponent } from './forms/enterprise/view-enterprise/view
 import { UpdateTagsComponent } from './forms/settings/tags/update-tags/update-tags.component';
 import { UpdateEnterpriseComponent } from './forms/enterprise/update-enterprise/update-enterprise.component';
 import { EmailAuthComponent } from './forms/email-auth/email-auth.component';
+import { ReportsComponent } from './forms/reports/reports.component';
 
 const routes: Routes = [{
   path: '',
@@ -79,6 +80,10 @@ const routes: Routes = [{
     {
       path: 'profile',
       component: ProfileComponent,
+    },
+    {
+      path: 'reports',
+      component: ReportsComponent,
     },
     {
       path: 'email-auth',
