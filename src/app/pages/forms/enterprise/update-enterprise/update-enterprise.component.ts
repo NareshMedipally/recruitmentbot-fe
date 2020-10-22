@@ -33,6 +33,7 @@ export class UpdateEnterpriseComponent implements OnInit {
   validFrom = new Date();
   logoImg = false;
   logo: string;
+  previousLogo:any;
 
   constructor( private router: Router, private datapipe: DatePipe , private route: ActivatedRoute, private http: HttpClient, private authService: AuthService, private globals: ServicesService) {
     this.getData();
@@ -45,6 +46,7 @@ export class UpdateEnterpriseComponent implements OnInit {
   getData(){
     this.authService.getEntCompany(this.route.snapshot.params.id).subscribe((result)=>{
       console.log(result);
+      this.previousLogo = result.body.fields[0].company_logo
       this.company = {
         "company_name": result.body.fields[0].company_name,
         "website_url": result.body.fields[0].website_url,
@@ -86,7 +88,7 @@ export class UpdateEnterpriseComponent implements OnInit {
     const formData = new FormData();
     formData.append("company_name", this.company.company_name);
     formData.append("website_url", this.company.website_url);
-    formData.append("company_logo", this.company.company_logo);
+    formData.append("company_logo", this.previousLogo);
     formData.append("email_id", this.company.email_id);
     formData.append("linkedIn_url", this.company.linkedIn_url);
     formData.append("phone", this.company.phone);
@@ -98,6 +100,9 @@ export class UpdateEnterpriseComponent implements OnInit {
     formData.append("valid_from", this.company.valid_from ? this.datapipe.transform(this.company.valid_from, 'yyyy-MM-dd') : "");
     formData.append("valid_to", this.company.valid_to ? this.datapipe.transform(this.company.valid_to, 'yyyy-MM-dd') : "");
     formData.append("comments", this.company.comments);
+    if(this.fileToUpload){
+      formData.append("upcompany_logo", this.fileToUpload);
+    }
     this.authService.updateEntCompany(this.route.snapshot.params.id,formData)
       .subscribe(event => {
         console.log("event",event);
