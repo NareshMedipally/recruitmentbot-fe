@@ -363,41 +363,42 @@ export class UpdateUserComponent implements OnInit {
       formData.append("generalInfo", JSON.stringify(con_generalInfo));
       formData.append("contactInfo", JSON.stringify(con_contactInfo));
       formData.append("technology", JSON.stringify(this.techInfo));
+      formData.append("otherInfo", JSON.stringify(con_otherInfo));
       formData.append("email_template", this.formData.email_template);
       formData.append("role_type", localStorage.getItem('role'));
       formData.append("role_id", localStorage.getItem('role'));
       formData.append("company_name", localStorage.getItem('company_Name'));
       if(this.resume){
         for(var x = 0; x<this.resume.length; x++) {
-          formData.append("resume", this.resume[x]);
+          formData.append("upresume", this.resume[x]);
       }
 
       }
       if(this.certificate){
         for(var x = 0; x<this.certificate.length; x++) {
-          formData.append("certificate", this.certificate[x]);
+          formData.append("upcertificate", this.certificate[x]);
       }
 
       }
       if(this.visacopy){
-        formData.append("visa", this.visacopy);
+        formData.append("upvisa", this.visacopy);
       }
       if(this.drivingcopy){
-        formData.append("driving_license", this.drivingcopy);
+        formData.append("updriving_license", this.drivingcopy);
       }
       console.log(con_generalInfo);
       console.log(con_contactInfo);
       console.log(con_otherInfo);
       console.log(this.techInfo);
       this.authService.updateConsultant(this.route.snapshot.params.id, formData).subscribe((result)=>{
-        if(result.body.desc == 'Record Updated Successfully'){
+       // if(result.body.desc == 'Record Updated Successfully'){
           console.log(result);
           swal.fire('', 'Updated successfully', 'success').then((result) => {
             if (result.isConfirmed) {
               this.router.navigate(['/pages/manage-user']);
             }
           })
-        }
+       // }
       },err=> {
         console.log(err);
         swal.fire('', 'Something went wrong!', 'error')
