@@ -79,3 +79,10 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 })
 export class AppModule {
 }
+
+declare module "@angular/core" {
+  interface ModuleWithProviders<T = any> {
+      ngModule: Type<T>;
+      providers?: Provider[];
+  }
+}

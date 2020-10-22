@@ -9,15 +9,25 @@ export class ReportsComponent implements OnInit {
 
   reports: any[] = [];
   Companies: any[];
-  totalItems: number = 0;
-  Page: number = 1;
-  searchTerm: string;
+  dtOptions: any = {};
 
   constructor() {
     this.reportsData();
   }
 
   ngOnInit(): void {
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 10,
+      processing: true,
+      dom: 'Bfrtip',
+        buttons: [
+            { extend: 'copy', className: 'table-button button btn btn-primary', },
+            { extend: 'csv', className: 'table-button button btn btn-primary', },
+            { extend: 'excel', className: 'table-button button btn btn-primary', },
+            { extend: 'print', className: 'table-button button btn btn-primary', }
+        ]
+    };
   }
 
   reportsData(){
@@ -26,16 +36,6 @@ export class ReportsComponent implements OnInit {
       { "id": "1", "title": "recrexample2@gmail.com", "title_2": "receexample2@gmail.com", "subject": "Comment" },
       { "id": "2", "title": "recrexample3@gmail.com", "title_2": "receexample3@gmail.com", "subject": "Comment" },
     ]
-  }
-
-  Search(){
-    if(this.searchTerm != ""){
-      this.reports = this.reports.filter(res=>{
-        return res.title.toLocaleLowerCase().match(this.searchTerm.toLocaleLowerCase());
-      });
-    }else if(this.searchTerm == "") {
-      this.reportsData();
-    }
   }
 
 }

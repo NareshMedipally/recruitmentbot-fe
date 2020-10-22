@@ -39,6 +39,7 @@ import { ViewEnterpriseComponent } from './enterprise/view-enterprise/view-enter
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { UpdateTagsComponent } from './settings/tags/update-tags/update-tags.component';
 import { EmailAuthComponent } from './email-auth/email-auth.component';
+import { DataTablesModule } from 'angular-datatables';
 
 @NgModule({
   imports: [
@@ -59,6 +60,7 @@ import { EmailAuthComponent } from './email-auth/email-auth.component';
     NgxPaginationModule,
     TablesRoutingModule,
     CKEditorModule,
+    DataTablesModule,
     BsDatepickerModule
   ],
   declarations: [

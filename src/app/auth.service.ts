@@ -90,7 +90,7 @@ export class AuthService {
   updateCompany(id,data){
     this.getToken();
     if(this.AccessToken) {
-      var headersForAPI = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*', 'Authorization': 'Bearer ' + this.AccessToken });
+      var headersForAPI = new HttpHeaders({ 'Access-Control-Allow-Origin':'*', 'Authorization': 'Bearer ' + this.AccessToken });
       headersForAPI.append("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
       let url =  this.baseUrl + '/updateuser/{correl_id}';
       url = url.replace('{correl_id}', id);
@@ -102,7 +102,7 @@ export class AuthService {
   updateConsultant(id,data){
     this.getToken();
     if(this.AccessToken) {
-      var headersForAPI = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*', 'Authorization': 'Bearer ' + this.AccessToken });
+      var headersForAPI = new HttpHeaders({ 'Access-Control-Allow-Origin':'*', 'Authorization': 'Bearer ' + this.AccessToken });
       headersForAPI.append("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
       let url =  this.baseUrl + '/updateconsultant/{correl_id}';
       url = url.replace('{correl_id}', id);

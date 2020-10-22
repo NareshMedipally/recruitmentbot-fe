@@ -333,7 +333,7 @@ export class UpdateUserComponent implements OnInit {
           "education": this.formData.education,
           "rate" : this.formData.rate,
           "expiry_date" : this.formData.expiry_date ? this.datapipe.transform(this.formData.expiry_date, 'yyyy-MM-dd'): null,
-          "created_user": localStorage.getItem('email_id')
+          "created_user": this.formData.created_user,
         }
       ];
       let con_contactInfo = [
@@ -365,9 +365,9 @@ export class UpdateUserComponent implements OnInit {
       formData.append("technology", JSON.stringify(this.techInfo));
       formData.append("otherInfo", JSON.stringify(con_otherInfo));
       formData.append("email_template", this.formData.email_template);
-      formData.append("role_type", localStorage.getItem('role'));
-      formData.append("role_id", localStorage.getItem('role'));
-      formData.append("company_name", localStorage.getItem('company_Name'));
+      formData.append("role_type", this.formData.role_type);
+      formData.append("role_id", this.formData.role_id);
+      formData.append("company_name", this.formData.company_name);
       if(this.resume){
         for(var x = 0; x<this.resume.length; x++) {
           formData.append("upresume", this.resume[x]);

@@ -444,9 +444,10 @@ export class CreateUserComponent implements OnInit {
     formData.append("technology", JSON.stringify(this.con_technology));
     formData.append("email_template", this.emailTemplate);
     formData.append("otherInfo",JSON.stringify(this.con_otherInfo));
-      formData.append("role_type", localStorage.getItem('role'));
-      formData.append("role_id", localStorage.getItem('role'));
+    formData.append("role_type", localStorage.getItem('role'));
+    formData.append("role_id", localStorage.getItem('role'));
     formData.append("company_name", this.companyname);
+    formData.append("comments", this.formData.comments);
     if(this.resume){
       for(var x = 0; x<this.resume.length; x++) {
         formData.append("resume", this.resume[x]);
