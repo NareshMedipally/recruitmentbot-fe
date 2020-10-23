@@ -56,7 +56,22 @@ export class ViewUserComponent implements OnInit {
     "zipcode": ""
   }
 
-  techInfo = [];
+  techInfo = [
+    {
+      "technology_name": "",
+      "total_experience": "",
+      "usa_experience": "",
+      "marketing_phone": "",
+      "marketing_email_id": "",
+      "looking_for_job": "",
+      "subject_tag": "",
+      "non_subject_tag": "",
+      "linkedIn_url": "",
+      "tags": "",
+      "resume_loc": "",
+      "certificate_loc": ""
+    }
+  ];
 
   constructor(private datapipe:DatePipe, private route: ActivatedRoute, private router: ActivatedRoute, private http: HttpClient, private authService: AuthService, private globals: ServicesService) {
     this.getUser();
@@ -142,9 +157,9 @@ export class ViewUserComponent implements OnInit {
           "city": result.body.addresult[0].city,
           "zipcode": result.body.addresult[0].zipcode
         }
-        for (const item of result.body.techresult) {
-          item.tags = item.tags.split(',');
-          this.techInfo.push(item)
+        this.techInfo = result.body.techresult;
+        for(let i=0;i<result.body.techresult.length;i++) {
+          this.techInfo[i].tags = result.body.techresult[i].tags.split(',');
         }
       }
       console.log(this.formData);

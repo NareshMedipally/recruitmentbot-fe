@@ -207,7 +207,7 @@ export class AuthService {
   getEntCompanies(): Observable<HttpResponse<any>>{
     this.getToken();
     if(this.AccessToken) {
-      var headersForAPI = new HttpHeaders({ 'Access-Control-Allow-Origin':'*', 'Authorization': 'Bearer ' + this.AccessToken });
+      var headersForAPI = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*', 'Authorization': 'Bearer ' + this.AccessToken });
       headersForAPI.append("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
       let url =  this.baseUrl + '/getEnterprise';
       console.log(url);
@@ -218,7 +218,7 @@ export class AuthService {
   getEntCompany(id): Observable<HttpResponse<any>>{
     this.getToken();
     if(this.AccessToken) {
-      var headersForAPI = new HttpHeaders({ 'Access-Control-Allow-Origin':'*', 'Authorization': 'Bearer ' + this.AccessToken });
+      var headersForAPI = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*', 'Authorization': 'Bearer ' + this.AccessToken });
       headersForAPI.append("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
       let url =  this.baseUrl + '/getEnterprise/{correl_id}';
       url = url.replace('{correl_id}', id);
@@ -248,6 +248,64 @@ export class AuthService {
       url = url.replace('{correl_id}', id);
       console.log(url);
       return this.http.put<any>(url,data, { headers: headersForAPI, observe: 'response' });
+    }
+  }
+
+  getRoprts(){
+    this.getToken();
+    if(this.AccessToken) {
+      var headersForAPI = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*', 'Authorization': 'Bearer ' + this.AccessToken });
+      headersForAPI.append("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
+      let url =  this.baseUrl + '/getreportlogs';
+      console.log(url);
+      return this.http.get<any>(url, { headers: headersForAPI, observe: 'response' });
+    }
+  }
+
+  RoprtsbyCompany(id){
+    this.getToken();
+    if(this.AccessToken) {
+      var headersForAPI = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*', 'Authorization': 'Bearer ' + this.AccessToken });
+      headersForAPI.append("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
+      let url =  this.baseUrl + '/getreportlogs/{company_name}';
+      url = url.replace('{company_name}', id);
+      console.log(url);
+      return this.http.get<any>(url, { headers: headersForAPI, observe: 'response' });
+    }
+  }
+
+  RoprtsbyRec(id){
+    this.getToken();
+    if(this.AccessToken) {
+      var headersForAPI = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*', 'Authorization': 'Bearer ' + this.AccessToken });
+      headersForAPI.append("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
+      let url =  this.baseUrl + '/getreportlogs/{primary_email_id}';
+      url = url.replace('{primary_email_id}', id);
+      console.log(url);
+      return this.http.get<any>(url, { headers: headersForAPI, observe: 'response' });
+    }
+  }
+
+  getDashStatus(){
+    this.getToken();
+    if(this.AccessToken) {
+      var headersForAPI = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*', 'Authorization': 'Bearer ' + this.AccessToken });
+      headersForAPI.append("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
+      let url =  this.baseUrl + '/getallstats';
+      console.log(url);
+      return this.http.get<any>(url, { headers: headersForAPI, observe: 'response' });
+    }
+  }
+
+  getRecStatus(id){
+    this.getToken();
+    if(this.AccessToken) {
+      var headersForAPI = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*', 'Authorization': 'Bearer ' + this.AccessToken });
+      headersForAPI.append("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
+      let url =  this.baseUrl + '/getcompanystats/{company_name}';
+      url = url.replace('{company_name}', id);
+      console.log(url);
+      return this.http.get<any>(url, { headers: headersForAPI, observe: 'response' });
     }
   }
 }

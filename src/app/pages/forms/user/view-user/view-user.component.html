@@ -382,6 +382,7 @@
                 <label  class="label">Visa Copy</label>
                 <input type="file" class="form-control" fullWidth disabled>
               </div>
+              <a target="_blank" href="http://localhost:5000/files/{{formData.visa_copy_loc}}">View previous upload</a>
             </div>
             <div class="col-md-12">
               <div class="form-group">
@@ -416,6 +417,7 @@
                 <label  class="label">Driving License Copy</label>
                 <input type="file" class="form-control" fullWidth disabled>
               </div>
+              <a target="_blank" href="http://localhost:5000/files/{{formData.DL_copy}}">View previous upload</a>
             </div>
             <div class="col-md-12">
               <div class="form-group">
@@ -439,10 +441,6 @@
             <textarea rows=4 class="form-control" fullWidth id="inputEmail" placeholder="Enter Comments" name="comments" [(ngModel)]="formData.comments" disabled></textarea>
           </div>
         </div>
-        <!-- <div class="col-md-12 text-center">
-          <button type="submit" class="btn btn-primary" style="margin-right: 5px;">SUBMIT</button>
-          <button routerLink="/pages/manage-user" class="btn btn-danger">CANCEL</button>
-        </div> -->
       </div>
     </div>
   </nb-card-body>

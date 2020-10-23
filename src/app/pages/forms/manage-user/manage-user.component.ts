@@ -79,7 +79,7 @@ export class ManageUserComponent implements OnInit {
       if (result.isConfirmed) {
         this.authService.deleteCompany(data.correl_id).subscribe((result)=>{
           console.log(result);
-          if(result.body.status == 'User Deleted Successfully!'){
+          if(result.body.desc == 'User Deleted Successfully!'){
             swal.fire(
               'Deleted!',
               'Your file has been deleted.',

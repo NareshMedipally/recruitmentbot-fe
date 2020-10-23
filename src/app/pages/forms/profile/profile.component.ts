@@ -42,11 +42,13 @@ export class ProfileComponent implements OnInit {
   }
 
   getProfile(){
+    this.globals.showLoading('');
     this.authService.getCompany(localStorage.getItem('correl_id')).subscribe((res)=>{
       console.log(res);
       this.profile = res.body.fields[0];
       this.profile.expiry_date = res.body.fields[0].expiry_date ? this.datapipe.transform(res.body.fields[0].expiry_date, 'yyyy-MM-dd') : "";
       console.log(this.profile);
+      this.globals.hideLoading('');
     },err => {
       swal.fire('','Something went wrong!','error')
     })
@@ -74,7 +76,7 @@ export class ProfileComponent implements OnInit {
         console.log(res);
         swal.fire('', 'Updated successfully', 'success').then((result) => {
           if (result.isConfirmed) {
-            this.router.navigate(['/pages/manage-user']);
+            this.router.navigate(['/pages/dashboard']);
           }
         })
       }

@@ -1,13 +1,20 @@
 <div class="row">
   <h5 style="color:#2e3192;">QUICK SUMMARY</h5>
 </div>
-<div class="row">
+<div class="row" *ngIf="role == 1">
   <div class="col-10 mx-auto">
     <div class="row mt-5">
       <div class="col-md-6 mb-2">
         <div class="card">
           <div style="padding: 30px;">
-            <h6>Number of companies</h6>
+            <div class="row">
+              <div class="col-6">
+                <h6>Companies</h6>
+              </div>
+              <div class="col-6 text-right">
+                <h6>{{company}}</h6>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -15,7 +22,14 @@
         <div class="card">
           <div class="crad-body">
             <div style="padding: 30px;">
-              <h6>Number of users</h6>
+              <div class="row">
+                <div class="col-6">
+                  <h6>Admin</h6>
+                </div>
+                <div class="col-6 text-right">
+                  <h6>{{admin}}</h6>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -27,7 +41,14 @@
       <div class="col-md-6 mb-2">
         <div class="card">
           <div style="padding: 30px;">
-            <h6>Number of tags</h6>
+            <div class="row">
+              <div class="col-6">
+                <h6>Recruiter</h6>
+              </div>
+              <div class="col-6 text-right">
+                <h6>{{recruiter}}</h6>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -35,7 +56,108 @@
         <div class="card">
           <div class="crad-body">
             <div style="padding: 30px;">
-              <h6>Reports</h6>
+              <div class="row">
+                <div class="col-6">
+                  <h6>Consultant</h6>
+                </div>
+                <div class="col-6 text-right">
+                  <h6>{{consultant}}</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row" *ngIf="role == 2">
+  <div class="col-10 mx-auto">
+    <div class="row mt-5">
+      <div class="col-md-6 mb-2">
+        <div class="card">
+          <div class="crad-body">
+            <div style="padding: 30px;">
+              <div class="row">
+                <div class="col-6">
+                  <h6>Admin</h6>
+                </div>
+                <div class="col-6 text-right">
+                  <h6>{{admin}}</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 mb-2">
+        <div class="card">
+          <div style="padding: 30px;">
+            <div class="row">
+              <div class="col-6">
+                <h6>Recruiter</h6>
+              </div>
+              <div class="col-6 text-right">
+                <h6>{{recruiter}}</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-10 mx-auto">
+    <div class="row mt-5 sm-mt-2">
+      <div class="col-md-6 mb-2">
+        <div class="card">
+          <div class="crad-body">
+            <div style="padding: 30px;">
+              <div class="row">
+                <div class="col-6">
+                  <h6>Consultant</h6>
+                </div>
+                <div class="col-6 text-right">
+                  <h6>{{consultant}}</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row" *ngIf="role == 3">
+  <div class="col-10 mx-auto">
+    <div class="row mt-5 sm-mt-2">
+      <div class="col-md-6 mb-2">
+        <div class="card">
+          <div style="padding: 30px;">
+            <div class="row">
+              <div class="col-6">
+                <h6>Recruiter</h6>
+              </div>
+              <div class="col-6 text-right">
+                <h6>{{recruiter}}</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 mb-2">
+        <div class="card">
+          <div class="crad-body">
+            <div style="padding: 30px;">
+              <div class="row">
+                <div class="col-6">
+                  <h6>Consultant</h6>
+                </div>
+                <div class="col-6 text-right">
+                  <h6>{{consultant}}</h6>
+                </div>
+              </div>
             </div>
           </div>
         </div>

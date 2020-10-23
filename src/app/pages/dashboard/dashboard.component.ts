@@ -1,7 +1,10 @@
 import {Component, OnDestroy} from '@angular/core';
 import { NbThemeService } from '@nebular/theme';
+import { AuthService } from 'app/auth.service';
+import { ServicesService } from 'app/services.service';
 import { takeWhile } from 'rxjs/operators' ;
 import { SolarData } from '../../@core/data/solar';
+import swal from 'sweetalert2';
 
 interface CardSettings {
   title: string;
@@ -17,6 +20,11 @@ interface CardSettings {
 export class DashboardComponent implements OnDestroy {
 
   private alive = true;
+  admin:any;
+  company:any;
+  consultant:any;
+  recruiter:any;
+  role:any;
 
   solarValue: number;
   lightCard: CardSettings = {
@@ -79,7 +87,9 @@ export class DashboardComponent implements OnDestroy {
   };
 
   constructor(private themeService: NbThemeService,
-              private solarService: SolarData) {
+              private solarService: SolarData,
+              private authService: AuthService,
+              private globals: ServicesService) {
     this.themeService.getJsTheme()
       .pipe(takeWhile(() => this.alive))
       .subscribe(theme => {
@@ -91,9 +101,42 @@ export class DashboardComponent implements OnDestroy {
       .subscribe((data) => {
         this.solarValue = data;
       });
+
+    this.role = localStorage.getItem('roleId');
+    this.getStatus();
   }
 
   ngOnDestroy() {
     this.alive = false;
+  }
+
+  getStatus(){
+    if(this.role == 1 || this.role == 2){
+      this.globals.showLoading('');
+      this.authService.getDashStatus().subscribe((res)=>{
+        if(res.body.result_code == 200){
+          console.log(res);
+          this.admin = res.body.admin[0].count;
+          this.company = res.body.company[0].count;
+          this.consultant = res.body.consultant[0].count;
+          this.recruiter = res.body.recruiter[0].count;
+          this.globals.hideLoading('');
+        }
+      },err=> {
+        swal.fire('', 'Something went wrong!', 'error')
+      })
+    }else if(this.role == 3){
+      this.globals.showLoading('');
+      this.authService.getRecStatus(localStorage.getItem('company_Name')).subscribe((res)=>{
+        if(res.body.result_code == 200){
+          console.log(res);
+          this.consultant = res.body.consultant[0].count;
+          this.recruiter = res.body.recruiter[0].count;
+          this.globals.hideLoading('');
+        }
+      },err=> {
+        swal.fire('', 'Something went wrong!', 'error')
+      })
+    }
   }
 }

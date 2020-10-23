@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['/change-pwd']);
             this.globals.hideLoading('')
           }else {
-            this.router.navigate(['/pages/manage-user']);
+            this.router.navigate(['/pages/dashboard']);
             this.globals.hideLoading('')
             console.log(this.btnSubmitStatus)
           }

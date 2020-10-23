@@ -62,21 +62,23 @@ export class UpdateUserComponent implements OnInit {
   }
 
   techInfo = [
-    // {
-    //   "technology_name": "",
-    //   "total_experience": "",
-    //   "usa_experience": "",
-    //   "marketing_phone": "",
-    //   "marketing_email_id": "",
-    //   "looking_for_job": "",
-    //   "subject_tag": "",
-    //   "non_subject_tag": "",
-    //   "linkedIn_url": "",
-    //   "tags": [],
-    //   "resume_loc": "",
-    //   "certificate_loc": ""
-    // }
+    {
+      "id": 1,
+      "technology_name": "",
+      "total_experience": "",
+      "usa_experience": "",
+      "marketing_phone": "",
+      "marketing_email_id": "",
+      "looking_for_job": "",
+      "subject_tag": "",
+      "non_subject_tag": "",
+      "linkedIn_url": "",
+      "tags": "",
+      "resume_loc": "",
+      "certificate_loc": ""
+    }
   ]
+
   content = '<h1>Hello</h1>';
 
   constructor(private datapipe:DatePipe, private router: Router, private route: ActivatedRoute, private http: HttpClient, private authService: AuthService, private globals: ServicesService) {
@@ -159,10 +161,13 @@ export class UpdateUserComponent implements OnInit {
           "city": result.body.addresult[0].city,
           "zipcode": result.body.addresult[0].zipcode
         }
-        // this.techInfo = result.body.techresult;
-        for (const item of result.body.techresult) {
-          item.tags = item.tags.split(',');
-          this.techInfo.push(item)
+        this.techInfo = result.body.techresult;
+        // for (const item of result.body.techresult) {
+        //   item.tags = item.tags.split(',');
+        //   this.techInfo.push(item)
+        // }
+        for(let i=0;i<result.body.techresult.length;i++) {
+          this.techInfo[i].tags = result.body.techresult[i].tags.split(',');
         }
       }
       console.log(this.formData);
@@ -227,6 +232,31 @@ export class UpdateUserComponent implements OnInit {
     console.log('driving_license',this.drivingcopy)
     console.log('visa',this.visacopy)
   }
+
+  /***Technology add and remove starts***/
+  addForm() {
+    this.techInfo.push ( {
+      "id": this.techInfo.length+1,
+      "technology_name": "Technology",
+      "total_experience" : "",
+      "usa_experience" : "",
+      "marketing_phone" : "",
+      "marketing_email_id" : "",
+      "looking_for_job" : "",
+      "subject_tag" : "",
+      "non_subject_tag" : "",
+      "linkedIn_url" : "",
+      "tags" : "",
+      "resume_loc" : "",
+      "certificate_loc" : "",
+    })
+    console.log("this.techInfo",this.techInfo)
+  }
+
+  removeForm(index){
+    this.techInfo.splice(index, 1);
+  }
+  // /****ends here****/
 
   updateCompany(type){
     if(type == 'Super Admin'){
@@ -359,6 +389,18 @@ export class UpdateUserComponent implements OnInit {
           "comments": this.formData.comments,
         }
       ]
+      // const formD = {
+      //   generalInfo: JSON.stringify(con_generalInfo),
+      //   contactInfo: JSON.stringify(con_contactInfo),
+      //   technology: this.techInfo,
+      //   otherInfo: JSON.stringify(con_otherInfo),
+      //   email_template: this.formData.email_template,
+      //   role_type: this.formData.role_type,
+      //   role_id: this.formData.role_id,
+      //   company_name: this.formData.company_name,
+      //   comments: this.formData.comments
+      // }
+      // console.log(formD);
       const formData = new FormData();
       formData.append("generalInfo", JSON.stringify(con_generalInfo));
       formData.append("contactInfo", JSON.stringify(con_contactInfo));
@@ -368,6 +410,7 @@ export class UpdateUserComponent implements OnInit {
       formData.append("role_type", this.formData.role_type);
       formData.append("role_id", this.formData.role_id);
       formData.append("company_name", this.formData.company_name);
+      formData.append("comments", this.formData.comments);
       if(this.resume){
         for(var x = 0; x<this.resume.length; x++) {
           formData.append("upresume", this.resume[x]);
@@ -391,14 +434,14 @@ export class UpdateUserComponent implements OnInit {
       console.log(con_otherInfo);
       console.log(this.techInfo);
       this.authService.updateConsultant(this.route.snapshot.params.id, formData).subscribe((result)=>{
-       // if(result.body.desc == 'Record Updated Successfully'){
+      //  if(result.body.desc == 'Record Updated Successfully'){
           console.log(result);
           swal.fire('', 'Updated successfully', 'success').then((result) => {
             if (result.isConfirmed) {
               this.router.navigate(['/pages/manage-user']);
             }
           })
-       // }
+      //  }
       },err=> {
         console.log(err);
         swal.fire('', 'Something went wrong!', 'error')
