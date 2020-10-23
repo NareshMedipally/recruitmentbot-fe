@@ -50,6 +50,12 @@ export class ViewEnterpriseComponent implements OnInit {
         "valid_to": result.body.fields[0].valid_to ? this.datapipe.transform(result.body.fields[0].valid_to, 'yyyy-MM-dd') : "",
         "comments": result.body.fields[0].comments
       };
+      if(result.body.fields[0].company_logo == ''){
+        this.company.company_logo = 'assets/images/users.svg'
+      }else if(result.body.fields[0].company_logo != ''){
+        let url = 'http://localhost:5000/files/';
+        this.company.company_logo = url+result.body.fields[0].company_logo;
+      }
       console.log(this.company);
     },err => {
       console.log(err);
