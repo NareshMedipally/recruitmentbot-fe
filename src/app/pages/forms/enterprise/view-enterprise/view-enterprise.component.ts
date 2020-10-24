@@ -53,7 +53,7 @@ export class ViewEnterpriseComponent implements OnInit {
       if(result.body.fields[0].company_logo == ''){
         this.company.company_logo = 'assets/images/users.svg'
       }else if(result.body.fields[0].company_logo != ''){
-        let url = 'http://localhost:5000/files/';
+        let url = 'http://ec2-3-232-186-142.compute-1.amazonaws.com:5000/files/';
         this.company.company_logo = url+result.body.fields[0].company_logo;
       }
       console.log(this.company);

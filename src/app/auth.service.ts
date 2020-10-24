@@ -14,8 +14,7 @@ export class AuthService {
     this.getToken()
   }
 
-  private baseUrl: string = 'http://localhost:5000';
-  // private baseUrl: string = 'http://ec2-3-232-186-142.compute-1.amazonaws.com:5000';
+  private baseUrl: string = 'http://ec2-3-232-186-142.compute-1.amazonaws.com:5000';
 
   getToken() {
     this.AccessToken = localStorage.getItem('token')
