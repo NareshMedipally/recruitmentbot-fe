@@ -25,12 +25,12 @@ export class TagsComponent implements OnInit {
     this.globals.showLoading('');
     this.authService.getTags(localStorage.getItem('company_Name')).subscribe((result)=>{
       console.log(result);
-
+      this.globals.hideLoading('');
       if(result.body.status == 'Success'){
         this.data = result.body.fields;
-        this.globals.hideLoading('');
       }else if(result.body.desc == 'No tags available for this company'){
-        console.log(result.body.desc)
+        console.log(result.body.desc);
+        swal.fire('','No tags available for this company!','error')
       }
     },err=>{
       swal.fire('','Something went wrong!','error')

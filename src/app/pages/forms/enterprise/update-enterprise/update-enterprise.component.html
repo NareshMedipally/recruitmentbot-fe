@@ -140,14 +140,24 @@
           <div class="row">
             <div class="col-sm-6">
               <div class="form-group">
-                <label for="inputEmail" class="label">Valid From</label>
-                <input  type="text" class="form-control" fullWidth name="valid_from" [(ngModel)]="company.valid_from" #valid_from="bsDatepicker" [minDate]="validFrom" bsDatepicker placement="bottom-left" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" placeholder="yyyy-mm-dd">
+                <label for="inputEmail" class="label">Valid From <span style="color: red">*</span></label>
+                <input  type="text" class="form-control" fullWidth name="valid_from" [(ngModel)]="company.valid_from" #valid_from="ngModel" [minDate]="validFrom" bsDatepicker placement="bottom-left" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" placeholder="yyyy-mm-dd" required>
+                <ng-container *ngIf="valid_from.touched ">
+                  <p class="error-message text-danger" *ngIf="valid_from.errors?.required">
+                    Date required!
+                  </p>
+                </ng-container>
               </div>
             </div>
             <div class="col-sm-6">
               <div class="form-group">
-                <label for="inputWebsite" class="label">Valid To</label>
-                <input  type="text" class="form-control" fullWidth name="valid_to" [(ngModel)]="company.valid_to" #valid_to="bsDatepicker" [minDate]="validFrom" bsDatepicker placement="bottom-left" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" placeholder="yyyy-mm-dd">
+                <label for="inputWebsite" class="label">Valid To <span style="color: red">*</span></label>
+                <input  type="text" class="form-control" fullWidth name="valid_to" [(ngModel)]="company.valid_to" #valid_to="ngModel" [minDate]="validFrom" bsDatepicker placement="bottom-left" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" placeholder="yyyy-mm-dd" required>
+                <ng-container *ngIf="valid_to.touched ">
+                  <p class="error-message text-danger" *ngIf="valid_to.errors?.required">
+                    Date required!
+                  </p>
+                </ng-container>
               </div>
             </div>
           </div>

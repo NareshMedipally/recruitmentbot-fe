@@ -11,8 +11,13 @@
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <label for="exampleInputEmail1" class="label">First name</label>
-              <input type="text" class="form-control" fullWidth id="first-name" placeholder="First Name" name="first_name" [(ngModel)]="formData.first_name" #first_name="ngModel">
+              <label for="exampleInputEmail1" class="label">First name <span style="color: red;">*</span></label>
+              <input type="text" class="form-control" fullWidth id="first-name" placeholder="First Name" name="first_name" [(ngModel)]="formData.first_name" #first_name="ngModel" required>
+              <ng-container *ngIf="first_name.touched ">
+                <p class="error-message text-danger" *ngIf="first_name.errors?.required">
+                  First Name is required!
+                </p>
+              </ng-container>
             </div>
           </div>
           <div class="col-md-6">
@@ -23,14 +28,19 @@
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <label for="exampleInputEmail1" class="label">Email</label>
+              <label for="exampleInputEmail1" class="label">Email <span style="color: red;">*</span></label>
               <input type="email" class="form-control" fullWidth id="email" placeholder="Email" name="email_id" [(ngModel)]="formData.email_id" #email_id="ngModel" disabled>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <label for="exampleInputEmail1" class="label">Phone Number</label>
-              <input type="number" class="form-control" fullWidth id="phone" placeholder="Phone Number" name="phone" [(ngModel)]="formData.phone" #phone="ngModel">
+              <label for="exampleInputEmail1" class="label">Phone Number <span style="color: red;">*</span></label>
+              <input type="number" class="form-control" fullWidth id="phone" placeholder="Phone Number" name="phone" [(ngModel)]="formData.phone" #phone="ngModel" required>
+              <ng-container *ngIf="phone.touched ">
+                <p class="error-message text-danger" *ngIf="phone.errors?.required">
+                  Phone number is required!
+                </p>
+              </ng-container>
             </div>
           </div>
           <div class="col-md-12">
@@ -40,7 +50,7 @@
             </div>
           </div>
           <div class="col-md-12 text-center">
-            <button type="submit" class="btn btn-primary" style="margin-right: 5px;">Update</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!form.valid || form.pristine || form.invalid" style="margin-right: 5px;">Update</button>
             <button class="btn btn-danger" routerLink="/pages/manage-user">Cancel</button>
           </div>
         </div>
@@ -48,7 +58,7 @@
     </div>
 
     <div *ngIf="dataType == 'Admin'" class="" style=" background-color: white; border: 1px white;">
-      <form #form="ngForm" (ngSubmit)="updateCompany('Admin')">
+      <form #aform="ngForm" (ngSubmit)="updateCompany('Admin')">
         <div class="row">
           <div class="col-md-12">
             <div class="form-group border-bottom border-primary">
@@ -57,8 +67,13 @@
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <label for="exampleInputEmail1" class="label">First name</label>
-              <input type="text" class="form-control" fullWidth id="first-name" placeholder="First Name" name="first_name" [(ngModel)]="formData.first_name" #first_name="ngModel">
+              <label for="exampleInputEmail1" class="label">First name <span style="color: red;">*</span></label>
+              <input type="text" class="form-control" fullWidth id="first-name" placeholder="First Name" name="first_name" [(ngModel)]="formData.first_name" #first_name="ngModel" required>
+              <ng-container *ngIf="first_name.touched ">
+                <p class="error-message text-danger" *ngIf="first_name.errors?.required">
+                  First Name is required!
+                </p>
+              </ng-container>
             </div>
           </div>
           <div class="col-md-6">
@@ -69,26 +84,41 @@
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <label for="exampleInputEmail1" class="label">Company name</label>
+              <label for="exampleInputEmail1" class="label">Company name <span style="color: red;">*</span></label>
               <input type="text" class="form-control" fullWidth id="company" placeholder="" name="company_name" [(ngModel)]="formData.company_name" #company_name="ngModel" disabled>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <label for="exampleInputEmail1" class="label">Expiry Date</label>
-              <input type="text" class="form-control" fullWidth id="expiry-date-1" placeholder="" name="expiry_date" [disabled]="dateVisible" [(ngModel)]="formData.expiry_date" #expiry_date="ngModel" bsDatepicker placement="bottom-left" [bsValue]="formData.expiry_date" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}">
+              <label for="exampleInputEmail1" class="label">Expiry Date <span style="color: red;">*</span></label>
+              <input type="text" class="form-control" fullWidth id="expiry-date-1" placeholder="" name="expiry_date" [disabled]="dateVisible" [(ngModel)]="formData.expiry_date" #expiry_date="ngModel" bsDatepicker placement="bottom-left" [bsValue]="formData.expiry_date" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" required>
+              <ng-container *ngIf="expiry_date.touched ">
+                <p class="error-message text-danger" *ngIf="expiry_date.errors?.required">
+                  Expiry Date is required!
+                </p>
+              </ng-container>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group border-bottom border-primary">
+              <label for="" style="font-weight: bold;">Contact Info</label>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <label for="exampleInputEmail1" class="label">Email</label>
+              <label for="exampleInputEmail1" class="label">Email <span style="color: red;">*</span></label>
               <input type="email" class="form-control" fullWidth id="email" placeholder="Email" name="email_id" [(ngModel)]="formData.email_id" #email_id="ngModel" disabled>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <label for="exampleInputEmail1" class="label">Phone Number</label>
-              <input type="number" class="form-control" fullWidth id="phone" placeholder="Phone Number" name="phone" [(ngModel)]="formData.phone" #phone="ngModel">
+              <label for="exampleInputEmail1" class="label">Phone Number <span style="color: red;">*</span></label>
+              <input type="number" class="form-control" fullWidth id="phone" placeholder="Phone Number" name="phone" [(ngModel)]="formData.phone" #phone="ngModel" required>
+              <ng-container *ngIf="phone.touched ">
+                <p class="error-message text-danger" *ngIf="phone.errors?.required">
+                  Phone number is required!
+                </p>
+              </ng-container>
             </div>
           </div>
           <div class="col-md-12">
@@ -98,7 +128,7 @@
             </div>
           </div>
           <div class="col-md-12 text-center">
-            <button type="submit" class="btn btn-primary" style="margin-right: 5px;">Update</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!aform.valid || aform.invalid" style="margin-right: 5px;">Update</button>
             <button class="btn btn-danger" routerLink="/pages/manage-user">Cancel</button>
           </div>
         </div>
@@ -232,8 +262,13 @@
           </div>
           <div class="col-md-4">
             <div class="form-group">
-              <label  class="label">First name</label>
-              <input type="text"  class="form-control" fullWidth name="first_name" [(ngModel)]="formData.first_name" placeholder="">
+              <label  class="label">First name <span style="color: red;">*</span></label>
+              <input type="text"  class="form-control" fullWidth name="first_name" [(ngModel)]="formData.first_name" placeholder="" #first_name="ngModel" required>
+              <ng-container *ngIf="first_name.touched ">
+                <p class="error-message text-danger" *ngIf="first_name.errors?.required">
+                  First Name is required!
+                </p>
+              </ng-container>
             </div>
           </div>
           <div class="col-md-4">
@@ -244,8 +279,13 @@
           </div>
           <div class="col-md-4">
             <div class="form-group">
-              <label  class="label">Date of Birth</label>
-              <input type="text" class="form-control" name="dob" [(ngModel)]="formData.dob" bsDatepicker placement="bottom" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" fullWidth>
+              <label  class="label">Date of Birth <span style="color: red;">*</span></label>
+              <input type="text" class="form-control" name="dob" [(ngModel)]="formData.dob" bsDatepicker placement="bottom" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" fullWidth #dob="ngModel" required>
+              <ng-container *ngIf="dob.touched ">
+                <p class="error-message text-danger" *ngIf="dob.errors?.required">
+                  DOB is required!
+                </p>
+              </ng-container>
             </div>
           </div>
           <div class="col-md-4">
@@ -262,8 +302,13 @@
           </div>
           <div class="col-md-4">
             <div class="form-group">
-              <label  class="label">Expiry Date</label>
-              <input type="text" class="form-control" fullWidth name="expiry_date" [(ngModel)]="formData.expiry_date" [disabled]="dateVisible" bsDatepicker placement="top" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}">
+              <label  class="label">Expiry Date <span style="color: red;">*</span></label>
+              <input type="text" class="form-control" fullWidth name="expiry_date" [(ngModel)]="formData.expiry_date" #expiry_date="ngModel" [disabled]="dateVisible" bsDatepicker placement="top" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" required>
+              <ng-container *ngIf="expiry_date.touched ">
+                <p class="error-message text-danger" *ngIf="expiry_date.errors?.required">
+                  Expiry Date is required!
+                </p>
+              </ng-container>
             </div>
           </div>
           <div class="col-md-12">
@@ -273,14 +318,19 @@
           </div>
           <div class="col-md-4">
             <div class="form-group">
-              <label  class="label">Email</label>
+              <label  class="label">Email <span style="color: red;">*</span></label>
               <input type="email" class="form-control" fullWidth name="email_id" [(ngModel)]="formData.email_id" disabled>
             </div>
           </div>
           <div class="col-md-4">
             <div class="form-group">
-              <label  class="label">Phone Number</label>
-              <input type="number" class="form-control" fullWidth name="phone" [(ngModel)]="formData.phone">
+              <label  class="label">Phone Number <span style="color: red;">*</span></label>
+              <input type="number" class="form-control" fullWidth name="phone" [(ngModel)]="formData.phone" #phone="ngModel" required>
+              <ng-container *ngIf="phone.touched ">
+                <p class="error-message text-danger" *ngIf="phone.errors?.required">
+                  Phone number is required!
+                </p>
+              </ng-container>
             </div>
           </div>
           <div class="col-md-4">
@@ -312,8 +362,13 @@
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <label  class="label">City</label>
-              <input type="text" class="form-control" fullWidth name="city" [(ngModel)]="addressInfo.city">
+              <label  class="label">City <span style="color: red;">*</span></label>
+              <input type="text" class="form-control" fullWidth name="city" [(ngModel)]="addressInfo.city" #city="ngModel" required>
+              <ng-container *ngIf="city.touched ">
+                <p class="error-message text-danger" *ngIf="city.errors?.required">
+                  City required!
+                </p>
+              </ng-container>
             </div>
           </div>
         </div>
@@ -348,8 +403,8 @@
           </div>
           <div class="col-md-3">
             <div class="form-group">
-              <label  class="label">Marketing Email ID</label>
-              <input type="email" class="form-control" fullWidth name="marketing_email_id_{{obj.id}}" [(ngModel)]="obj.marketing_email_id" #marketing_email_id="ngModel" email>
+              <label  class="label">Marketing Email ID <span style="color: red;">*</span></label>
+              <input type="email" class="form-control" fullWidth name="marketing_email_id_{{obj.id}}" [(ngModel)]="obj.marketing_email_id" #marketing_email_id="ngModel" email required>
               <ng-container *ngIf="marketing_email_id.touched">
                 <p class="error-message text-danger" *ngIf="marketing_email_id.errors?.email">
                   Email should be the real one!

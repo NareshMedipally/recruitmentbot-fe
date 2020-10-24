@@ -111,7 +111,7 @@ export class DashboardComponent implements OnDestroy {
   }
 
   getStatus(){
-    if(this.role == 1 || this.role == 2){
+    if(this.role == 1){
       this.globals.showLoading('');
       this.authService.getDashStatus().subscribe((res)=>{
         if(res.body.result_code == 200){
@@ -125,7 +125,7 @@ export class DashboardComponent implements OnDestroy {
       },err=> {
         swal.fire('', 'Something went wrong!', 'error')
       })
-    }else if(this.role == 3){
+    }else if(this.role == 2 || this.role == 3){
       this.globals.showLoading('');
       this.authService.getRecStatus(localStorage.getItem('company_Name')).subscribe((res)=>{
         if(res.body.result_code == 200){
