@@ -14,7 +14,8 @@ export class AuthService {
     this.getToken()
   }
 
-  private baseUrl: string = 'http://ec2-3-232-186-142.compute-1.amazonaws.com:5000';
+  private baseUrl: string = 'http://localhost:5000';
+  // private baseUrl: string = 'http://ec2-3-232-186-142.compute-1.amazonaws.com:5000';
 
   getToken() {
     this.AccessToken = localStorage.getItem('token')
@@ -60,6 +61,17 @@ export class AuthService {
       headersForAPI.append("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
       let url =  this.baseUrl + '/createconsultant';
       return this.http.post<any>(url,objUser, { headers: headersForAPI, observe: 'response' });
+    }
+  }
+
+  getallCompanies(){
+    this.getToken();
+    if(this.AccessToken) {
+      var headersForAPI = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*', 'Authorization': 'Bearer ' + this.AccessToken });
+      headersForAPI.append("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
+      let url =  this.baseUrl + '/getallusers';
+      console.log(url);
+      return this.http.get<any>(url, { headers: headersForAPI, observe: 'response' });
     }
   }
 

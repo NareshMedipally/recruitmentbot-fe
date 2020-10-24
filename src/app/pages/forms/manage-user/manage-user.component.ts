@@ -23,36 +23,58 @@ export class ManageUserComponent implements OnInit {
   Role_id:any;
 
   constructor(private http: HttpClient, private globals: ServicesService, private authService: AuthService) {
-    this.getCompanies();
-    this.Role_id = this.globals.UserRoleid;
+    this.Role_id = localStorage.getItem('roleId');
     console.log(this.Role_id)
   }
 
   ngOnInit(): void {
-
+    this.getCompanies();
   }
 
   getCompanies(){
-    this.globals.showLoading('');
-    this.authService.getCompanies(localStorage.getItem('company_Name')).subscribe((result)=>{
-      console.log(result.body.fields);
-      this.Companies = result.body.fields;
-      console.log(this.Companies);
-      this.globals.hideLoading('');
-      if(result.status == 200){
-        this.adminType = result.body.fields.filter(x => x.role_type != 'Super Admin')
-        console.log(this.adminType);
-        this.recruiterType = this.adminType.filter(x => x.role_type != 'Admin')
-        console.log(this.recruiterType);
-      }
-    },err=>{
-      console.log(err);
-      swal.fire(
-        '',
-        'Something went wrong!',
-        'error'
-      )
-    })
+    if(this.Role_id == 1){
+      this.globals.showLoading('');
+      this.authService.getallCompanies().subscribe((result)=>{
+        console.log(result.body.user_profile);
+        this.Companies = result.body.user_profile;
+        console.log(this.Companies);
+        if(result.status == 200){
+          this.globals.hideLoading('');
+          // this.adminType = result.body.fields.filter(x => x.role_type != 'Super Admin')
+          // console.log(this.adminType);
+          // this.recruiterType = this.adminType.filter(x => x.role_type != 'Admin')
+          // console.log(this.recruiterType);
+        }
+      },err=>{
+        console.log(err);
+        swal.fire(
+          '',
+          'Something went wrong!',
+          'error'
+        )
+      })
+    }else{
+      this.globals.showLoading('');
+      this.authService.getCompanies(localStorage.getItem('company_Name')).subscribe((result)=>{
+        console.log(result.body.fields);
+        this.Companies = result.body.fields;
+        console.log(this.Companies);
+        this.globals.hideLoading('');
+        if(result.status == 200){
+          this.adminType = result.body.fields.filter(x => x.role_type != 'Super Admin')
+          console.log(this.adminType);
+          this.recruiterType = this.adminType.filter(x => x.role_type != 'Admin')
+          console.log(this.recruiterType);
+        }
+      },err=>{
+        console.log(err);
+        swal.fire(
+          '',
+          'Something went wrong!',
+          'error'
+        )
+      })
+    }
   }
 
   Search(){

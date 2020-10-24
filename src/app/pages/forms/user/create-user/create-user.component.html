@@ -172,7 +172,7 @@
             </div>
           </form>
         </div>
-        <div *ngIf="selectedrole == '3'">
+        <div *ngIf="(selectedrole == '3' && selectedcompany == 'Bluespace') || (selectedrole == '3' && Role_id != 1)">
           <form #rec="ngForm" (ngSubmit)="recruiterForm()">
             <div class="row">
               <div class="col-md-12">
@@ -311,7 +311,7 @@
             </div>
           </form>
         </div>
-        <div *ngIf="selectedrole == '4'">
+        <div *ngIf="(selectedrole == '4' && selectedcompany == 'Bluespace') || (selectedrole == '4' && Role_id != 1)">
           <form #f="ngForm" (ngSubmit)="saveCon()">
             <div class="row">
               <div class="col-md-12">

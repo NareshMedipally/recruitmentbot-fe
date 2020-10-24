@@ -53,7 +53,7 @@ export class CreateEnterpriseComponent implements OnInit {
     const formData = new FormData();
     formData.append("company_name", this.entData.company_name);
     formData.append("website_url", this.entData.website_url);
-  
+
     formData.append("email_id", this.entData.email_id);
     formData.append("linkedIn_url", this.entData.linkedIn_url);
     formData.append("phone", this.entData.phone);
@@ -71,15 +71,15 @@ export class CreateEnterpriseComponent implements OnInit {
     this.authService.createCompany(formData)
       .subscribe(event => {
         console.log("event",event);
-        if(event.body.status == 'success'){
+        if(event.body.desc == 'Record Inserted Successfully'){
           swal.fire('', 'Created Successfully!', 'success').then((result) => {
             if (result.isConfirmed) {
               this.router.navigate(['/pages/enterprise-info']);
             }
           })
-        }else if(event.body.desc == 'Company Name Already Exists'){
+        }else if(event.body.result_code == 400){
           swal.fire('','Company Name Already Exists!','error')
-        }else if(event.body.desc == 'Email Address Already Exists'){
+        }else if(event.body.result_code == 300){
           swal.fire('','Email Address Already Exists!','error')
         }
       },err => {
