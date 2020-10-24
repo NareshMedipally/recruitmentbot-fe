@@ -33,7 +33,7 @@ export class ProfileComponent implements OnInit {
   correlId: any;
 
   constructor(private globals: ServicesService, private authService: AuthService, private datapipe:DatePipe, private router: Router) {
-    this.Role_id = this.globals.UserRoleid;
+    this.Role_id = localStorage.getItem('roleId');
     this.correlId = localStorage.getItem('correl_id');
     this.getProfile();
   }

@@ -145,8 +145,13 @@
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <label for="exampleInputEmail1" class="label">First name</label>
-              <input type="text" class="form-control" fullWidth id="first-name-3" placeholder="First Name" name="first_name" [(ngModel)]="formData.first_name" #first_name="ngModel">
+              <label for="exampleInputEmail1" class="label">First name <span style="color: red;">*</span></label>
+              <input type="text" class="form-control" fullWidth id="first-name-3" placeholder="First Name" name="first_name" [(ngModel)]="formData.first_name" #first_name="ngModel" required>
+              <ng-container *ngIf="first_name.touched ">
+                <p class="error-message text-danger" *ngIf="first_name.errors?.required">
+                  First Name is required!
+                </p>
+              </ng-container>
             </div>
           </div>
           <div class="col-md-6">
@@ -162,14 +167,19 @@
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <label for="exampleInputEmail1" class="label">Email</label>
+              <label for="exampleInputEmail1" class="label">Email <span style="color: red;">*</span></label>
               <input type="email" class="form-control" fullWidth id="email" placeholder="Email" name="email_id" [(ngModel)]="formData.email_id" #email_id="ngModel" disabled>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
               <label for="exampleInputEmail1" class="label">Phone Number</label>
-              <input type="number" class="form-control" fullWidth id="phone" placeholder="Phone Number" name="phone" [(ngModel)]="formData.phone" #phone="ngModel">
+              <input type="number" class="form-control" fullWidth id="phone" placeholder="Phone Number" name="phone" [(ngModel)]="formData.phone" #phone="ngModel" required>
+              <ng-container *ngIf="phone.touched ">
+                <p class="error-message text-danger" *ngIf="phone.errors?.required">
+                  Phone number is required!
+                </p>
+              </ng-container>
             </div>
           </div>
           <div class="col-md-6">
@@ -234,8 +244,13 @@
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <label for="exampleInputEmail1" class="label">Expiry Date</label>
-              <input type="text" class="form-control" fullWidth id="expiry-date" [disabled]="dateVisible" name="expiry_date" [(ngModel)]="formData.expiry_date" #expiry_date="ngModel" bsDatepicker placement="bottom-left" [bsValue]="formData.expiry_date" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}">
+              <label for="exampleInputEmail1" class="label">Expiry Date <span style="color: red;">*</span></label>
+              <input type="text" class="form-control" fullWidth id="expiry-date" [disabled]="dateVisible" name="expiry_date" [(ngModel)]="formData.expiry_date" #expiry_date="ngModel" bsDatepicker placement="bottom-left" [bsValue]="formData.expiry_date" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" required>
+              <ng-container *ngIf="expiry_date.touched ">
+                <p class="error-message text-danger" *ngIf="expiry_date.errors?.required">
+                  Expiry Date is required!
+                </p>
+              </ng-container>
             </div>
           </div>
           <div class="col-md-12">

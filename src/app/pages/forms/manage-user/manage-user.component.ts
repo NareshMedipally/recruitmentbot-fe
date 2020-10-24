@@ -130,11 +130,13 @@ export class ManageUserComponent implements OnInit {
       console.log(data)
       this.authService.botStatus(data).subscribe((res)=>{
         console.log(res);
-        swal.fire('', 'Updated successfully!', 'success').then((result) => {
-          if (result.isConfirmed) {
-            this.getCompanies();
-          }
-        })
+        if(res.body.result_code == 200){
+          swal.fire('', 'Updated successfully!', 'success').then((result) => {
+            if (result.isConfirmed) {
+              this.getCompanies();
+            }
+          })
+        }
       })
     }else if(item.bot_status == 1){
       let data = {
@@ -144,11 +146,13 @@ export class ManageUserComponent implements OnInit {
       console.log(data)
       this.authService.botStatus(data).subscribe((res)=>{
         console.log(res);
-        swal.fire('', 'Updated successfully!', 'success').then((result) => {
-          if (result.isConfirmed) {
-            this.getCompanies();
-          }
-        })
+        if(res.body.result_code == 200){
+          swal.fire('', 'Updated successfully!', 'success').then((result) => {
+            if (result.isConfirmed) {
+              this.getCompanies();
+            }
+          })
+        }
       })
     }
   }

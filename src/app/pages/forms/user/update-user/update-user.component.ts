@@ -90,90 +90,97 @@ export class UpdateUserComponent implements OnInit {
   ngOnInit(): void {
     this.globals.showLoading('')
     this.authService.getCompany(this.route.snapshot.params.id).subscribe((result)=>{
-      console.log(result.body);
-      this.dataType = result.body.fields[0].role_type;
-      console.log(this.dataType);
-      if(this.dataType != 'Consultant'){
-        this.formData = {
-          "first_name" : result.body.fields[0].first_name,
-          "last_name" : result.body.fields[0].last_name,
-          "company_name": result.body.fields[0].company_name,
-          "email_id": result.body.fields[0].email_id,
-          "phone": result.body.fields[0].phone,
-          "primary_email_id": result.body.fields[0].primary_email_id,
-          "generic_email_id": result.body.fields[0].generic_email_id,
-          "personal_email_id": result.body.fields[0].personal_email_id,
-          "cc_email_id": result.body.fields[0].cc_email_id,
-          "bcc_email_id": result.body.fields[0].bcc_email_id,
-          "comments": result.body.fields[0].comments ? result.body.fields[0].comments : "",
-          "expiry_date": result.body.fields[0].expiry_date,
-          "role_type": result.body.fields[0].role_type,
-          "role_id": result.body.fields[0].role_id,
-          "dob": result.body.fields[0].dob ? this.datapipe.transform(result.body.fields[0].dob, 'yyyy-MM-dd') : "",
-          "education": result.body.fields[0].education,
-          "rate": result.body.fields[0].rate,
-          "relocation": result.body.fields[0].relocation,
-          "visa_copy_loc": result.body.fields[0].visa_copy_loc,
-          "visa_status": result.body.fields[0].visa_status,
-          "visa_valid_from": result.body.fields[0].visa_valid_from ? this.datapipe.transform(result.body.fields[0].visa_valid_from, 'yyyy-MM-dd') : "",
-          "visa_valid_to": result.body.fields[0].visa_valid_to ? this.datapipe.transform(result.body.fields[0].visa_valid_to, 'yyyy-MM-dd') : "",
-          "DL_copy": result.body.fields[0].DL_copy,
-          "DL_valid_from": result.body.fields[0].DL_valid_from ? this.datapipe.transform(result.body.fields[0].DL_valid_from, 'yyyy-MM-dd') : "",
-          "DL_valid_to": result.body.fields[0].DL_valid_to ? this.datapipe.transform(result.body.fields[0].DL_valid_to, 'yyyy-MM-dd') : "",
-          "correl_id": result.body.fields[0].correl_id,
-          "created_user": result.body.fields[0].created_user,
-          "email_template": result.body.fields[0].email_template,
+      if(result.body.result_code == 200){
+        console.log(result.body);
+        this.dataType = result.body.fields[0].role_type;
+        console.log(this.dataType);
+        if(this.dataType != 'Consultant'){
+          this.formData = {
+            "first_name" : result.body.fields[0].first_name,
+            "last_name" : result.body.fields[0].last_name,
+            "company_name": result.body.fields[0].company_name,
+            "email_id": result.body.fields[0].email_id,
+            "phone": result.body.fields[0].phone,
+            "primary_email_id": result.body.fields[0].primary_email_id,
+            "generic_email_id": result.body.fields[0].generic_email_id,
+            "personal_email_id": result.body.fields[0].personal_email_id,
+            "cc_email_id": result.body.fields[0].cc_email_id,
+            "bcc_email_id": result.body.fields[0].bcc_email_id,
+            "comments": result.body.fields[0].comments ? result.body.fields[0].comments : "",
+            "expiry_date": result.body.fields[0].expiry_date,
+            "role_type": result.body.fields[0].role_type,
+            "role_id": result.body.fields[0].role_id,
+            "dob": result.body.fields[0].dob ? this.datapipe.transform(result.body.fields[0].dob, 'yyyy-MM-dd') : "",
+            "education": result.body.fields[0].education,
+            "rate": result.body.fields[0].rate,
+            "relocation": result.body.fields[0].relocation,
+            "visa_copy_loc": result.body.fields[0].visa_copy_loc,
+            "visa_status": result.body.fields[0].visa_status,
+            "visa_valid_from": result.body.fields[0].visa_valid_from ? this.datapipe.transform(result.body.fields[0].visa_valid_from, 'yyyy-MM-dd') : "",
+            "visa_valid_to": result.body.fields[0].visa_valid_to ? this.datapipe.transform(result.body.fields[0].visa_valid_to, 'yyyy-MM-dd') : "",
+            "DL_copy": result.body.fields[0].DL_copy,
+            "DL_valid_from": result.body.fields[0].DL_valid_from ? this.datapipe.transform(result.body.fields[0].DL_valid_from, 'yyyy-MM-dd') : "",
+            "DL_valid_to": result.body.fields[0].DL_valid_to ? this.datapipe.transform(result.body.fields[0].DL_valid_to, 'yyyy-MM-dd') : "",
+            "correl_id": result.body.fields[0].correl_id,
+            "created_user": result.body.fields[0].created_user,
+            "email_template": result.body.fields[0].email_template,
+          }
+        }else if(this.dataType == 'Consultant'){
+          this.formData = {
+            "first_name" : result.body.fields[0].first_name,
+            "last_name" : result.body.fields[0].last_name,
+            "company_name": result.body.fields[0].company_name,
+            "email_id": result.body.fields[0].email_id,
+            "phone": result.body.fields[0].phone,
+            "primary_email_id": result.body.fields[0].primary_email_id,
+            "generic_email_id": result.body.fields[0].generic_email_id,
+            "personal_email_id": result.body.fields[0].personal_email_id,
+            "cc_email_id": result.body.fields[0].cc_email_id,
+            "bcc_email_id": result.body.fields[0].bcc_email_id,
+            "comments": result.body.fields[0].comments,
+            "expiry_date": result.body.fields[0].expiry_date ? this.datapipe.transform(result.body.fields[0].expiry_date, 'yyyy-MM-dd') : "",
+            "role_type": result.body.fields[0].role_type,
+            "role_id": result.body.fields[0].role_id,
+            "dob": result.body.fields[0].dob ? this.datapipe.transform(result.body.fields[0].dob, 'yyyy-MM-dd') : "",
+            "education": result.body.fields[0].education,
+            "rate": result.body.fields[0].rate,
+            "relocation": result.body.fields[0].relocation,
+            "visa_copy_loc": result.body.fields[0].visa_copy_loc,
+            "visa_status": result.body.fields[0].visa_status,
+            "visa_valid_from": result.body.fields[0].visa_valid_from ? this.datapipe.transform(result.body.fields[0].visa_valid_from, 'yyyy-MM-dd') : "",
+            "visa_valid_to": result.body.fields[0].visa_valid_to ? this.datapipe.transform(result.body.fields[0].visa_valid_to, 'yyyy-MM-dd') : "",
+            "DL_copy": result.body.fields[0].DL_copy,
+            "DL_valid_from": result.body.fields[0].DL_valid_from ? this.datapipe.transform(result.body.fields[0].DL_valid_from, 'yyyy-MM-dd') : "",
+            "DL_valid_to": result.body.fields[0].DL_valid_to ? this.datapipe.transform(result.body.fields[0].DL_valid_to, 'yyyy-MM-dd') : "",
+            "correl_id": result.body.fields[0].correl_id,
+            "created_user": result.body.fields[0].created_user,
+            "email_template": result.body.fields[0].email_template,
+          }
+          this.addressInfo = {
+            "address_line_1": result.body.addresult[0].address_line_1,
+            "address_line_2": result.body.addresult[0].address_line_2,
+            "city": result.body.addresult[0].city,
+            "zipcode": result.body.addresult[0].zipcode
+          }
+          this.techInfo = result.body.techresult;
+          // for (const item of result.body.techresult) {
+          //   item.tags = item.tags.split(',');
+          //   this.techInfo.push(item)
+          // }
+          for(let i=0;i<result.body.techresult.length;i++) {
+            this.techInfo[i].tags = result.body.techresult[i].tags.split(',');
+          }
         }
-      }else if(this.dataType == 'Consultant'){
-        this.formData = {
-          "first_name" : result.body.fields[0].first_name,
-          "last_name" : result.body.fields[0].last_name,
-          "company_name": result.body.fields[0].company_name,
-          "email_id": result.body.fields[0].email_id,
-          "phone": result.body.fields[0].phone,
-          "primary_email_id": result.body.fields[0].primary_email_id,
-          "generic_email_id": result.body.fields[0].generic_email_id,
-          "personal_email_id": result.body.fields[0].personal_email_id,
-          "cc_email_id": result.body.fields[0].cc_email_id,
-          "bcc_email_id": result.body.fields[0].bcc_email_id,
-          "comments": result.body.fields[0].comments,
-          "expiry_date": result.body.fields[0].expiry_date ? this.datapipe.transform(result.body.fields[0].expiry_date, 'yyyy-MM-dd') : "",
-          "role_type": result.body.fields[0].role_type,
-          "role_id": result.body.fields[0].role_id,
-          "dob": result.body.fields[0].dob ? this.datapipe.transform(result.body.fields[0].dob, 'yyyy-MM-dd') : "",
-          "education": result.body.fields[0].education,
-          "rate": result.body.fields[0].rate,
-          "relocation": result.body.fields[0].relocation,
-          "visa_copy_loc": result.body.fields[0].visa_copy_loc,
-          "visa_status": result.body.fields[0].visa_status,
-          "visa_valid_from": result.body.fields[0].visa_valid_from ? this.datapipe.transform(result.body.fields[0].visa_valid_from, 'yyyy-MM-dd') : "",
-          "visa_valid_to": result.body.fields[0].visa_valid_to ? this.datapipe.transform(result.body.fields[0].visa_valid_to, 'yyyy-MM-dd') : "",
-          "DL_copy": result.body.fields[0].DL_copy,
-          "DL_valid_from": result.body.fields[0].DL_valid_from ? this.datapipe.transform(result.body.fields[0].DL_valid_from, 'yyyy-MM-dd') : "",
-          "DL_valid_to": result.body.fields[0].DL_valid_to ? this.datapipe.transform(result.body.fields[0].DL_valid_to, 'yyyy-MM-dd') : "",
-          "correl_id": result.body.fields[0].correl_id,
-          "created_user": result.body.fields[0].created_user,
-          "email_template": result.body.fields[0].email_template,
-        }
-        this.addressInfo = {
-          "address_line_1": result.body.addresult[0].address_line_1,
-          "address_line_2": result.body.addresult[0].address_line_2,
-          "city": result.body.addresult[0].city,
-          "zipcode": result.body.addresult[0].zipcode
-        }
-        this.techInfo = result.body.techresult;
-        // for (const item of result.body.techresult) {
-        //   item.tags = item.tags.split(',');
-        //   this.techInfo.push(item)
-        // }
-        for(let i=0;i<result.body.techresult.length;i++) {
-          this.techInfo[i].tags = result.body.techresult[i].tags.split(',');
-        }
+        console.log(this.formData);
+        console.log(this.addressInfo);
+        console.log(this.techInfo);
+        this.globals.hideLoading('');
+      }else{
+        this.globals.hideLoading('');
+        swal.fire('', 'Something went wrong!', 'error')
       }
-      console.log(this.formData);
-      console.log(this.addressInfo);
-      console.log(this.techInfo);
-      this.globals.hideLoading('');
+    },err=> {
+      swal.fire('', 'Something went wrong!', 'error')
     });
     if(this.globals.UserRoleid == 1){
       this.dateVisible = false;
@@ -196,7 +203,7 @@ export class UpdateUserComponent implements OnInit {
 
   gettags(){
     this.globals.showLoading('');
-    this.authService.getTags(this.globals.company).subscribe((result)=>{
+    this.authService.getTags(localStorage.getItem('company_Name')).subscribe((result)=>{
       console.log(result.body.fields);
       this.data = result.body.fields;
       this.globals.hideLoading('');
