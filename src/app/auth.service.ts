@@ -43,6 +43,14 @@ export class AuthService {
     }
   }
 
+  forgotPwd(objUser): Observable<HttpResponse<any>> {
+    var headersForAPI = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*', 'Authorization': 'Bearer ' + this.AccessToken });
+    headersForAPI.append("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
+    let url =  this.baseUrl + '/user/forgot-password';
+    console.log(url);
+    return this.http.put<any>(url,objUser, { headers: headersForAPI, observe: 'response' });
+  }
+
   createUser(objUser): Observable<HttpResponse<any>> {
     this.getToken();
     if(this.AccessToken) {
@@ -60,6 +68,17 @@ export class AuthService {
       headersForAPI.append("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
       let url =  this.baseUrl + '/createconsultant';
       return this.http.post<any>(url,objUser, { headers: headersForAPI, observe: 'response' });
+    }
+  }
+
+  getallCompanies(){
+    this.getToken();
+    if(this.AccessToken) {
+      var headersForAPI = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*', 'Authorization': 'Bearer ' + this.AccessToken });
+      headersForAPI.append("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
+      let url =  this.baseUrl + '/getallusers';
+      console.log(url);
+      return this.http.get<any>(url, { headers: headersForAPI, observe: 'response' });
     }
   }
 

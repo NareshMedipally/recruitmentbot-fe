@@ -26,7 +26,7 @@ export class ResetPasswordComponent implements OnInit {
       "newPassword" : this.userInfo.newPassword,
       "confirmPassword" : this.userInfo.confirmPassword
     }
-    this.authService.changePwd(this.globals.correlId,data).subscribe((res)=>{
+    this.authService.changePwd(localStorage.getItem('correl_id'),data).subscribe((res)=>{
       console.log(res);
       if(res.body.status == 'Success'){
         swal.fire('Password updated!', '', 'success').then((result) => {

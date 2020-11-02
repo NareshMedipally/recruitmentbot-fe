@@ -81,7 +81,7 @@
                 </div>
               </div>
               <div class="col-md-12 text-center">
-                <button type="submit" class="btn btn-primary" style="margin-right: 5px;" [disabled]="!form.valid || form.pristine || form.invalid">SUBMIT</button>
+                <button type="submit" class="btn btn-primary" style="margin-right: 5px;" [disabled]="!form.valid || form.invalid">SUBMIT</button>
                 <button routerLink="/pages/manage-user" class="btn btn-danger">CANCEL</button>
               </div>
             </div>
@@ -166,13 +166,13 @@
                 </div>
               </div>
               <div class="col-md-12 text-center">
-                <button type="submit" class="btn btn-primary" style="margin-right: 5px;" [disabled]="!admin.valid || admin.pristine || admin.invalid">SUBMIT</button>
+                <button type="submit" class="btn btn-primary" style="margin-right: 5px;" [disabled]="!admin.valid || admin.invalid">SUBMIT</button>
                 <button routerLink="/pages/manage-user" class="btn btn-danger">CANCEL</button>
               </div>
             </div>
           </form>
         </div>
-        <div *ngIf="selectedrole == '3'">
+        <div *ngIf="(selectedrole == '3' && selectedcompany == 'Bluespace') || (selectedrole == '3' && Role_id != 1)">
           <form #rec="ngForm" (ngSubmit)="recruiterForm()">
             <div class="row">
               <div class="col-md-12">
@@ -311,7 +311,7 @@
             </div>
           </form>
         </div>
-        <div *ngIf="selectedrole == '4'">
+        <div *ngIf="(selectedrole == '4' && selectedcompany == 'Bluespace') || (selectedrole == '4' && Role_id != 1)">
           <form #f="ngForm" (ngSubmit)="saveCon()">
             <div class="row">
               <div class="col-md-12">
@@ -623,7 +623,7 @@
                 </div>
               </div>
               <div class="col-md-12 text-center">
-                <button type="submit" class="btn btn-primary" [disabled]="!f.valid || f.pristine || f.invalid" style="margin-right: 5px;">SUBMIT</button>
+                <button type="submit" class="btn btn-primary" [disabled]="!f.valid || f.invalid" style="margin-right: 5px;">SUBMIT</button>
                 <button routerLink="/pages/manage-user" class="btn btn-danger">CANCEL</button>
               </div>
             </div>

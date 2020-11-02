@@ -409,7 +409,7 @@ export class CreateUserComponent implements OnInit {
 
   gettags(){
     this.globals.showLoading('');
-    this.authService.getTags(this.globals.company).subscribe((result)=>{
+    this.authService.getTags(localStorage.getItem('company_Name')).subscribe((result)=>{
       console.log(result.body.fields);
       this.data = result.body.fields;
       this.globals.hideLoading('');
