@@ -42,7 +42,8 @@ export class CreateUserComponent implements OnInit {
   drivingcopy:any;
   resume:any =[];
   expiryDate = new Date();
-
+  changedResume:any =[]
+  changedCertificates:any =[]
   selectedCars = [3];
     cars = [
         { id: 1, name: 'Volvo' },
@@ -381,15 +382,17 @@ export class CreateUserComponent implements OnInit {
 
   onFileChange(source,event,index?){
     console.log("source",source)
-    let file = ''
+    let file :any;
     if (event.target.files.length > 0) {
       console.log('here3');
       file = event.target.files[0];
       if(source == "resume"){
         this.resume.push(file)
+        this.changedResume[index] = file.name
       }else if(source == "certificate"){
         console.log('here');
         this.certificate.push(file)
+        this.changedCertificates[index] = file.name
       } else if(source == "driving_license"){
         this.drivingcopy = file;
         this.drivDisable = false;
@@ -448,6 +451,8 @@ export class CreateUserComponent implements OnInit {
     formData.append("role_id", localStorage.getItem('role'));
     formData.append("company_name", this.companyname);
     formData.append("comments", this.formData.comments);
+    formData.append("changedResume",JSON.stringify(this.changedResume))
+    formData.append("changedCertificate",JSON.stringify(this.changedCertificates))
     if(this.resume){
       for(var x = 0; x<this.resume.length; x++) {
         formData.append("resume", this.resume[x]);

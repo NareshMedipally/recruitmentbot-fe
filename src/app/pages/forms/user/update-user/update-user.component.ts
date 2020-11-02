@@ -23,6 +23,8 @@ export class UpdateUserComponent implements OnInit {
   visacopy:any
   drivingcopy:any;
   resume:any =[];
+  changedResume:any =[]
+  changedCertificates:any =[]
   formData = {
     "first_name" : "",
     "last_name" : "",
@@ -146,14 +148,28 @@ export class UpdateUserComponent implements OnInit {
           "relocation": result.body.fields[0].relocation,
           "visa_copy_loc": result.body.fields[0].visa_copy_loc,
           "visa_status": result.body.fields[0].visa_status,
-          "visa_valid_from": result.body.fields[0].visa_valid_from ? this.datapipe.transform(result.body.fields[0].visa_valid_from, 'yyyy-MM-dd') : "",
-          "visa_valid_to": result.body.fields[0].visa_valid_to ? this.datapipe.transform(result.body.fields[0].visa_valid_to, 'yyyy-MM-dd') : "",
+          "visa_valid_from":  "",
+          "visa_valid_to":  "",
           "DL_copy": result.body.fields[0].DL_copy,
           "DL_valid_from": result.body.fields[0].DL_valid_from ? this.datapipe.transform(result.body.fields[0].DL_valid_from, 'yyyy-MM-dd') : "",
           "DL_valid_to": result.body.fields[0].DL_valid_to ? this.datapipe.transform(result.body.fields[0].DL_valid_to, 'yyyy-MM-dd') : "",
           "correl_id": result.body.fields[0].correl_id,
           "created_user": result.body.fields[0].created_user,
           "email_template": result.body.fields[0].email_template,
+        }
+        if(result.body.fields[0].visa_valid_from){
+          if(result.body.fields[0].visa_valid_from.includes('1899') || result.body.fields[0].visa_valid_from.includes('0000')){
+            this.formData.visa_valid_from = "";
+          }else {
+            this.formData.visa_valid_from = this.datapipe.transform(result.body.fields[0].visa_valid_from, 'yyyy-MM-dd') 
+          }
+        }
+        if(result.body.fields[0].visa_valid_to){
+          if(result.body.fields[0].visa_valid_to.includes('1899') || result.body.fields[0].visa_valid_to.includes('0000')){
+            this.formData.visa_valid_to = "";
+          }else {
+            this.formData.visa_valid_to = this.datapipe.transform(result.body.fields[0].visa_valid_to, 'yyyy-MM-dd') 
+          }
         }
         this.addressInfo = {
           "address_line_1": result.body.addresult[0].address_line_1,
@@ -168,11 +184,14 @@ export class UpdateUserComponent implements OnInit {
         // }
         for(let i=0;i<result.body.techresult.length;i++) {
           this.techInfo[i].tags = result.body.techresult[i].tags.split(',');
+         
         }
       }
+
       console.log(this.formData);
       console.log(this.addressInfo);
       console.log(this.techInfo);
+      
       this.globals.hideLoading('');
     });
     if(this.globals.UserRoleid == 1){
@@ -212,15 +231,18 @@ export class UpdateUserComponent implements OnInit {
 
   onFileChange(source,event,index?){
     console.log("source",source)
-    let file = ''
+    let file :any;
     if (event.target.files.length > 0) {
       console.log('here3');
       file = event.target.files[0];
+      console.log('here4',file.name);
       if(source == "resume"){
         this.resume.push(file)
+       this.changedResume[index] = file.name
       }else if(source == "certificate"){
         console.log('here');
         this.certificate.push(file)
+        this.changedCertificates[index] = file.name
       } else if(source == "driving_license"){
         this.drivingcopy = file;
       }else if(source == "visa"){
@@ -228,6 +250,7 @@ export class UpdateUserComponent implements OnInit {
       }
     }
     console.log('resume',this.resume)
+    console.log('changedResume',this.changedResume)
     console.log('certificate',this.certificate)
     console.log('driving_license',this.drivingcopy)
     console.log('visa',this.visacopy)
@@ -251,7 +274,9 @@ export class UpdateUserComponent implements OnInit {
       "certificate_loc" : "",
     })
     console.log("this.techInfo",this.techInfo)
+    console.log("this.resume",this.resume)
   }
+  
 
   removeForm(index){
     this.techInfo.splice(index, 1);
@@ -400,7 +425,7 @@ export class UpdateUserComponent implements OnInit {
       //   company_name: this.formData.company_name,
       //   comments: this.formData.comments
       // }
-      // console.log(formD);
+       console.log("this.changedResume",this.changedResume);
       const formData = new FormData();
       formData.append("generalInfo", JSON.stringify(con_generalInfo));
       formData.append("contactInfo", JSON.stringify(con_contactInfo));
@@ -411,11 +436,12 @@ export class UpdateUserComponent implements OnInit {
       formData.append("role_id", this.formData.role_id);
       formData.append("company_name", this.formData.company_name);
       formData.append("comments", this.formData.comments);
+      formData.append("changedResume",JSON.stringify(this.changedResume))
+      formData.append("changedCertificate",JSON.stringify(this.changedCertificates))
       if(this.resume){
         for(var x = 0; x<this.resume.length; x++) {
-          formData.append("upresume", this.resume[x]);
+          formData.append("upresume", this.resume[x]);     
       }
-
       }
       if(this.certificate){
         for(var x = 0; x<this.certificate.length; x++) {
@@ -433,6 +459,7 @@ export class UpdateUserComponent implements OnInit {
       console.log(con_contactInfo);
       console.log(con_otherInfo);
       console.log(this.techInfo);
+      console.log("ffff",this.resume);
       this.authService.updateConsultant(this.route.snapshot.params.id, formData).subscribe((result)=>{
       //  if(result.body.desc == 'Record Updated Successfully'){
           console.log(result);
