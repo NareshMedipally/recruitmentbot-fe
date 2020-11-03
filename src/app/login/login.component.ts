@@ -54,10 +54,8 @@ export class LoginComponent implements OnInit {
           console.log(this.globals.UserRoleid);
           if(currentUser.first_time_login == 'Y'){
             this.router.navigate(['/change-pwd']);
-            this.globals.hideLoading('')
           }else {
             this.router.navigate(['/pages/dashboard']);
-            this.globals.hideLoading('')
             console.log(this.btnSubmitStatus)
           }
           // this.globals.hideLoading('')

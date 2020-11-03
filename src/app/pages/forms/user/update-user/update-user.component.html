@@ -393,30 +393,30 @@
               <label for="" style="font-weight: bold;">Technology</label>
             </div>
           </div>
-          <div class="col-md-1" *ngIf= "i != 0">
+          <!-- <div class="col-md-1" *ngIf= "i != 0">
             <a class="btn btn-danger" style="color: white;" (click)="removeForm(i)">
               <i class="fa fa-minus" aria-hidden="true"></i>
             </a>
-          </div>
-          <div class="col-md-3">
+          </div> -->
+          <div class="col-md-3 mt-3">
             <div class="form-group">
               <label  class="label">Total Experience</label>
               <input type="text" class="form-control" fullWidth name="total_experience_{{obj.id}}" [(ngModel)]="obj.total_experience" >
             </div>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-3 mt-3">
             <div class="form-group">
               <label  class="label">USA Experience</label>
               <input type="text" class="form-control" fullWidth name="usa_experience_{{obj.id}}" [(ngModel)]="obj.usa_experience" >
             </div>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-3 mt-3">
             <div class="form-group">
               <label  class="label">Marketing Phone Number</label>
               <input type="number" class="form-control" fullWidth name="marketing_phone_{{obj.id}}" [(ngModel)]="obj.marketing_phone" >
             </div>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-3 mt-3">
             <div class="form-group">
               <label  class="label">Marketing Email ID <span style="color: red;">*</span></label>
               <input type="email" class="form-control" fullWidth name="marketing_email_id_{{obj.id}}" [(ngModel)]="obj.marketing_email_id" #marketing_email_id="ngModel" email required>

@@ -19,6 +19,7 @@ export class ChangePasswordComponent implements OnInit {
   constructor(private router:Router, private route: ActivatedRoute, private globals: ServicesService, private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.globals.hideLoading('')
   }
 
   resetPwd(){

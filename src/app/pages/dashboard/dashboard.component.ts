@@ -108,6 +108,7 @@ export class DashboardComponent implements OnDestroy {
 
   ngOnDestroy() {
     this.alive = false;
+    this.globals.hideLoading('');
   }
 
   getStatus(){
