@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'ngx-email-auth',
@@ -6,10 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./email-auth.component.scss']
 })
 export class EmailAuthComponent implements OnInit {
+emailAuth:any 
+  constructor(private activatedRoute: ActivatedRoute) { }
 
-  constructor() { }
+  ngOnInit() {
+    console.log("fdfd",this.activatedRoute.snapshot.params);
+    let checkAuth = this.activatedRoute.snapshot.params.status;
+    if(checkAuth == 'true'){  
+      alert(checkAuth)
+      this.emailAuth = true
+    }else{
+      this.emailAuth = false
+    }
 
-  ngOnInit(): void {
   }
 
 }

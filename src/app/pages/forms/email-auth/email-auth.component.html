@@ -3,7 +3,8 @@
   <nb-card-body>
     <div class="row">
       <div class="col-4 mx-auto text-center">
-        <a class="btn btn-primary text-white btn-block" style="text-decoration: none;" target="_blank" href="https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/gmail.readonly&include_granted_scopes=true&state=Smatbot&redirect_uri=https://www.app.feltso.com:3366/mailOauth&response_type=code&client_id=774859240343-ip0fire50886td4oabhvg126qg3e0890.apps.googleusercontent.com&access_type=offline&prompt=consent">Authorize</a>
+        <a  *ngIf ="!emailAuth" class="btn btn-primary text-white btn-block" style="text-decoration: none;" target="_blank" href="https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/gmail.readonly&include_granted_scopes=true&state=Smatbot&redirect_uri=https://hireswing.com:3366/mailOauth&response_type=code&client_id=774859240343-ip0fire50886td4oabhvg126qg3e0890.apps.googleusercontent.com&access_type=offline&prompt=consent">Authorize</a>
+        <a  *ngIf ="emailAuth" class="btn btn-success text-white btn-block" style="text-decoration: none;" target="_blank" >Authorized</a>
       </div>
     </div>
   </nb-card-body>

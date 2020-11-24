@@ -86,7 +86,7 @@ const routes: Routes = [{
       component: ReportsComponent,
     },
     {
-      path: 'email-auth',
+      path: 'email-auth/:status',
       component: EmailAuthComponent,
     },
     {
