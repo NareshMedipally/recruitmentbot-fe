@@ -14,7 +14,7 @@ emailAuth:any
     console.log("fdfd",this.activatedRoute.snapshot.params);
     let checkAuth = this.activatedRoute.snapshot.params.status;
     if(checkAuth == 'true'){  
-      alert(checkAuth)
+   
       this.emailAuth = true
     }else{
       this.emailAuth = false
