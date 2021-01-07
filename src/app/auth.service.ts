@@ -14,7 +14,7 @@ export class AuthService {
     this.getToken()
   }
 
-  private baseUrl: string = '//ec2-3-232-186-142.compute-1.amazonaws.com:5000';
+  private baseUrl: string = 'https://hireswing.com/api';
 
   getToken() {
     this.AccessToken = localStorage.getItem('token')
