@@ -56,37 +56,41 @@ export class EnterpriseComponent implements OnInit {
   }
 
   openDelete(data){
-    console.log(data)
-    swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Delete'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.authService.delEntCompany(data.correl_id).subscribe((result)=>{
-          console.log(result);
-          if(result.body.status == 'success'){
-            swal.fire(
-              '',
-              'Deleted successfully!',
-              'success'
-            ).then((result) => {
-              if (result.isConfirmed) {
-                this.getData();
-              }
-            })
-          }else {
+    console.log(data);
+    if(data.company_name == 'Bluespace'){
+      swal.fire('','You are not authorized to delete this company!','error');
+    }else{
+      swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Delete'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.authService.delEntCompany(data.correl_id).subscribe((result)=>{
+            console.log(result);
+            if(result.body.status == 'success'){
+              swal.fire(
+                '',
+                'Deleted successfully!',
+                'success'
+              ).then((result) => {
+                if (result.isConfirmed) {
+                  this.getData();
+                }
+              })
+            }else {
+              swal.fire('','something went wrong!','error');
+            }
+          },err => {
+            console.log(err);
             swal.fire('','something went wrong!','error');
-          }
-        },err => {
-          console.log(err);
-          swal.fire('','something went wrong!','error');
-        })
-      }
-    })
+          })
+        }
+      })
+    }
   }
 }

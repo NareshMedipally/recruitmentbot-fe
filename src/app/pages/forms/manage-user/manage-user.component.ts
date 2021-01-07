@@ -88,36 +88,40 @@ export class ManageUserComponent implements OnInit {
   }
 
   openDelete(data){
-    console.log(data)
-    swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Delete'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.authService.deleteCompany(data.correl_id).subscribe((result)=>{
-          console.log(result);
-          if(result.body.desc == 'User Deleted Successfully!'){
-            swal.fire(
-              'Deleted!',
-              'Your file has been deleted.',
-              'success'
-            ).then((result) => {
-              if (result.isConfirmed) {
-                this.getCompanies();
-              }
-            })
-          }
-        },err => {
-          console.log(err);
-          swal.fire('','something went wrong!','error');
-        })
-      }
-    })
+    console.log(data);
+    if(data.email_id == localStorage.getItem('email_id')){
+      swal.fire('','User connot be deleted!','error');
+    }else{
+      swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Delete'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.authService.deleteCompany(data.correl_id).subscribe((result)=>{
+            console.log(result);
+            if(result.body.desc == 'User Deleted Successfully!'){
+              swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+              ).then((result) => {
+                if (result.isConfirmed) {
+                  this.getCompanies();
+                }
+              })
+            }
+          },err => {
+            console.log(err);
+            swal.fire('','something went wrong!','error');
+          })
+        }
+      })
+    }
   }
 
   onChange(item){
