@@ -523,13 +523,13 @@
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label  class="label">Resume</label>
+                  <label  class="label">Resume</label> <span style="color: red;">*</span>
                   <input type="file"  class="form-control" fullWidth name="resume_loc_{{obj.id}}"  (change)="onFileChange('resume',$event,i)">
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label  class="label">Certification</label>
+                  <label  class="label">Certification</label> <span style="color: red;">*</span>
                   <input type="file"  class="form-control" fullWidth name="certificate_loc_{{obj.id}}" (change)="onFileChange('certificate',$event,i)">
                 </div>
               </div>
@@ -561,7 +561,7 @@
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group">
-                      <label  class="label">Visa Copy</label>
+                      <label  class="label">Visa Copy</label> <span style="color: red;">*</span>
                       <input type="file"  (change)="onFileChange('visa',$event,'')"  class="form-control" fullWidth>
                     </div>
                   </div>
@@ -596,7 +596,7 @@
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group">
-                      <label  class="label">Driving License Copy</label>
+                      <label  class="label">Driving License Copy</label> <span style="color: red;">*</span>
                       <input type="file"  (change)="onFileChange('driving_license',$event,'')" class="form-control" fullWidth>
                     </div>
                   </div>

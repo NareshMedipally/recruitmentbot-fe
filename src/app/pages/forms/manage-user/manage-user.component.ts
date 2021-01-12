@@ -104,7 +104,7 @@ export class ManageUserComponent implements OnInit {
           if(result.body.desc == 'User Deleted Successfully!'){
             swal.fire(
               'Deleted!',
-              'Your file has been deleted.',
+              'User has been deleted.',
               'success'
             ).then((result) => {
               if (result.isConfirmed) {
