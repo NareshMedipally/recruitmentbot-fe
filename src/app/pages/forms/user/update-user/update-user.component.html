@@ -469,14 +469,14 @@
               <label  class="label">Resume</label>
               <input type="file"  class="form-control" name="resume_loc_{{obj.id}}" (change)="onFileChange('resume',$event,i)" fullWidth>
             </div>
-            <a target="_blank" href="http://ec2-3-232-186-142.compute-1.amazonaws.com:5000/files/{{obj.resume_loc}}">View previous upload</a>
+            <a target="_blank" href="https://hireswing.com/api/files/{{obj.resume_loc}}" download>View previous upload</a>
           </div>
           <div class="col-md-6">
             <div class="form-group">
               <label  class="label">Certification</label>
               <input type="file" class="form-control" name="certificate_loc_{{obj.id}}" (change)="onFileChange('certificate',$event,i)" fullWidth>
             </div>
-            <a target="_blank" href="http://ec2-3-232-186-142.compute-1.amazonaws.com:5000/files/{{obj.certificate_loc}}">View previous upload</a>
+            <a target="_blank" href="https://hireswing.com/api/files/{{obj.certificate_loc}}" download>View previous upload</a>
           </div>
           <!-- <div class="col-md-12 mt-2" *ngIf= "i == 0">
             <a class="btn btn-primary" style="color: white;" (click)="addForm()">Add Technology</a>
@@ -508,7 +508,7 @@
                   <label  class="label">Visa Copy</label>
                   <input type="file" class="form-control" (change)="onFileChange('visa',$event,'')" fullWidth>
                 </div>
-                <a target="_blank" href="http://ec2-3-232-186-142.compute-1.amazonaws.com:5000/files/{{formData.visa_copy_loc}}">View previous upload</a>
+                <a target="_blank" href="https://hireswing.com/api/files/{{formData.visa_copy_loc}}" download>View previous upload</a>
               </div>
               <div class="col-md-12 mt-3">
                 <div class="form-group">
@@ -543,7 +543,7 @@
                   <label  class="label">Driving License Copy</label>
                   <input type="file" (change)="onFileChange('driving_license',$event,'')" class="form-control" fullWidth>
                 </div>
-                <a target="_blank" href="http://ec2-3-232-186-142.compute-1.amazonaws.com:5000/files/{{formData.DL_copy}}">View previous upload</a>
+                <a target="_blank" href="https://hireswing.com/api/files/{{formData.DL_copy}}" download>View previous upload</a>
               </div>
               <div class="col-md-12 mt-3">
                 <div class="form-group">
