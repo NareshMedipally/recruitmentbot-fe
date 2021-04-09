@@ -173,7 +173,7 @@
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <label for="exampleInputEmail1" class="label">Phone Number</label>
+              <label for="exampleInputEmail1" class="label">Phone Number <span style="color: red;">*</span></label>
               <input type="number" class="form-control" fullWidth id="phone" placeholder="Phone Number" name="phone" [(ngModel)]="formData.phone" #phone="ngModel" required>
               <ng-container *ngIf="phone.touched ">
                 <p class="error-message text-danger" *ngIf="phone.errors?.required">
