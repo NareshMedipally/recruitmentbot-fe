@@ -268,7 +268,7 @@
     </div>
 
     <div *ngIf="dataType == 'Consultant'" class="" style=" background-color: white; border: 1px white;">
-      <!-- <form #con_form="ngForm" (ngSubmit)="updateCompany('Consultant')"> -->
+      <form #con_form="ngForm">
         <div class="row">
           <div class="col-md-12">
             <div class="form-group border-bottom border-primary">
@@ -466,14 +466,14 @@
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <label  class="label">Resume</label>
+              <label  class="label">Resume <span style="color: red;">*</span></label>
               <input type="file"  class="form-control" name="resume_loc_{{obj.id}}" (change)="onFileChange('resume',$event,i)" fullWidth>
             </div>
             <a target="_blank" href="https://hireswing.com/api/files/{{obj.resume_loc}}" download>View previous upload</a>
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <label  class="label">Certification</label>
+              <label  class="label">Certification <span style="color: red;">*</span></label>
               <input type="file" class="form-control" name="certificate_loc_{{obj.id}}" (change)="onFileChange('certificate',$event,i)" fullWidth>
             </div>
             <a target="_blank" href="https://hireswing.com/api/files/{{obj.certificate_loc}}" download>View previous upload</a>
@@ -505,30 +505,45 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="form-group">
-                  <label  class="label">Visa Copy</label>
+                  <label  class="label">Visa Copy <span style="color: red;">*</span></label>
                   <input type="file" class="form-control" (change)="onFileChange('visa',$event,'')" fullWidth>
                 </div>
                 <a target="_blank" href="https://hireswing.com/api/files/{{formData.visa_copy_loc}}" download>View previous upload</a>
               </div>
               <div class="col-md-12 mt-3">
                 <div class="form-group">
-                  <label  class="label">Visa Status</label>
-                  <select fullWidth class="form-control" name="visa_status" [(ngModel)]="formData.visa_status">
+                  <label  class="label">Visa Status <span style="color: red;">*</span></label>
+                  <select fullWidth class="form-control" name="visa_status" [(ngModel)]="formData.visa_status" #visa_status="ngModel" required>
                     <option value="">Select</option>
                     <option *ngFor="let item of visa" value="{{item.value}}">{{item.title}}</option>
                   </select>
+                  <ng-container *ngIf="visa_status.touched ">
+                    <p class="error-message text-danger" *ngIf="visa_status.errors?.required">
+                      Please select Visa Status!
+                    </p>
+                  </ng-container>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label  class="label">Visa Valid From</label>
-                  <input type="text" class="form-control" fullWidth name="visa_valid_from" [(ngModel)]="formData.visa_valid_from" bsDatepicker placement="top" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" placeholder="yyyy-mm-dd">
+                  <label  class="label">Visa Valid From <span style="color: red;">*</span></label>
+                  <input type="text" class="form-control" fullWidth name="visa_valid_from" #visa_valid_from="ngModel" [(ngModel)]="formData.visa_valid_from" bsDatepicker placement="top" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" placeholder="yyyy-mm-dd" required>
+                  <ng-container *ngIf="visa_valid_from.touched ">
+                    <p class="error-message text-danger" *ngIf="visa_valid_from.errors?.required">
+                      Valid From date required!
+                    </p>
+                  </ng-container>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label  class="label">Visa Valid To</label>
-                  <input type="text" class="form-control" fullWidth name="visa_valid_to" [(ngModel)]="formData.visa_valid_to" bsDatepicker placement="top" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" placeholder="yyyy-mm-dd">
+                  <label  class="label">Visa Valid To <span style="color: red;">*</span></label>
+                  <input type="text" class="form-control" fullWidth name="visa_valid_to" #visa_valid_to="ngModel" [(ngModel)]="formData.visa_valid_to" bsDatepicker placement="top" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" placeholder="yyyy-mm-dd" required>
+                  <ng-container *ngIf="visa_valid_to.touched ">
+                    <p class="error-message text-danger" *ngIf="visa_valid_to.errors?.required">
+                      Valid To date required!
+                    </p>
+                  </ng-container>
                 </div>
               </div>
             </div>
@@ -540,21 +555,31 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="form-group">
-                  <label  class="label">Driving License Copy</label>
+                  <label  class="label">Driving License Copy <span style="color: red;">*</span></label>
                   <input type="file" (change)="onFileChange('driving_license',$event,'')" class="form-control" fullWidth>
                 </div>
                 <a target="_blank" href="https://hireswing.com/api/files/{{formData.DL_copy}}" download>View previous upload</a>
               </div>
               <div class="col-md-12 mt-3">
                 <div class="form-group">
-                  <label  class="label">Driving License Valid From</label>
-                  <input type="text" class="form-control" fullWidth name="DL_valid_from" [(ngModel)]="formData.DL_valid_from" bsDatepicker placement="top" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" placeholder="yyyy-mm-dd">
+                  <label  class="label">Driving License Valid From <span style="color: red;">*</span></label>
+                  <input type="text" class="form-control" fullWidth name="DL_valid_from" #DL_valid_from="ngModel" [(ngModel)]="formData.DL_valid_from" bsDatepicker placement="top" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" placeholder="yyyy-mm-dd" required>
+                  <ng-container *ngIf="DL_valid_from.touched ">
+                    <p class="error-message text-danger" *ngIf="DL_valid_from.errors?.required">
+                      Valid From date required!
+                    </p>
+                  </ng-container>
                 </div>
               </div>
               <div class="col-md-12">
                 <div class="form-group">
-                  <label  class="label">Driving License Valid To</label>
-                  <input type="text" class="form-control" fullWidth name="DL_valid_to" [(ngModel)]="formData.DL_valid_to" bsDatepicker placement="top" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" placeholder="yyyy-mm-dd">
+                  <label  class="label">Driving License Valid To <span style="color: red;">*</span></label>
+                  <input type="text" class="form-control" fullWidth name="DL_valid_to" #DL_valid_to="ngModel" [(ngModel)]="formData.DL_valid_to" bsDatepicker placement="top" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" placeholder="yyyy-mm-dd" required>
+                  <ng-container *ngIf="DL_valid_to.touched ">
+                    <p class="error-message text-danger" *ngIf="DL_valid_to.errors?.required">
+                      Valid To date required!
+                    </p>
+                  </ng-container>
                 </div>
               </div>
             </div>
@@ -568,11 +593,11 @@
             </div>
           </div>
           <div class="col-md-12 text-center">
-            <button type="submit" (click)="updateCompany('Consultant')" class="btn btn-primary" style="margin-right: 5px;">Update</button>
+            <button type="submit" [disabled]="!con_form.valid || con_form.invalid" (click)="updateCompany('Consultant')" class="btn btn-primary" style="margin-right: 5px;">Update</button>
             <button routerLink="/pages/manage-user" class="btn btn-danger">Cancel</button>
           </div>
         </div>
-      <!-- </form> -->
+      </form>
     </div>
   </nb-card-body>
 </nb-card>

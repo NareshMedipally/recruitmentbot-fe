@@ -523,14 +523,24 @@
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label  class="label">Resume</label> <span style="color: red;">*</span>
-                  <input type="file"  class="form-control" fullWidth name="resume_loc_{{obj.id}}"  (change)="onFileChange('resume',$event,i)">
+                  <label  class="label">Resume <span style="color: red;">*</span></label>
+                  <input type="file"  class="form-control" fullWidth name="resume_loc_{{obj.id}}" [(ngModel)]="obj.resume_loc" #resume_loc="ngModel" (change)="onFileChange('resume',$event,i)" required>
+                  <ng-container *ngIf="resume_loc.touched ">
+                    <p class="error-message text-danger" *ngIf="resume_loc.errors?.required">
+                      Resume required!
+                    </p>
+                  </ng-container>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label  class="label">Certification</label> <span style="color: red;">*</span>
-                  <input type="file"  class="form-control" fullWidth name="certificate_loc_{{obj.id}}" (change)="onFileChange('certificate',$event,i)">
+                  <label  class="label">Certification <span style="color: red;">*</span></label>
+                  <input type="file"  class="form-control" fullWidth name="certificate_loc_{{obj.id}}" [(ngModel)]="obj.certificate_loc" #certificate_loc="ngModel" (change)="onFileChange('certificate',$event,i)" required>
+                  <ng-container *ngIf="certificate_loc.touched ">
+                    <p class="error-message text-danger" *ngIf="certificate_loc.errors?.required">
+                      Certification required!
+                    </p>
+                  </ng-container>
                 </div>
               </div>
 
@@ -561,30 +571,50 @@
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group">
-                      <label  class="label">Visa Copy</label> <span style="color: red;">*</span>
-                      <input type="file"  (change)="onFileChange('visa',$event,'')"  class="form-control" fullWidth>
+                      <label  class="label">Visa Copy <span style="color: red;">*</span></label>
+                      <input type="file"  (change)="onFileChange('visa',$event,'')" name="visa_copy_loc" [(ngModel)]="con_otherInfo[0].visa_copy_loc" #visa_copy_loc="ngModel" class="form-control" fullWidth required>
+                      <ng-container *ngIf="visa_copy_loc.touched ">
+                        <p class="error-message text-danger" *ngIf="visa_copy_loc.errors?.required">
+                          Visa required!
+                        </p>
+                      </ng-container>
                     </div>
                   </div>
                   <div class="col-md-12">
                     <div class="form-group">
-                      <label  class="label">Visa Status</label>
-                      <select fullWidth class="form-control" [disabled]= "visaDisable" name="visa_status" [(ngModel)]="con_otherInfo[0].visa_status">
+                      <label  class="label">Visa Status <span style="color: red;">*</span></label>
+                      <select fullWidth class="form-control" [disabled]= "visaDisable" name="visa_status" #visa_status="ngModel" [(ngModel)]="con_otherInfo[0].visa_status" required>
                         <option value="">Select</option>
                         <option value="Active">Active</option>
                         <option value="Inactive">Inactive</option>
                       </select>
+                      <ng-container *ngIf="visa_status.touched ">
+                        <p class="error-message text-danger" *ngIf="visa_status.errors?.required">
+                          Please select Visa Status!
+                        </p>
+                      </ng-container>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label  class="label">Visa Valid From</label>
-                      <input type="text" class="form-control" fullWidth [disabled]= "visaDisable" name="visa_valid_from" [(ngModel)]="con_otherInfo[0].visa_valid_from" bsDatepicker placement="top" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" placeholder="yyyy-mm-dd">
+                      <label  class="label">Visa Valid From <span style="color: red;">*</span></label>
+                      <input type="text" class="form-control" fullWidth [disabled]= "visaDisable" name="visa_valid_from" #visa_valid_from="ngModel" [(ngModel)]="con_otherInfo[0].visa_valid_from" bsDatepicker placement="top" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" placeholder="yyyy-mm-dd" required>
+                      <ng-container *ngIf="visa_valid_from.touched ">
+                        <p class="error-message text-danger" *ngIf="visa_valid_from.errors?.required">
+                          Valid From date required!
+                        </p>
+                      </ng-container>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label  class="label">Visa Valid To</label>
-                      <input type="text" class="form-control" fullWidth [disabled]= "visaDisable" name="visa_valid_to" [(ngModel)]="con_otherInfo[0].visa_valid_to" [minDate]="con_otherInfo[0].visa_valid_from" bsDatepicker placement="top" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" placeholder="yyyy-mm-dd">
+                      <label  class="label">Visa Valid To <span style="color: red;">*</span></label>
+                      <input type="text" class="form-control" fullWidth [disabled]= "visaDisable" name="visa_valid_to" #visa_valid_to="ngModel" [(ngModel)]="con_otherInfo[0].visa_valid_to" [minDate]="con_otherInfo[0].visa_valid_from" bsDatepicker placement="top" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" placeholder="yyyy-mm-dd" required>
+                      <ng-container *ngIf="visa_valid_to.touched ">
+                        <p class="error-message text-danger" *ngIf="visa_valid_to.errors?.required">
+                          Valid To date required!
+                        </p>
+                      </ng-container>
                     </div>
                   </div>
                 </div>
@@ -596,20 +626,35 @@
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group">
-                      <label  class="label">Driving License Copy</label> <span style="color: red;">*</span>
-                      <input type="file"  (change)="onFileChange('driving_license',$event,'')" class="form-control" fullWidth>
+                      <label  class="label">Driving License Copy <span style="color: red;">*</span></label>
+                      <input type="file" (change)="onFileChange('driving_license',$event,'')" name="DL_copy" [(ngModel)]="con_otherInfo[0].DL_copy" #DL_copy="ngModel" class="form-control" fullWidth required>
+                      <ng-container *ngIf="DL_copy.touched ">
+                        <p class="error-message text-danger" *ngIf="DL_copy.errors?.required">
+                          Driving License required!
+                        </p>
+                      </ng-container>
                     </div>
                   </div>
                   <div class="col-md-12">
                     <div class="form-group">
-                      <label  class="label">Driving License Valid From</label>
-                      <input type="text" class="form-control"  [disabled]= "drivDisable" fullWidth name="DL_valid_from" [(ngModel)]="con_otherInfo[0].DL_valid_from" bsDatepicker placement="top" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" placeholder="yyyy-mm-dd">
+                      <label  class="label">Driving License Valid From <span style="color: red;">*</span></label>
+                      <input type="text" class="form-control"  [disabled]= "drivDisable" fullWidth name="DL_valid_from" #DL_valid_from="ngModel" [(ngModel)]="con_otherInfo[0].DL_valid_from" bsDatepicker placement="top" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" placeholder="yyyy-mm-dd" required>
+                      <ng-container *ngIf="DL_valid_from.touched ">
+                        <p class="error-message text-danger" *ngIf="DL_valid_from.errors?.required">
+                          Valid From date required!
+                        </p>
+                      </ng-container>
                     </div>
                   </div>
                   <div class="col-md-12">
                     <div class="form-group">
-                      <label  class="label">Driving License Valid To</label>
-                      <input type="text" class="form-control" [disabled]= "drivDisable" fullWidth name="DL_valid_to" [(ngModel)]="con_otherInfo[0].DL_valid_to" [minDate]="con_otherInfo[0].DL_valid_from" bsDatepicker placement="top" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" placeholder="yyyy-mm-dd">
+                      <label  class="label">Driving License Valid To <span style="color: red;">*</span></label>
+                      <input type="text" class="form-control" [disabled]= "drivDisable" fullWidth name="DL_valid_to" #DL_valid_to="ngModel" [(ngModel)]="con_otherInfo[0].DL_valid_to" [minDate]="con_otherInfo[0].DL_valid_from" bsDatepicker placement="top" [bsConfig]="{showWeekNumbers:false, dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue'}" placeholder="yyyy-mm-dd" required>
+                      <ng-container *ngIf="DL_valid_to.touched ">
+                        <p class="error-message text-danger" *ngIf="DL_valid_to.errors?.required">
+                          Valid To date required!
+                        </p>
+                      </ng-container>
                     </div>
                   </div>
                 </div>

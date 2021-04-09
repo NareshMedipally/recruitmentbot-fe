@@ -5,23 +5,28 @@
     <!---Profile of Super Admin-->
     <nb-card *ngIf="Role_id == '1'">
       <nb-card-body>
-        <form class="form-horizontal" style="margin-top:30px;">
+        <form #form="ngForm" class="form-horizontal" style="margin-top:30px;">
           <div class="form-group row">
-            <label for="inputEmail3" class="label col-sm-3 form-control-label">Company Name</label>
+            <label for="inputEmail3" class="label col-sm-3 form-control-label">Company Name <span style="color: red;">*</span></label>
             <div class="col-sm-9">
               <input type="text" class="form-control" fullWidth name="company_name"  [(ngModel)]="profile.company_name" disabled>
             </div>
           </div>
           <div class="form-group row">
-            <label for="inputEmail3" class="label col-sm-3 form-control-label">Email</label>
+            <label for="inputEmail3" class="label col-sm-3 form-control-label">Email <span style="color: red;">*</span></label>
             <div class="col-sm-9">
               <input type="text" class="form-control" fullWidth name="email_id" [(ngModel)]="profile.email_id" disabled>
             </div>
           </div>
           <div class="form-group row">
-            <label for="inputPassword3" class="label col-sm-3 form-control-label">First Name</label>
+            <label for="inputPassword3" class="label col-sm-3 form-control-label">First Name <span style="color: red;">*</span></label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" fullWidth name="first_name" [(ngModel)]="profile.first_name">
+              <input type="text" class="form-control" fullWidth name="first_name" [(ngModel)]="profile.first_name" #first_name="ngModel" required>
+              <ng-container *ngIf="first_name.touched ">
+                <p class="error-message text-danger" *ngIf="first_name.errors?.required">
+                  First Name is required!
+                </p>
+              </ng-container>
             </div>
           </div>
           <div class="form-group row">
@@ -31,14 +36,19 @@
             </div>
           </div>
           <div class="form-group row">
-            <label for="inputEmail3" class="label col-sm-3 form-control-label">Phone Number</label>
+            <label for="inputEmail3" class="label col-sm-3 form-control-label">Phone Number <span style="color: red;">*</span></label>
             <div class="col-sm-9">
-              <input type="number" class="form-control" fullWidth name="phone" [(ngModel)]="profile.phone">
+              <input type="number" class="form-control" fullWidth name="phone" [(ngModel)]="profile.phone" #phone="ngModel" required>
+              <ng-container *ngIf="phone.touched ">
+                <p class="error-message text-danger" *ngIf="phone.errors?.required">
+                  Phone number is required!
+                </p>
+              </ng-container>
             </div>
           </div>
           <div class="form-group row text-center">
             <div class="col-sm-12">
-              <button type="submit" class="btn btn-primary w-10" (click)="updateRecruiter()" style="margin-right: 10px;">SUBMIT</button>
+              <button type="submit" class="btn btn-primary w-10" [disabled]="!form.valid || form.invalid" (click)="updateRecruiter()" style="margin-right: 10px;">SUBMIT</button>
               <button routerLink="/pages/dashboard" class="btn btn-danger w-10">CANCEL</button>
             </div>
           </div>
@@ -49,23 +59,28 @@
     <!--Profile of Admin-->
     <nb-card *ngIf="Role_id == '2'">
       <nb-card-body>
-        <form class="form-horizontal" style="margin-top:30px;">
+        <form #a="ngForm" class="form-horizontal" style="margin-top:30px;">
           <div class="form-group row">
-            <label for="inputEmail3" class="label col-sm-3 form-control-label">Company Name</label>
+            <label for="inputEmail3" class="label col-sm-3 form-control-label">Company Name <span style="color: red;">*</span></label>
             <div class="col-sm-9">
               <input type="text" class="form-control" fullWidth name="company_name" [(ngModel)]="profile.company_name" disabled>
             </div>
           </div>
           <div class="form-group row">
-            <label for="inputEmail3" class="label col-sm-3 form-control-label">Email</label>
+            <label for="inputEmail3" class="label col-sm-3 form-control-label">Email <span style="color: red;">*</span></label>
             <div class="col-sm-9">
               <input type="text" class="form-control" fullWidth name="email_id" [(ngModel)]="profile.email_id" disabled>
             </div>
           </div>
           <div class="form-group row">
-            <label for="inputPassword3" class="label col-sm-3 form-control-label">First Name</label>
+            <label for="inputPassword3" class="label col-sm-3 form-control-label">First Name <span style="color: red;">*</span></label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" fullWidth name="first_name" [(ngModel)]="profile.first_name">
+              <input type="text" class="form-control" fullWidth name="first_name" [(ngModel)]="profile.first_name" #first_name="ngModel" required>
+              <ng-container *ngIf="first_name.touched ">
+                <p class="error-message text-danger" *ngIf="first_name.errors?.required">
+                  First Name is required!
+                </p>
+              </ng-container>
             </div>
           </div>
           <div class="form-group row">
@@ -75,20 +90,25 @@
             </div>
           </div>
           <div class="form-group row">
-            <label for="inputEmail3" class="label col-sm-3 form-control-label">Phone Number</label>
+            <label for="inputEmail3" class="label col-sm-3 form-control-label">Phone Number <span style="color: red;">*</span></label>
             <div class="col-sm-9">
-              <input type="number" class="form-control" fullWidth name="phone" [(ngModel)]="profile.phone">
+              <input type="number" class="form-control" fullWidth name="phone" [(ngModel)]="profile.phone" #phone="ngModel" required>
+              <ng-container *ngIf="phone.touched ">
+                <p class="error-message text-danger" *ngIf="phone.errors?.required">
+                  Phone number is required!
+                </p>
+              </ng-container>
             </div>
           </div>
           <div class="form-group row">
-            <label for="inputEmail3" class="label col-sm-3 form-control-label">Expiry date</label>
+            <label for="inputEmail3" class="label col-sm-3 form-control-label">Expiry date <span style="color: red;">*</span></label>
             <div class="col-sm-9">
               <input type="text" class="form-control" fullWidth name="expiry_date" [(ngModel)]="profile.expiry_date" disabled>
             </div>
           </div>
           <div class="form-group row text-center">
             <div class="col-sm-12">
-              <button type="submit" class="btn btn-primary w-10" (click)="updateRecruiter()" style="margin-right: 10px;">SUBMIT</button>
+              <button type="submit" [disabled]="!a.valid || a.invalid" class="btn btn-primary w-10" (click)="updateRecruiter()" style="margin-right: 10px;">SUBMIT</button>
               <button routerLink="/pages/dashboard" class="btn btn-danger w-10">CANCEL</button>
             </div>
           </div>
@@ -101,21 +121,26 @@
       <nb-card-body>
         <form class="form-horizontal" style="margin-top:30px;" #f="ngForm">
           <div class="form-group row">
-            <label for="inputEmail3" class="label col-sm-3 form-control-label">Company Name</label>
+            <label for="inputEmail3" class="label col-sm-3 form-control-label">Company Name <span style="color: red;">*</span></label>
             <div class="col-sm-9">
               <input type="text" class="form-control" fullWidth [(ngModel)]="profile.company_name" name="company_name" disabled>
             </div>
           </div>
           <div class="form-group row">
-            <label for="inputEmail3" class="label col-sm-3 form-control-label">Email</label>
+            <label for="inputEmail3" class="label col-sm-3 form-control-label">Email <span style="color: red;">*</span></label>
             <div class="col-sm-9">
               <input type="text" class="form-control" fullWidth [(ngModel)]="profile.email_id" name="email_id" disabled>
             </div>
           </div>
           <div class="form-group row">
-            <label for="inputPassword3" class="label col-sm-3 form-control-label">First Name</label>
+            <label for="inputPassword3" class="label col-sm-3 form-control-label">First Name <span style="color: red;">*</span></label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" fullWidth [(ngModel)]="profile.first_name" name="first_name">
+              <input type="text" class="form-control" fullWidth [(ngModel)]="profile.first_name" name="first_name" #first_name="ngModel" required>
+              <ng-container *ngIf="first_name.touched ">
+                <p class="error-message text-danger" *ngIf="first_name.errors?.required">
+                  First Name is required!
+                </p>
+              </ng-container>
             </div>
           </div>
           <div class="form-group row">
@@ -125,13 +150,18 @@
             </div>
           </div>
           <div class="form-group row">
-            <label for="inputEmail3" class="label col-sm-3 form-control-label">Phone Number</label>
+            <label for="inputEmail3" class="label col-sm-3 form-control-label">Phone Number <span style="color: red;">*</span></label>
             <div class="col-sm-9">
-              <input type="number" class="form-control" fullWidth [(ngModel)]="profile.phone" name="phone">
+              <input type="number" class="form-control" fullWidth [(ngModel)]="profile.phone" name="phone" #phone="ngModel" required>
+              <ng-container *ngIf="phone.touched ">
+                <p class="error-message text-danger" *ngIf="phone.errors?.required">
+                  Phone number is required!
+                </p>
+              </ng-container>
             </div>
           </div>
           <div class="form-group row">
-            <label for="inputEmail3" class="label col-sm-3 form-control-label">Expiry date</label>
+            <label for="inputEmail3" class="label col-sm-3 form-control-label">Expiry date <span style="color: red;">*</span></label>
             <div class="col-sm-9">
               <input type="text" class="form-control" fullWidth [(ngModel)]="profile.expiry_date" name="expiry_date" disabled>
             </div>

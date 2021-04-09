@@ -17,7 +17,12 @@
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label for="inputFirstName" class="label">Company Name <span style="color: red">*</span></label>
-                    <input type="text" class="form-control" fullWidth name="company_name"  [(ngModel)]="company.company_name" >
+                    <input type="text" class="form-control" fullWidth name="company_name"  [(ngModel)]="company.company_name" #company_name="ngModel" required>
+                    <ng-container *ngIf="company_name.touched ">
+                      <p class="error-message text-danger" *ngIf="company_name.errors?.required">
+                        Company Name is required!
+                      </p>
+                    </ng-container>
                   </div>
                 </div>
                 <div class="col-sm-6">
@@ -98,7 +103,12 @@
             <div class="col-sm-6">
               <div class="form-group">
                 <label for="inputWebsite" class="label">Phone Number <span style="color: red">*</span></label>
-                <input type="text" class="form-control" fullWidth name="phone" [(ngModel)]="company.phone" >
+                <input type="text" class="form-control" fullWidth name="phone" [(ngModel)]="company.phone" #phone="ngModel" required>
+                <ng-container *ngIf="phone.touched ">
+                  <p class="error-message text-danger" *ngIf="phone.errors?.required">
+                    Phone number is required!
+                  </p>
+                </ng-container>
               </div>
             </div>
           </div>
@@ -120,7 +130,12 @@
             <div class="col-sm-6">
               <div class="form-group">
                 <label for="inputEmail" class="label">City <span style="color: red">*</span></label>
-                <input type="email" class="form-control" fullWidth name="city" [(ngModel)]="company.city" >
+                <input type="email" class="form-control" fullWidth name="city" [(ngModel)]="company.city" #city="ngModel" required>
+                <ng-container *ngIf="city.touched ">
+                  <p class="error-message text-danger" *ngIf="city.errors?.required">
+                    City required!
+                  </p>
+                </ng-container>
               </div>
             </div>
             <div class="col-sm-6">
