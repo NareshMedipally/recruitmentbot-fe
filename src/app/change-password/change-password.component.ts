@@ -30,7 +30,12 @@ export class ChangePasswordComponent implements OnInit {
     this.authService.changePwd(localStorage.getItem('correl_id'),data).subscribe((res)=>{
       console.log(res);
       if(res.body.status == 'Success'){
-        swal.fire('Password updated!', '', 'success').then((result) => {
+        swal.fire({
+          title: 'Password updated!',
+          text: '',
+          icon: 'success',
+          allowOutsideClick: false
+        }).then((result) => {
           /* Read more about isConfirmed, isDenied below */
           if (result.isConfirmed) {
             this.router.navigate(['/login'])

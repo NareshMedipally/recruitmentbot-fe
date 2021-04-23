@@ -74,7 +74,12 @@ export class ProfileComponent implements OnInit {
     this.authService.updateCompany(this.correlId,data).subscribe((res)=>{
       if(res.body.desc == 'Record Updated Successfully'){
         console.log(res);
-        swal.fire('', 'Updated successfully', 'success').then((result) => {
+        swal.fire({
+          title: '',
+          text: 'Updated successfully',
+          icon: 'success',
+          allowOutsideClick: false
+        }).then((result) => {
           if (result.isConfirmed) {
             this.router.navigate(['/pages/dashboard']);
           }

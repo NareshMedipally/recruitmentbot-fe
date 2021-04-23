@@ -50,7 +50,7 @@ export const MENU_ITEMS_ADMIN: NbMenuItem[] = [
    {
      title: 'Email Authorization',
      icon: 'email',
-     link:'/pages/email-auth/false',
+     link:'/pages/email-auth/email/false',
    },
    {
     title: 'Profile',

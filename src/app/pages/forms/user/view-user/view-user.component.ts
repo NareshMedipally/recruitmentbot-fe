@@ -53,7 +53,9 @@ export class ViewUserComponent implements OnInit {
     "address_line_1": "",
     "address_line_2": "",
     "city": "",
-    "zipcode": ""
+    "zipcode": "",
+    "state": "",
+    "country": ""
   }
 
   techInfo = [
@@ -155,6 +157,8 @@ export class ViewUserComponent implements OnInit {
           "address_line_1": result.body.addresult[0].address_line_1,
           "address_line_2": result.body.addresult[0].address_line_2,
           "city": result.body.addresult[0].city,
+          "state": result.body.addresult[0].state,
+          "country": result.body.addresult[0].country,
           "zipcode": result.body.addresult[0].zipcode
         }
         this.techInfo = result.body.techresult;

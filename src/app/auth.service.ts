@@ -327,4 +327,15 @@ export class AuthService {
       return this.http.get<any>(url, { headers: headersForAPI, observe: 'response' });
     }
   }
+
+  EmailAuth(data): Observable<HttpResponse<any>>{
+    this.getToken();
+    if(this.AccessToken) {
+      var headersForAPI = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*', 'Authorization': 'Bearer ' + this.AccessToken });
+      headersForAPI.append("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
+      let url =  this.baseUrl + '/createAuth';
+      console.log(url);
+      return this.http.post<any>(url, data, { headers: headersForAPI, observe: 'response' });
+    }
+  }
 }

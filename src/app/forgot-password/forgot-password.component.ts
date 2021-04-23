@@ -23,7 +23,12 @@ export class ForgotPasswordComponent implements OnInit {
     console.log(this.forgotpwd);
     this.authService.forgotPwd(this.forgotpwd).subscribe((res)=>{
       if(res.body.result_code == 200){
-        swal.fire('New password sent to your email!', '', 'success').then((result) => {
+        swal.fire({
+          title: 'New password sent to your email!',
+          text: '',
+          icon: 'success',
+          allowOutsideClick: false
+        }).then((result) => {
           if (result.isConfirmed) {
             this.router.navigate(['/login'])
           }

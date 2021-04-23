@@ -68,6 +68,7 @@ export class TagsComponent implements OnInit {
               showDenyButton: false,
               showCancelButton: false,
               confirmButtonText: `Ok`,
+              allowOutsideClick: false
             }).then((result) => {
               if (result.isConfirmed) {
                 this.getData();

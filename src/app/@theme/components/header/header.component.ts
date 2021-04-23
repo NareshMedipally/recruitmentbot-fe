@@ -16,6 +16,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private destroy$: Subject<void> = new Subject<void>();
   userPictureOnly: boolean = false;
   user: any;
+  userData;
 
   themes = [
     {
@@ -59,6 +60,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.currentTheme = this.themeService.currentTheme;
+    this.userData = JSON.parse(localStorage.getItem('currentData'));
+    this.userData.first_name = this.userData.first_name + ' ' + this.userData.last_name
+    console.log(this.userData);
 
     this.userService.getUsers()
       .pipe(takeUntil(this.destroy$))

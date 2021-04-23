@@ -27,6 +27,8 @@ export class CreateEnterpriseComponent implements OnInit {
     "address_line_2": "",
     "zipcode": "",
     "city": "",
+    "state": "",
+    "country": "",
     "valid_from": null,
     "valid_to": null,
     "comments": ""
@@ -39,12 +41,16 @@ export class CreateEnterpriseComponent implements OnInit {
 
   onFileChange(event){
     if (event.target.files.length > 0) {
-      const file = event.target.files[0];
-      this.fileToUpload = file;
-      var reader = new FileReader();
-      reader.readAsDataURL(event.target.files[0]);
-      reader.onload = (e: any)=>{
-        this.entData.company_logo = e.target.result;
+      if(event.target.files[0].size <= 512000){
+        const file = event.target.files[0];
+        this.fileToUpload = file;
+        var reader = new FileReader();
+        reader.readAsDataURL(event.target.files[0]);
+        reader.onload = (e: any)=>{
+          this.entData.company_logo = e.target.result;
+        }
+      }else {
+        swal.fire('','Logo max size is 500KB!','error')
       }
     }
   }
@@ -62,6 +68,8 @@ export class CreateEnterpriseComponent implements OnInit {
     formData.append("address_line_2", this.entData.address_line_2);
     formData.append("zipcode", this.entData.zipcode);
     formData.append("city", this.entData.city);
+    formData.append("state", this.entData.state);
+    formData.append("country", this.entData.country);
     formData.append("valid_from", this.entData.valid_from ? this.datapipe.transform(this.entData.valid_from, 'yyyy-MM-dd') : "");
     formData.append("valid_to", this.entData.valid_to ? this.datapipe.transform(this.entData.valid_to, 'yyyy-MM-dd') : "");
     formData.append("comments", this.entData.comments);
@@ -72,7 +80,12 @@ export class CreateEnterpriseComponent implements OnInit {
       .subscribe(event => {
         console.log("event",event);
         if(event.body.desc == 'Record Inserted Successfully'){
-          swal.fire('', 'Created Successfully!', 'success').then((result) => {
+          swal.fire({
+            title: '',
+            text: 'Created Successfully!',
+            icon: 'success',
+            allowOutsideClick: false
+          }).then((result) => {
             if (result.isConfirmed) {
               this.router.navigate(['/pages/enterprise-info']);
             }

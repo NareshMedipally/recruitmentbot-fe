@@ -30,7 +30,7 @@
           <div class="col-md-6">
             <div class="form-group">
               <label for="exampleInputEmail1" class="label">Phone Number</label>
-              <input type="number" class="form-control" fullWidth id="phone" placeholder="" name="phone"  disabled [(ngModel)]="formData.phone" #phone="ngModel">
+              <input type="text" class="form-control" fullWidth id="phone" placeholder="" name="phone"  disabled [(ngModel)]="formData.phone" #phone="ngModel">
             </div>
           </div>
           <div class="col-md-12">
@@ -84,7 +84,7 @@
           <div class="col-md-6">
             <div class="form-group">
               <label for="exampleInputEmail1" class="label">Phone Number</label>
-              <input type="number" class="form-control" fullWidth id="phone" placeholder="" name="phone" disabled [(ngModel)]="formData.phone" #phone="ngModel">
+              <input type="text" class="form-control" fullWidth id="phone" placeholder="" name="phone" disabled [(ngModel)]="formData.phone" #phone="ngModel">
             </div>
           </div>
           <div class="col-md-12">
@@ -131,7 +131,7 @@
           <div class="col-md-6">
             <div class="form-group">
               <label for="exampleInputEmail1" class="label">Phone Number</label>
-              <input type="number" class="form-control" fullWidth id="phone" placeholder="" name="phone" disabled [(ngModel)]="formData.phone" #phone="ngModel">
+              <input type="text" class="form-control" fullWidth id="phone" placeholder="" name="phone" disabled [(ngModel)]="formData.phone" #phone="ngModel">
             </div>
           </div>
           <div class="col-md-6">
@@ -242,7 +242,7 @@
         <div class="col-md-4">
           <div class="form-group">
             <label  class="label">Phone Number</label>
-            <input type="number" class="form-control" fullWidth name="phone" [(ngModel)]="formData.phone" disabled>
+            <input type="text" class="form-control" fullWidth name="phone" [(ngModel)]="formData.phone" disabled>
           </div>
         </div>
         <div class="col-md-4">
@@ -278,6 +278,18 @@
             <input type="text" class="form-control" fullWidth name="city" [(ngModel)]="addressInfo.city" disabled>
           </div>
         </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label  class="label">State</label>
+            <input type="text" class="form-control" fullWidth name="state" [(ngModel)]="addressInfo.state" disabled>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label  class="label">Country</label>
+            <input type="text" class="form-control" fullWidth name="country" [(ngModel)]="addressInfo.country" disabled>
+          </div>
+        </div>
       </div>
       <div class="row" *ngFor="let obj of techInfo; let i=index ">
         <div class="col-md-12">
@@ -300,7 +312,7 @@
         <div class="col-md-3">
           <div class="form-group">
             <label  class="label">Marketing Phone Number</label>
-            <input type="number" class="form-control" fullWidth name="marketing_phone" [(ngModel)]="obj.marketing_phone" disabled>
+            <input type="text" class="form-control" fullWidth name="marketing_phone" [(ngModel)]="obj.marketing_phone" disabled>
           </div>
         </div>
         <div class="col-md-3">

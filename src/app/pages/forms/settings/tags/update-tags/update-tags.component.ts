@@ -80,6 +80,7 @@ export class UpdateTagsComponent implements OnInit {
           showDenyButton: false,
           showCancelButton: false,
           confirmButtonText: `Ok`,
+          allowOutsideClick: false
         }).then((result) => {
           /* Read more about isConfirmed, isDenied below */
           if (result.isConfirmed) {

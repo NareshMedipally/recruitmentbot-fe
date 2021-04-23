@@ -102,11 +102,12 @@ export class ManageUserComponent implements OnInit {
         this.authService.deleteCompany(data.correl_id).subscribe((result)=>{
           console.log(result);
           if(result.body.desc == 'User Deleted Successfully!'){
-            swal.fire(
-              'Deleted!',
-              'User has been deleted',
-              'success'
-            ).then((result) => {
+            swal.fire({
+              title: 'Deleted!',
+              text: 'User has been deleted',
+              icon: 'success',
+              allowOutsideClick: false
+            }).then((result) => {
               if (result.isConfirmed) {
                 this.getCompanies();
               }
@@ -131,7 +132,12 @@ export class ManageUserComponent implements OnInit {
       this.authService.botStatus(data).subscribe((res)=>{
         console.log(res);
         if(res.body.result_code == 200){
-          swal.fire('', 'Updated successfully!', 'success').then((result) => {
+          swal.fire({
+            title: '',
+            text: 'Updated successfully!',
+            icon: 'success',
+            allowOutsideClick: false
+          }).then((result) => {
             if (result.isConfirmed) {
               this.getCompanies();
             }
@@ -147,7 +153,12 @@ export class ManageUserComponent implements OnInit {
       this.authService.botStatus(data).subscribe((res)=>{
         console.log(res);
         if(res.body.result_code == 200){
-          swal.fire('', 'Updated successfully!', 'success').then((result) => {
+          swal.fire({
+            title: '',
+            text: 'Updated successfully!',
+            icon: 'success',
+            allowOutsideClick: false
+          }).then((result) => {
             if (result.isConfirmed) {
               this.getCompanies();
             }

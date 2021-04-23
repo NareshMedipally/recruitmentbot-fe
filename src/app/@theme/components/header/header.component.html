@@ -22,7 +22,8 @@
     <nb-action class="user-action" *nbIsGranted="['view', 'user']" >
       <nb-user [nbContextMenu]="userMenu"
                [onlyPicture]="userPictureOnly"
-               [name]="['']"
+               [name]="userData.first_name"
+               [title] = "userData.role_type"
                [picture]="['assets/images/user.svg']">
       </nb-user>
     </nb-action>

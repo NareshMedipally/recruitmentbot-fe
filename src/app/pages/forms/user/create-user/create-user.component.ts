@@ -124,6 +124,8 @@ export class CreateUserComponent implements OnInit {
     "address_line_2" : "",
     "zipcode" : "",
     "city" : "",
+    "state": "",
+    "country": ""
   }]
 
   con_technology = [
@@ -302,7 +304,12 @@ export class CreateUserComponent implements OnInit {
     this.authService.createUser(sadmin_form).subscribe((result)=>{
       console.log(result);
       if(result.body.status == 'success'){
-        swal.fire('', 'Created successfully', 'success').then((result) => {
+        swal.fire({
+          title: "",
+          text: "Created successfully",
+          icon: "success",
+          allowOutsideClick: false
+        }).then((result) => {
           if (result.isConfirmed) {
             this.router.navigate(['/pages/manage-user']);
           }
@@ -332,7 +339,12 @@ export class CreateUserComponent implements OnInit {
     this.authService.createUser(admin_form).subscribe((result)=>{
       console.log(result);
       if(result.body.status == 'success'){
-        swal.fire('', 'Created successfully', 'success').then((result) => {
+        swal.fire({
+          title: "",
+          text: "Created successfully",
+          icon: "success",
+          allowOutsideClick: false
+        }).then((result) => {
           if (result.isConfirmed) {
             this.router.navigate(['/pages/manage-user']);
           }
@@ -366,7 +378,12 @@ export class CreateUserComponent implements OnInit {
     this.authService.createUser(recData).subscribe((result)=>{
       console.log(result);
       if(result.body.status == 'success'){
-        swal.fire('', 'Created successfully', 'success').then((result) => {
+        swal.fire({
+          title: "",
+          text: "Created successfully",
+          icon: "success",
+          allowOutsideClick: false
+        }).then((result) => {
           if (result.isConfirmed) {
             this.router.navigate(['/pages/manage-user']);
           }
@@ -475,7 +492,12 @@ export class CreateUserComponent implements OnInit {
       console.log(res);
       if(res.body.status == 'success'){
         this.resetForm()
-        swal.fire('', 'Created successfully', 'success').then((result) => {
+        swal.fire({
+          title: "",
+          text: "Created successfully",
+          icon: "success",
+          allowOutsideClick: false
+        }).then((result) => {
           if (result.isConfirmed) {
             this.router.navigate(['/pages/manage-user']);
           }
@@ -509,6 +531,8 @@ export class CreateUserComponent implements OnInit {
       "address_line_2" : "",
       "zipcode" : "",
       "city" : "",
+      "state": "",
+      "country": ""
     }]
 
     this.con_technology = [

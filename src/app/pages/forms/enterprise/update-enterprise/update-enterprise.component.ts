@@ -26,6 +26,8 @@ export class UpdateEnterpriseComponent implements OnInit {
     "address_line_2": "",
     "zipcode": "",
     "city": "",
+    "state": "",
+    "country": "",
     "valid_from": null,
     "valid_to": null,
     "comments": ""
@@ -61,6 +63,8 @@ export class UpdateEnterpriseComponent implements OnInit {
           "address_line_2": result.body.aresult[0].address_line_2,
           "zipcode": result.body.aresult[0].zipcode,
           "city": result.body.aresult[0].city,
+          "state": result.body.aresult[0].state,
+          "country": result.body.aresult[0].country,
           "valid_from": result.body.fields[0].valid_from ? this.datapipe.transform(result.body.fields[0].valid_from, 'yyyy-MM-dd') : "",
           "valid_to": result.body.fields[0].valid_to ? this.datapipe.transform(result.body.fields[0].valid_to, 'yyyy-MM-dd') : "",
           "comments": result.body.fields[0].comments
@@ -86,17 +90,22 @@ export class UpdateEnterpriseComponent implements OnInit {
 
   onFileChange(event){
     if (event.target.files.length > 0) {
-      const file = event.target.files[0];
-      this.fileToUpload = file;
-      this.company.company_logo = this.fileToUpload;
-      console.log(this.company.company_logo)
-      var reader = new FileReader();
-      reader.readAsDataURL(event.target.files[0]);
-      reader.onload = (e: any)=>{
-        this.logo = e.target.result;
+      console.log(event.target.files[0].size);
+      if(event.target.files[0].size <= 512000){
+        const file = event.target.files[0];
+        this.fileToUpload = file;
+        this.company.company_logo = this.fileToUpload;
+        console.log(this.company.company_logo);
+        var reader = new FileReader();
+        reader.readAsDataURL(event.target.files[0]);
+        reader.onload = (e: any)=>{
+          this.logo = e.target.result;
+        }
+        this.logoImg = true;
+      }else {
+        swal.fire('','Logo max size is 500KB!','error')
       }
     }
-    this.logoImg = true;
   }
 
   Save(){
@@ -112,6 +121,8 @@ export class UpdateEnterpriseComponent implements OnInit {
     formData.append("address_line_2", this.company.address_line_2);
     formData.append("zipcode", this.company.zipcode);
     formData.append("city", this.company.city);
+    formData.append("state", this.company.state);
+    formData.append("country", this.company.country);
     formData.append("valid_from", this.company.valid_from ? this.datapipe.transform(this.company.valid_from, 'yyyy-MM-dd') : "");
     formData.append("valid_to", this.company.valid_to ? this.datapipe.transform(this.company.valid_to, 'yyyy-MM-dd') : "");
     formData.append("comments", this.company.comments);
@@ -122,7 +133,12 @@ export class UpdateEnterpriseComponent implements OnInit {
       .subscribe(event => {
         console.log("event",event);
         if(event.body.desc == 'Record Updated Successfully'){
-          swal.fire('', 'Updated Successfully!', 'success').then((result) => {
+          swal.fire({
+            title: '',
+            text: 'Updated Successfully!',
+            icon: 'success',
+            allowOutsideClick: false
+          }).then((result) => {
             if (result.isConfirmed) {
               this.router.navigate(['/pages/enterprise-info']);
             }

@@ -110,7 +110,7 @@
             <div class="col-sm-6">
               <div class="form-group">
                 <label for="inputWebsite" class="label">Phone Number <span style="color: red">*</span></label>
-                <input type="number" class="form-control" fullWidth placeholder="" name="phone" [(ngModel)]="entData.phone" #phone="ngModel" required>
+                <input type="text" class="form-control" fullWidth placeholder="" name="phone" [(ngModel)]="entData.phone" #phone="ngModel" required>
                 <ng-container *ngIf="phone.touched ">
                   <p class="error-message text-danger" *ngIf="phone.errors?.required">
                     Phone number is required!
@@ -148,7 +148,19 @@
             <div class="col-sm-6">
               <div class="form-group">
                 <label for="inputWebsite" class="label">Zipcode</label>
-                <input type="number" class="form-control" fullWidth placeholder="" name="zipcode" [(ngModel)]="entData.zipcode" #zipcode="ngModel">
+                <input type="text" class="form-control" fullWidth placeholder="" name="zipcode" [(ngModel)]="entData.zipcode" #zipcode="ngModel">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="inputEmail" class="label">State</label>
+                <input type="email" class="form-control" fullWidth placeholder="" name="state" [(ngModel)]="entData.state" #state="ngModel">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="inputEmail" class="label">Country</label>
+                <input type="email" class="form-control" fullWidth placeholder="" name="country" [(ngModel)]="entData.country" #country="ngModel">
               </div>
             </div>
           </div>

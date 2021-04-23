@@ -66,7 +66,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label  class="label">Phone Number <span style="color: red;">*</span></label>
-                  <input type="number" class="form-control" fullWidth id="phone" name="phone" [(ngModel)]="formData.phone" #phone="ngModel" placeholder="" required>
+                  <input type="text" class="form-control" fullWidth id="phone" name="phone" [(ngModel)]="formData.phone" #phone="ngModel" placeholder="" required>
                   <ng-container *ngIf="phone.touched ">
                     <p class="error-message text-danger" *ngIf="phone.errors?.required">
                       Phone number is required!
@@ -151,7 +151,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label  class="label">Phone Number <span style="color: red;">*</span></label>
-                  <input type="number" class="form-control" fullWidth id="phone-2" placeholder="" name="phone" [(ngModel)]="formData.phone" #phone="ngModel" required>
+                  <input type="text" class="form-control" fullWidth id="phone-2" placeholder="" name="phone" [(ngModel)]="formData.phone" #phone="ngModel" required>
                   <ng-container *ngIf="phone.touched ">
                     <p class="error-message text-danger" *ngIf="phone.errors?.required">
                       Phone number is required!
@@ -219,7 +219,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label  class="label">Phone Number <span style="color: red;">*</span></label>
-                  <input type="number" class="form-control" fullWidth id="phone" placeholder="" name="phone" [(ngModel)]="formData.phone" #phone="ngModel" required>
+                  <input type="text" class="form-control" fullWidth id="phone" placeholder="" name="phone" [(ngModel)]="formData.phone" #phone="ngModel" required>
                   <ng-container *ngIf="phone.touched ">
                     <p class="error-message text-danger" *ngIf="phone.errors?.required">
                       Phone number is required!
@@ -356,7 +356,7 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label  class="label">Rate <span style="color: darkgreen;">$/hour</span></label>
-                  <input type="number" class="form-control" fullWidth name="rate" [(ngModel)]="con_generalInfo[0].rate" placeholder="">
+                  <input type="text" class="form-control" fullWidth name="rate" [(ngModel)]="con_generalInfo[0].rate" placeholder="">
                 </div>
               </div>
               <div class="col-md-4">
@@ -392,7 +392,7 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label  class="label">Phone Number <span style="color: red;">*</span></label>
-                  <input type="number" class="form-control" fullWidth name="phone" [(ngModel)]="con_contactInfo[0].phone" #phone="ngModel" placeholder="" required>
+                  <input type="text" class="form-control" fullWidth name="phone" [(ngModel)]="con_contactInfo[0].phone" #phone="ngModel" placeholder="" required>
                   <ng-container *ngIf="phone.touched ">
                     <p class="error-message text-danger" *ngIf="phone.errors?.required">
                       Phone number is required!
@@ -425,7 +425,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label  class="label">Zip Code</label>
-                  <input type="number" class="form-control" fullWidth name="zipcode" [(ngModel)]="con_contactInfo[0].zipcode">
+                  <input type="text" class="form-control" fullWidth name="zipcode" [(ngModel)]="con_contactInfo[0].zipcode">
                 </div>
               </div>
               <div class="col-md-6">
@@ -437,6 +437,18 @@
                       City required!
                     </p>
                   </ng-container>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label  class="label">State</label>
+                  <input type="text" class="form-control" fullWidth name="state" [(ngModel)]="con_contactInfo[0].state">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label  class="label">Country</label>
+                  <input type="text" class="form-control" fullWidth name="country" [(ngModel)]="con_contactInfo[0].country">
                 </div>
               </div>
             </div>
@@ -467,7 +479,7 @@
               <div class="col-md-3">
                 <div class="form-group">
                   <label  class="label">Marketing Phone Number</label>
-                  <input type="number" class="form-control" fullWidth name="marketing_phone_{{obj.id}}" [(ngModel)]="obj.marketing_phone" >
+                  <input type="text" class="form-control" fullWidth name="marketing_phone_{{obj.id}}" [(ngModel)]="obj.marketing_phone" >
                 </div>
               </div>
               <div class="col-md-3">

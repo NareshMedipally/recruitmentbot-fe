@@ -73,11 +73,12 @@ export class EnterpriseComponent implements OnInit {
           this.authService.delEntCompany(data.correl_id).subscribe((result)=>{
             console.log(result);
             if(result.body.status == 'success'){
-              swal.fire(
-                '',
-                'Deleted successfully!',
-                'success'
-              ).then((result) => {
+              swal.fire({
+                title: '',
+                text: 'Deleted successfully!',
+                icon: 'success',
+                allowOutsideClick: false
+              }).then((result) => {
                 if (result.isConfirmed) {
                   this.getData();
                 }

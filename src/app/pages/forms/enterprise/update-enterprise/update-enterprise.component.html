@@ -141,7 +141,19 @@
             <div class="col-sm-6">
               <div class="form-group">
                 <label for="inputWebsite" class="label">Zipcode</label>
-                <input type="number" class="form-control" fullWidth name="zipcode" [(ngModel)]="company.zipcode" >
+                <input type="text" class="form-control" fullWidth name="zipcode" [(ngModel)]="company.zipcode" >
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="inputEmail" class="label">State</label>
+                <input type="email" class="form-control" fullWidth name="state" [(ngModel)]="company.state">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="inputEmail" class="label">Country</label>
+                <input type="email" class="form-control" fullWidth name="country" [(ngModel)]="company.country">
               </div>
             </div>
           </div>

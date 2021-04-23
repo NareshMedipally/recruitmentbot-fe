@@ -60,7 +60,9 @@ export class UpdateUserComponent implements OnInit {
     "address_line_1": "",
     "address_line_2": "",
     "city": "",
-    "zipcode": ""
+    "zipcode": "",
+    "state": "",
+    "country": ""
   }
 
   techInfo = [
@@ -162,7 +164,9 @@ export class UpdateUserComponent implements OnInit {
             "address_line_1": result.body.addresult[0].address_line_1,
             "address_line_2": result.body.addresult[0].address_line_2,
             "city": result.body.addresult[0].city,
-            "zipcode": result.body.addresult[0].zipcode
+            "zipcode": result.body.addresult[0].zipcode,
+            "state": result.body.addresult[0].state,
+            "country": result.body.addresult[0].country
           }
           this.techInfo = result.body.techresult;
           // for (const item of result.body.techresult) {
@@ -290,7 +294,12 @@ export class UpdateUserComponent implements OnInit {
       this.authService.updateCompany(this.route.snapshot.params.id, sData).subscribe((result)=>{
         if(result.body.desc == 'Record Updated Successfully'){
           console.log(result);
-          swal.fire('', 'Updated successfully', 'success').then((result) => {
+          swal.fire({
+            title: "",
+            text: "Updated successfully",
+            icon: "success",
+            allowOutsideClick: false
+          }).then((result) => {
             if (result.isConfirmed) {
               this.router.navigate(['/pages/manage-user']);
             }
@@ -317,7 +326,12 @@ export class UpdateUserComponent implements OnInit {
       this.authService.updateCompany(this.route.snapshot.params.id, aData).subscribe((result)=>{
         if(result.body.desc == 'Record Updated Successfully'){
           console.log(result);
-          swal.fire('', 'Updated successfully', 'success').then((result) => {
+          swal.fire({
+            title: "",
+            text: "Updated successfully",
+            icon: "success",
+            allowOutsideClick: false
+          }).then((result) => {
             if (result.isConfirmed) {
               this.router.navigate(['/pages/manage-user']);
             }
@@ -349,7 +363,12 @@ export class UpdateUserComponent implements OnInit {
       this.authService.updateCompany(this.route.snapshot.params.id, rData).subscribe((result)=>{
         if(result.body.desc == 'Record Updated Successfully'){
           console.log(result);
-          swal.fire('', 'Updated successfully', 'success').then((result) => {
+          swal.fire({
+            title: "",
+            text: "Updated successfully",
+            icon: "success",
+            allowOutsideClick: false
+          }).then((result) => {
             if (result.isConfirmed) {
               this.router.navigate(['/pages/manage-user']);
             }
@@ -390,6 +409,8 @@ export class UpdateUserComponent implements OnInit {
           "address_line_2" : this.addressInfo.address_line_2,
           "zipcode" : this.addressInfo.zipcode,
           "city" : this.addressInfo.city,
+          "state" : this.addressInfo.state,
+          "country" : this.addressInfo.country,
         }
       ];
       let con_otherInfo = [
@@ -453,7 +474,12 @@ export class UpdateUserComponent implements OnInit {
       this.authService.updateConsultant(this.route.snapshot.params.id, formData).subscribe((result)=>{
       //  if(result.body.desc == 'Record Updated Successfully'){
           console.log(result);
-          swal.fire('', 'Updated successfully', 'success').then((result) => {
+          swal.fire({
+            title: "",
+            text: "Updated successfully",
+            icon: "success",
+            allowOutsideClick: false
+          }).then((result) => {
             if (result.isConfirmed) {
               this.router.navigate(['/pages/manage-user']);
             }
