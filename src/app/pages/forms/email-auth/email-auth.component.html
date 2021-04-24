@@ -2,9 +2,13 @@
 <nb-card>
   <nb-card-body>
     <div class="row">
-      <div class="col-4 mx-auto text-center">
-        <a  *ngIf ="!emailAuth" class="btn btn-primary text-white btn-block" style="text-decoration: none;" target="_self" href="https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/gmail.modify&include_granted_scopes=true&state=Smatbot&redirect_uri=https://hireswing.com:3366/mailOauth&response_type=code&client_id=169266660325-40qnhg6ur115aantdkc4jok2424bfq8j.apps.googleusercontent.com&access_type=offline&prompt=consent">Authorize</a>
-        <a  *ngIf ="emailAuth" class="btn btn-success text-white btn-block" style="text-decoration: none;" target="_blank" >Authorized</a>
+      <div class="col-4">
+        {{userData.email_id}}
+      </div>
+      <div class="col-4"></div>
+      <div class="col-4 text-right">
+        <a  *ngIf ="!verify_emails.includes(userData.email_id)" class="btn btn-primary text-white btn-block" style="text-decoration: none;" target="_self" href="https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/gmail.modify&include_granted_scopes=true&state=Smatbot&redirect_uri=https://hireswing.com:3366/mailOauth&response_type=code&client_id=169266660325-40qnhg6ur115aantdkc4jok2424bfq8j.apps.googleusercontent.com&access_type=offline&prompt=consent">Authorize</a>
+        <a  *ngIf ="verify_emails.includes(userData.email_id)" class="btn btn-success text-white btn-block" style="text-decoration: none;" target="_blank" >Authorized</a>
       </div>
     </div>
   </nb-card-body>
@@ -15,9 +19,13 @@
   <nb-card>
     <nb-card-body>
       <div class="row">
-        <div class="col-4 mx-auto text-center">
-          <a  *ngIf ="!emailAuth" class="btn btn-primary text-white btn-block" style="text-decoration: none;" target="_self" href="https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/gmail.modify&include_granted_scopes=true&state=Smatbot&redirect_uri=https://hireswing.com:3366/mailOauth&response_type=code&client_id=169266660325-40qnhg6ur115aantdkc4jok2424bfq8j.apps.googleusercontent.com&access_type=offline&prompt=consent">Authorize</a>
-          <a  *ngIf ="emailAuth" class="btn btn-success text-white btn-block" style="text-decoration: none;" target="_blank" >Authorized</a>
+        <div class="col-4">
+          {{userData.primary_email_id}}
+        </div>
+        <div class="col-4"></div>
+        <div class="col-4 text-right">
+          <a  *ngIf ="!verify_emails.includes(userData.primary_email_id)" class="btn btn-primary text-white btn-block" style="text-decoration: none;" target="_self" href="https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/gmail.modify&include_granted_scopes=true&state=Smatbot&redirect_uri=https://hireswing.com:3366/mailOauth&response_type=code&client_id=169266660325-40qnhg6ur115aantdkc4jok2424bfq8j.apps.googleusercontent.com&access_type=offline&prompt=consent">Authorize</a>
+          <a  *ngIf ="verify_emails.includes(userData.primary_email_id)" class="btn btn-success text-white btn-block" style="text-decoration: none;" target="_blank" >Authorized</a>
         </div>
       </div>
     </nb-card-body>
@@ -29,9 +37,13 @@
   <nb-card>
     <nb-card-body>
       <div class="row">
-        <div class="col-4 mx-auto text-center">
-          <a  *ngIf ="!emailAuth" class="btn btn-primary text-white btn-block" style="text-decoration: none;" target="_self" href="https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/gmail.modify&include_granted_scopes=true&state=Smatbot&redirect_uri=https://hireswing.com:3366/mailOauth&response_type=code&client_id=169266660325-40qnhg6ur115aantdkc4jok2424bfq8j.apps.googleusercontent.com&access_type=offline&prompt=consent">Authorize</a>
-          <a  *ngIf ="emailAuth" class="btn btn-success text-white btn-block" style="text-decoration: none;" target="_blank" >Authorized</a>
+        <div class="col-4">
+          {{userData.generic_email_id}}
+        </div>
+        <div class="col-4"></div>
+        <div class="col-4 text-right">
+          <a  *ngIf ="!verify_emails.includes(userData.generic_email_id)" class="btn btn-primary text-white btn-block" style="text-decoration: none;" target="_self" href="https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/gmail.modify&include_granted_scopes=true&state=Smatbot&redirect_uri=https://hireswing.com:3366/mailOauth&response_type=code&client_id=169266660325-40qnhg6ur115aantdkc4jok2424bfq8j.apps.googleusercontent.com&access_type=offline&prompt=consent">Authorize</a>
+          <a  *ngIf ="verify_emails.includes(userData.generic_email_id)" class="btn btn-success text-white btn-block" style="text-decoration: none;" target="_blank" >Authorized</a>
         </div>
       </div>
     </nb-card-body>
@@ -43,9 +55,13 @@
   <nb-card>
     <nb-card-body>
       <div class="row">
-        <div class="col-4 mx-auto text-center">
-          <a  *ngIf ="!emailAuth" class="btn btn-primary text-white btn-block" style="text-decoration: none;" target="_self" href="https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/gmail.modify&include_granted_scopes=true&state=Smatbot&redirect_uri=https://hireswing.com:3366/mailOauth&response_type=code&client_id=169266660325-40qnhg6ur115aantdkc4jok2424bfq8j.apps.googleusercontent.com&access_type=offline&prompt=consent">Authorize</a>
-          <a  *ngIf ="emailAuth" class="btn btn-success text-white btn-block" style="text-decoration: none;" target="_blank" >Authorized</a>
+        <div class="col-4">
+          {{userData.personal_email_id}}
+        </div>
+        <div class="col-4"></div>
+        <div class="col-4 text-right">
+          <a  *ngIf ="!verify_emails.includes(userData.personal_email_id)" class="btn btn-primary text-white btn-block" style="text-decoration: none;" target="_self" href="https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/gmail.modify&include_granted_scopes=true&state=Smatbot&redirect_uri=https://hireswing.com:3366/mailOauth&response_type=code&client_id=169266660325-40qnhg6ur115aantdkc4jok2424bfq8j.apps.googleusercontent.com&access_type=offline&prompt=consent">Authorize</a>
+          <a  *ngIf ="verify_emails.includes(userData.personal_email_id)" class="btn btn-success text-white btn-block" style="text-decoration: none;" target="_blank" >Authorized</a>
         </div>
       </div>
     </nb-card-body>
@@ -57,9 +73,13 @@
   <nb-card>
     <nb-card-body>
       <div class="row">
-        <div class="col-4 mx-auto text-center">
-          <a  *ngIf ="!emailAuth" class="btn btn-primary text-white btn-block" style="text-decoration: none;" target="_self" href="https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/gmail.modify&include_granted_scopes=true&state=Smatbot&redirect_uri=https://hireswing.com:3366/mailOauth&response_type=code&client_id=169266660325-40qnhg6ur115aantdkc4jok2424bfq8j.apps.googleusercontent.com&access_type=offline&prompt=consent">Authorize</a>
-          <a  *ngIf ="emailAuth" class="btn btn-success text-white btn-block" style="text-decoration: none;" target="_blank" >Authorized</a>
+        <div class="col-4">
+          {{userData.cc_email_id}}
+        </div>
+        <div class="col-4"></div>
+        <div class="col-4 mx-auto text-right">
+          <a  *ngIf ="!verify_emails.includes(userData.cc_email_id)" class="btn btn-primary text-white btn-block" style="text-decoration: none;" target="_self" href="https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/gmail.modify&include_granted_scopes=true&state=Smatbot&redirect_uri=https://hireswing.com:3366/mailOauth&response_type=code&client_id=169266660325-40qnhg6ur115aantdkc4jok2424bfq8j.apps.googleusercontent.com&access_type=offline&prompt=consent">Authorize</a>
+          <a  *ngIf ="verify_emails.includes(userData.cc_email_id)" class="btn btn-success text-white btn-block" style="text-decoration: none;" target="_blank" >Authorized</a>
         </div>
       </div>
     </nb-card-body>
@@ -71,9 +91,13 @@
   <nb-card>
     <nb-card-body>
       <div class="row">
+        <div class="col-4">
+          {{userData.bcc_email_id}}
+        </div>
+        <div class="col-4"></div>
         <div class="col-4 mx-auto text-center">
-          <a  *ngIf ="!emailAuth" class="btn btn-primary text-white btn-block" style="text-decoration: none;" target="_self" href="https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/gmail.modify&include_granted_scopes=true&state=Smatbot&redirect_uri=https://hireswing.com:3366/mailOauth&response_type=code&client_id=169266660325-40qnhg6ur115aantdkc4jok2424bfq8j.apps.googleusercontent.com&access_type=offline&prompt=consent">Authorize</a>
-          <a  *ngIf ="emailAuth" class="btn btn-success text-white btn-block" style="text-decoration: none;" target="_blank" >Authorized</a>
+          <a *ngIf ="!verify_emails.includes(userData.bcc_email_id)" class="btn btn-primary text-white btn-block" style="text-decoration: none;" target="_self" href="https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/gmail.modify&include_granted_scopes=true&state=Smatbot&redirect_uri=https://hireswing.com:3366/mailOauth&response_type=code&client_id=169266660325-40qnhg6ur115aantdkc4jok2424bfq8j.apps.googleusercontent.com&access_type=offline&prompt=consent">Authorize</a>
+          <a *ngIf ="verify_emails.includes(userData.bcc_email_id)" class="btn btn-success text-white btn-block" style="text-decoration: none;" target="_blank" >Authorized</a>
         </div>
       </div>
     </nb-card-body>

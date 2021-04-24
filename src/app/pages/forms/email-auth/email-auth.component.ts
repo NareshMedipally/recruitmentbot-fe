@@ -10,11 +10,20 @@ import { AuthService } from 'app/auth.service';
 export class EmailAuthComponent implements OnInit {
   emailAuth:any 
   userData;
+  verify_emails = [];
 
   constructor(private activatedRoute: ActivatedRoute, private authService: AuthService) { }
 
   ngOnInit() {
     this.userData = JSON.parse(localStorage.getItem('currentData'));
+    
+    this.authService.getEmailAuth(this.userData.email_id).subscribe( e_res => {
+      console.log(e_res);
+      let verifyAuth = e_res.body.fields[0];
+      verifyAuth.mail_id = JSON.parse(verifyAuth.mail_id);
+      this.verify_emails = verifyAuth.mail_id;
+      console.log(this.verify_emails);
+    })
 
     console.log("fdfd",this.activatedRoute.snapshot.params);
     let email = this.activatedRoute.snapshot.params.email;
@@ -26,14 +35,9 @@ export class EmailAuthComponent implements OnInit {
       }
       console.log(data);
       this.authService.EmailAuth(data).subscribe( res => {
-        console.log(res);
+        console.log(res.body.mail_id);
+        this.verify_emails = JSON.parse(res.body.mail_id);
       });
-    }
-    if(checkAuth == 'true'){  
-   
-      this.emailAuth = true
-    }else{
-      this.emailAuth = false
     }
 
   }
