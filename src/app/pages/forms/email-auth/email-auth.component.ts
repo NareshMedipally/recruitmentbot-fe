@@ -22,7 +22,7 @@ export class EmailAuthComponent implements OnInit {
     if(email != "email" && checkAuth == 'true'){
       let data = {
         "user_id": this.userData.email_id,
-        "mail_id": email
+        "mail_id": [email]
       }
       console.log(data);
       this.authService.EmailAuth(data).subscribe( res => {
