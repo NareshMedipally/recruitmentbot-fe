@@ -40,6 +40,8 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { UpdateTagsComponent } from './settings/tags/update-tags/update-tags.component';
 import { EmailAuthComponent } from './email-auth/email-auth.component';
 import { DataTablesModule } from 'angular-datatables';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { TermsConditionsComponent } from './terms-conditions/terms-conditions.component';
 
 @NgModule({
   imports: [
@@ -84,6 +86,8 @@ import { DataTablesModule } from 'angular-datatables';
     ViewEnterpriseComponent,
     UpdateTagsComponent,
     EmailAuthComponent,
+    PrivacyPolicyComponent,
+    TermsConditionsComponent,
   ],
   providers: [
     NgxPaginationModule,

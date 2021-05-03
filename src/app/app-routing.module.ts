@@ -11,6 +11,8 @@ import {
 import { LoginComponent } from './login/login.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { TermsConditionsComponent } from './pages/forms/terms-conditions/terms-conditions.component';
+import { PrivacyPolicyComponent } from './pages/forms/privacy-policy/privacy-policy.component';
 
 export const routes: Routes = [
   {
@@ -29,6 +31,14 @@ export const routes: Routes = [
   {
     path: 'change-pwd',
     component: ChangePasswordComponent
+  },
+  {
+    path: 'terms-and-conditions',
+    component: TermsConditionsComponent,
+  },
+  {
+    path: 'privacy-policy',
+    component: PrivacyPolicyComponent,
   },
   {
     path: 'auth',
