@@ -354,18 +354,18 @@
           </div>
         </div>
         <div class="col-md-6">
-          <div class="form-group">
+          <div class="form-group" style="margin-bottom: 0px;">
             <label  class="label">Resume</label>
-            <input type="file"  class="form-control" fullWidth disabled>
           </div>
-          <a target="_blank" href="https://hireswing.com/api/files/{{obj.resume_loc}}">View previous upload</a>
+          <a target="_blank" class="btn btn-primary mt-1 mb-3" style="color: white; text-decoration: unset;" *ngIf="obj.resume_loc" href="https://hireswing.com/api/files/{{obj.resume_loc}}" download>View Existing Resume</a>
+          <a target="_blank" class="btn cust-disable mt-1 mb-3" style="color: white; text-decoration: unset;" *ngIf="!obj.resume_loc">View Existing Resume</a>
         </div>
         <div class="col-md-6">
-          <div class="form-group">
+          <div class="form-group" style="margin-bottom: 0px;">
             <label  class="label">Certification</label>
-            <input type="file"  class="form-control" fullWidth disabled>
           </div>
-          <a target="_blank" href="https://hireswing.com/api/files/{{obj.certificate_loc}}">View previous upload</a>
+          <a target="_blank" class="btn btn-primary mt-1 mb-3" style="color: white; text-decoration: unset;" *ngIf="obj.certificate_loc" href="https://hireswing.com/api/files/{{obj.certificate_loc}}" download>View Existing Certification</a>
+          <a target="_blank" class="btn cust-disable mt-1 mb-3" style="color: white; text-decoration: unset;" *ngIf="!obj.certificate_loc">View Existing Certification</a>
         </div>
       </div>
       <div class="row mt-3">
@@ -390,11 +390,11 @@
           </div>
           <div class="row">
             <div class="col-md-12">
-              <div class="form-group">
+              <div class="form-group" style="margin-bottom: 0px;">
                 <label  class="label">Visa Copy</label>
-                <input type="file" class="form-control" fullWidth disabled>
               </div>
-              <a target="_blank" href="https://hireswing.com/api/files/{{formData.visa_copy_loc}}">View previous upload</a>
+              <a target="_blank" class="btn btn-primary mt-1 mb-3" style="color: white; text-decoration: unset;" *ngIf="formData.visa_copy_loc" href="https://hireswing.com/api/files/{{formData.visa_copy_loc}}" download>View Existing Visa</a>
+              <a target="_blank" class="btn cust-disable mt-1 mb-3" style="color: white; text-decoration: unset;" *ngIf="!formData.visa_copy_loc">View Existing Visa</a>
             </div>
             <div class="col-md-12">
               <div class="form-group">
@@ -425,11 +425,11 @@
           </div>
           <div class="row">
             <div class="col-md-12">
-              <div class="form-group">
+              <div class="form-group" style="margin-bottom: 0px;">
                 <label  class="label">Driving License Copy</label>
-                <input type="file" class="form-control" fullWidth disabled>
               </div>
-              <a target="_blank" href="https://hireswing.com/api/files/{{formData.DL_copy}}">View previous upload</a>
+              <a target="_blank" class="btn btn-primary mt-1 mb-3" style="color: white; text-decoration: unset;" *ngIf="formData.DL_copy" href="https://hireswing.com/api/files/{{formData.DL_copy}}" download>View Existing Driving License</a>
+              <a target="_blank" class="btn cust-disable mt-1 mb-3" style="color: white; text-decoration: unset;" *ngIf="!formData.DL_copy">View Existing Driving License</a>
             </div>
             <div class="col-md-12">
               <div class="form-group">

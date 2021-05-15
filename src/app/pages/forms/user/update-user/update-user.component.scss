@@ -1,0 +1,14 @@
+.btn.cust-disable {
+    opacity: .65;
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn.cust-disable:hover {
+    opacity: .65;
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+    cursor: not-allowed;
+}

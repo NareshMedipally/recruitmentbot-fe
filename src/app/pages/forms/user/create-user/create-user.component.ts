@@ -200,8 +200,7 @@ export class CreateUserComponent implements OnInit {
       ]
     }else if(this.Role_id == 3){
       this.roles1=[
-        {"id":0,"role":"Recruiter","value":3},
-        {"id":1,"role":"Consultant","value":4},
+        {"id":0,"role":"Consultant","value":4},
       ]
     }
 

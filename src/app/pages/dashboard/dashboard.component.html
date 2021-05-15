@@ -72,7 +72,7 @@
   </div>
 </div>
 
-<div class="row" *ngIf="role == 2 || role ==3">
+<div class="row" *ngIf="role == 2">
   <div class="col-10 mx-auto">
     <div class="row mt-5 sm-mt-2">
       <div class="col-md-6 mb-2">
@@ -90,6 +90,29 @@
         </div>
       </div>
       <div class="col-md-6 mb-2">
+        <div class="card">
+          <div class="crad-body">
+            <div style="padding: 30px;">
+              <div class="row">
+                <div class="col-6">
+                  <h6>Consultants</h6>
+                </div>
+                <div class="col-6 text-right">
+                  <h6>{{consultant}}</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row" *ngIf="role ==3">
+  <div class="col-10 mx-auto">
+    <div class="row mt-5 sm-mt-2">
+      <div class="col-md-6 mb-2 mx-auto">
         <div class="card">
           <div class="crad-body">
             <div style="padding: 30px;">

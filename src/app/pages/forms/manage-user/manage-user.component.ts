@@ -63,7 +63,7 @@ export class ManageUserComponent implements OnInit {
         if(result.status == 200){
           this.adminType = result.body.fields.filter(x => x.role_type != 'Super Admin')
           console.log(this.adminType);
-          this.recruiterType = this.adminType.filter(x => x.role_type != 'Admin')
+          this.recruiterType = this.adminType.filter(x => x.role_type == 'Consultant')
           console.log(this.recruiterType);
         }
       },err=>{

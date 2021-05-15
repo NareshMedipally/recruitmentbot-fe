@@ -148,9 +148,9 @@ export class UpdateUserComponent implements OnInit {
             "dob": result.body.fields[0].dob ? this.datapipe.transform(result.body.fields[0].dob, 'yyyy-MM-dd') : "",
             "education": result.body.fields[0].education,
             "rate": result.body.fields[0].rate,
-            "relocation": result.body.fields[0].relocation,
+            "relocation": result.body.fields[0].relocation? result.body.fields[0].relocation: "",
             "visa_copy_loc": result.body.fields[0].visa_copy_loc,
-            "visa_status": result.body.fields[0].visa_status,
+            "visa_status": result.body.fields[0].visa_status ? result.body.fields[0].visa_status : "",
             "visa_valid_from": result.body.fields[0].visa_valid_from ? this.datapipe.transform(result.body.fields[0].visa_valid_from, 'yyyy-MM-dd') : "",
             "visa_valid_to": result.body.fields[0].visa_valid_to ? this.datapipe.transform(result.body.fields[0].visa_valid_to, 'yyyy-MM-dd') : "",
             "DL_copy": result.body.fields[0].DL_copy,
@@ -175,6 +175,7 @@ export class UpdateUserComponent implements OnInit {
           // }
           for(let i=0;i<result.body.techresult.length;i++) {
             this.techInfo[i].tags = result.body.techresult[i].tags.split(',');
+            this.techInfo[i].id = i;
           }
         }
         console.log(this.formData);
@@ -415,11 +416,11 @@ export class UpdateUserComponent implements OnInit {
       ];
       let con_otherInfo = [
         {
-          "DL_copy" : this.formData.DL_copy,
+          "DL_copy" : this.formData.DL_copy ? this.formData.DL_copy : null,
           "DL_valid_from" : this.formData.DL_valid_from ? this.datapipe.transform(this.formData.DL_valid_from, 'yyyy-MM-dd'): null,
           "DL_valid_to" : this.formData.DL_valid_to ? this.datapipe.transform(this.formData.DL_valid_to, 'yyyy-MM-dd'): null,
           "visa_status": this.formData.visa_status,
-          "visa_copy_loc": this.formData.visa_copy_loc,
+          "visa_copy_loc": this.formData.visa_copy_loc ? this.formData.visa_copy_loc : null,
           "visa_valid_from": this.formData.visa_valid_from ? this.datapipe.transform(this.formData.visa_valid_from, 'yyyy-MM-dd'): null,
           "visa_valid_to": this.formData.visa_valid_to ? this.datapipe.transform(this.formData.visa_valid_to, 'yyyy-MM-dd'): null,
           "comments": this.formData.comments,

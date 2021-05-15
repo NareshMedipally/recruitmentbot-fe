@@ -55,6 +55,8 @@ export class ProfileComponent implements OnInit {
   }
 
   updateRecruiter(){
+    let UserData = JSON.parse(localStorage.getItem('currentData'));
+
     let data = {
       "first_name" : this.profile.first_name,
       "last_name" : this.profile.last_name,
@@ -81,6 +83,12 @@ export class ProfileComponent implements OnInit {
           allowOutsideClick: false
         }).then((result) => {
           if (result.isConfirmed) {
+            UserData.primary_email_id = this.profile.primary_email_id;
+            UserData.generic_email_id = this.profile.generic_email_id;
+            UserData.personal_email_id = this.profile.personal_email_id;
+            UserData.cc_email_id = this.profile.cc_email_id;
+            UserData.bcc_email_id = this.profile.bcc_email_id;
+            localStorage.setItem('currentData', JSON.stringify(UserData));
             this.router.navigate(['/pages/dashboard']);
           }
         })
